@@ -10,8 +10,6 @@ export function Login() {
 
   function logvalues() {
     const values = getValues();
-
-    console.log(values.email, values.password);
   }
 
   return (
