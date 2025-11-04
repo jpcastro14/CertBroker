@@ -1,4 +1,4 @@
-import { Children, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Api } from "../../services/api";
 
 interface IAuthProvider {
@@ -12,7 +12,7 @@ interface IUser {
 }
 
 // Tipagem do que sera fornecido pelo contexto
-interface IContext extends IUser {
+export interface IContext extends IUser {
   authenticate: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
@@ -22,8 +22,19 @@ export const AuthContext = createContext({} as IContext);
 export const AuthProvider = ({ children }: IAuthProvider) => {
   const [user, setUser] = useState<IUser | null>();
 
+  function getLocalStorage() {
+    const json = localStorage.getItem("u");
+
+    if (!json) {
+      return null;
+    }
+
+    const user = JSON.parse(json);
+    return user;
+  }
+
   useEffect(() => {
-    getLocalStorage();
+    const user = getLocalStorage();
 
     if (user) {
       setUser(user);
@@ -34,23 +45,12 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     localStorage.setItem("u", JSON.stringify(user));
   }
 
-  function getLocalStorage() {
-    const json = localStorage.getItem("u");
-
-    if (!json) {
-      return null;
-    }
-
-    const user = JSON.parse(json);
-    return user ?? json;
-  }
-
   async function LoginRequest(email: string, password: string) {
     try {
       const request = await Api.post("login", { email, password });
       return request.data;
     } catch (error) {
-      console.log(error);
+      alert("Usuário ou senha incorretos");
       return null;
     }
   }

@@ -2,11 +2,7 @@ import { useForm } from "react-hook-form";
 import { userschema } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "../../contexts/authProvider/useAuth";
-
-type inputProps = {
-  email: string;
-  password: string;
-};
+import type { UserFormProps } from "./types";
 
 export function Login() {
   const auth = useAuth();
@@ -16,12 +12,12 @@ export function Login() {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm<inputProps>({
+  } = useForm<UserFormProps>({
     mode: "onSubmit",
     resolver: zodResolver(userschema),
   });
 
-  async function logvalues() {
+  async function handleLogin() {
     const values = getValues();
     try {
       await auth.authenticate(values.email, values.password);
@@ -31,7 +27,7 @@ export function Login() {
   }
 
   return (
-    <div className=" w-full overflow-y-hidden flex  justify-center items-center ">
+    <div className="mx-4 overflow-y-hidden flex justify-center items-center  ">
       <fieldset className="fieldset gap-3 bg-slate-100 border-slate-300 rounded-box w-100 h-100 border p-4 mt-30">
         <legend className="fieldset-legend text-slate-700 text-3xl pb-8 ">
           Login
@@ -60,8 +56,8 @@ export function Login() {
         )}
 
         <button
-          className="btn btn-neutral mt-4"
-          onClick={() => handleSubmit(logvalues)()}
+          className="btn bg-blue-900 mt-4"
+          onClick={() => handleSubmit(handleLogin)()}
         >
           Login
         </button>

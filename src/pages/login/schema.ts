@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const userschema = z.object({
-    email: z.email({ error: "Informe seu email no campo acima" }),
+    email: z.email('Insira um email valido'),
     password: z.string().min(1, { error: "Digite sua senha" })
 })
 
