@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { Api } from "../../services/api";
+import { AuthApi } from "../../services/api";
 
 interface IAuthProvider {
   children: React.ReactElement;
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
 
   async function LoginRequest(email: string, password: string) {
     try {
-      const request = await Api.post("login", { email, password });
+      const request = await AuthApi.post("login", { email, password });
       return request.data;
     } catch (error) {
       alert("Usuário ou senha incorretos");

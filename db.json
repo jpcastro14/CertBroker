@@ -1,0 +1,49 @@
+{
+  "brokers": [
+    {
+      "id": 1,
+      "preference": 1,
+      "title": "Silvio Rodrigues",
+      "team": "Breno",
+      "sales": [
+        { "id": 1, "title": "Leparc", "date": "12/10" },
+        { "id": 2, "title": "Bothanic", "date": "31/10" },
+        { "id": 3, "title": "Urban Life", "date": "08/05" },
+        { "id": 4, "title": "Urban Life", "date": "22/04" },
+        { "id": 5, "title": "Urban Life", "date": "22/04" }
+      ]
+    },
+    {
+      "id": 2,
+      "preference": 2,
+      "title": "Luiza Sonza",
+      "team": "Mara",
+      "sales": [
+        { "id": 1, "title": "Bauhaus", "date": "14/03" },
+        { "id": 2, "title": "Bothanic", "date": "14/03" }
+      ]
+    },
+    {
+      "id": 3,
+      "preference": 3,
+      "title": "Bethania Soares",
+      "team": "Breno",
+      "sales": [
+        { "id": 1, "title": "Bothanic", "date": "19/06" },
+        { "id": 2, "title": "Leparc", "date": "05/04" },
+        { "id": 3, "title": "Urban Life", "date": "11/08" }
+      ]
+    },
+    {
+      "id": 4,
+      "preference": 4,
+      "title": "Wesley Carvalho",
+      "team": "Breno",
+      "sales": [
+        { "id": 1, "title": "Leparc", "date": "16/06" },
+        { "id": 2, "title": "Bothanic", "date": "21/05" },
+        { "id": 3, "title": "Urban Life", "date": "07/12" }
+      ]
+    }
+  ]
+}
