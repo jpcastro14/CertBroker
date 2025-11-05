@@ -26,8 +26,8 @@ export function Header() {
         onClose={() => setOpen(!open)}
       >
         <div className="modal-box w-80 max-w-5xl">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">Click the button below to close</p>
+          <h3 className="font-bold text-lg">Atenção!</h3>
+          <p className="py-4">Tem certeza que quer sair?</p>
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button, it will close the modal */}
