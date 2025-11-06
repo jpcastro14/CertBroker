@@ -84,7 +84,7 @@ export function List() {
                 </span>
                 <div id="CardSales" className="card-actions justify-start">
                   <span className=" overflow-y-hidden max-h-32 rounded px-1 flex flex-col bg-slate-50 w-full justify-center ">
-                    <p className="text-xl">Vendas: 4 </p>
+                    <p className="text-xl">Vendas: {item.sales.length} </p>
                     {item.sales.map((item) => (
                       <p key={item.id} className="text-slate-400 border-b">
                         {item.title} - {item.date}{" "}
@@ -112,6 +112,8 @@ export function List() {
           </div>
         ))}
       </div>
+
+      {/* ---------------------- Corretores disponíveis ---------------------- */}
 
       <div id="PageTitle" className="w-full max-w-7xl mx-auto shadow-2xs">
         <h2 className="max-w-7xl text-black text-xl mt-10 mx-4">
@@ -147,24 +149,6 @@ export function List() {
                 id="CardInfo"
                 className=" min-w-44 min-h-72 max-w-44 card-body pl-2 bg-white text-black"
               >
-                {index == 0 && (
-                  <span
-                    id="CardAdvise"
-                    className="absolute rounded-full bg-error bg- p-1 -top-3 right-2"
-                  >
-                    <p className="text-slate-900">Corretor da vez</p>
-                  </span>
-                )}
-
-                {index != 0 && (
-                  <span
-                    id="CardAdvise"
-                    className="absolute btn btn-circle border-slate-200 rounded-full bg-warning p-1 -top-3 right-2"
-                  >
-                    <p className="text-slate-900">{index + 1}</p>
-                  </span>
-                )}
-
                 <h2 id="CardTitle" className="card-title">
                   {item.title}
                 </h2>
@@ -176,7 +160,7 @@ export function List() {
                 </span>
                 <div id="CardSales" className="card-actions justify-start">
                   <span className=" overflow-y-hidden max-h-32 rounded px-1 flex flex-col bg-slate-50 w-full justify-center ">
-                    <p className="text-xl">Vendas: 4 </p>
+                    <p className="text-xl">Vendas: {item.sales.length}</p>
                     {item.sales.map((item) => (
                       <p key={item.id} className="text-slate-400 border-b">
                         {item.title} - {item.date}{" "}

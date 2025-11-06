@@ -33,10 +33,33 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
       console.log("O corretor ja está na fila");
       return;
     }
-    setBrokerList((brokerList) => [...brokerList, broker]);
+
+    setBrokerList((prevState) => [...prevState, broker]);
+    localStorage.setItem("row", JSON.stringify(brokerList));
+
     console.log(brokerList);
+
     return;
   }
+
+  function CheckRow() {
+    const json = localStorage.getItem("row");
+
+    if (!json) {
+      return null;
+    }
+
+    const row = JSON.parse(json);
+
+    return row ?? null;
+  }
+
+  useEffect(() => {
+    const fila = CheckRow();
+    if (fila) {
+      setBrokerList(fila);
+    }
+  }, []);
 
   return (
     <BrokerContext.Provider value={{ brokerList, createList }}>
