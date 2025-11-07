@@ -16,7 +16,7 @@ export interface BrokerStateProps {
 export interface BrokerContextData {
   brokerList: BrokerStateProps[];
   createList: (broker: BrokerStateProps) => void;
-  clearList: () => void;
+  clearList: (broker?: BrokerStateProps) => void;
 }
 
 interface BrokerProviderProps {
@@ -45,8 +45,17 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
     return;
   }
 
-  function clearList() {
-    setBrokerList([]);
+  function clearList(broker?: BrokerStateProps) {
+    const brokerIndex = brokerList[0];
+
+    if (!broker) {
+      setBrokerList(brokerList.filter((item) => item.id !== brokerIndex.id));
+      return;
+    }
+
+    console.log(brokerIndex);
+    setBrokerList(brokerList.filter((item) => item.id !== broker.id));
+    return;
   }
 
   useEffect(() => {

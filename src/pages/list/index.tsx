@@ -23,13 +23,18 @@ export function List() {
   return (
     <>
       <div id="PageTitle" className="w-full max-w-7xl mx-auto shadow-2xs">
-        <h2 className="max-w-7xl text-black text-xl mt-10 mx-4">
-          Fila de corretores
-        </h2>
-        <button className="btn btn-accent" onClick={clearList}>
-          limpar fila
-        </button>
+        <div className="flex flex-col">
+          <h2 className="text-black text-xl mt-10 mx-4">Fila de corretores</h2>
+
+          <button
+            className=" max-w-50 btn btn-success btn-sm"
+            onClick={() => clearList()}
+          >
+            Próximo da fila
+          </button>
+        </div>
       </div>
+
       <div
         id="CardContainer"
         className=" w-full max-w-7xl mx-auto flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
@@ -42,7 +47,7 @@ export function List() {
           >
             <div
               id="CardBackground"
-              className="w-full max-w-94 card card-side shadow"
+              className="w-full max-h-72 max-w-94 card card-side shadow"
             >
               <div
                 id="profilePicture"
@@ -100,10 +105,10 @@ export function List() {
                   className=" w-full h-full items-end mt-4 grid grid-cols-2 gap-1"
                 >
                   <button
-                    className="btn btn-warning"
-                    onClick={() => createList(item)}
+                    className="btn btn-error"
+                    onClick={() => clearList(item)}
                   >
-                    Fila
+                    Sair
                   </button>
                   <button className="btn btn-success">
                     Venda
