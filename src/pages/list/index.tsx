@@ -9,7 +9,7 @@ import { BrokerApi } from "../../services/api";
 
 export function List() {
   const [brokers, setBrokers] = useState<BrokerStateProps[]>([]);
-  const { brokerList, createList } = useContext(BrokerContext);
+  const { brokerList, createList, clearList } = useContext(BrokerContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -26,6 +26,9 @@ export function List() {
         <h2 className="max-w-7xl text-black text-xl mt-10 mx-4">
           Fila de corretores
         </h2>
+        <button className="btn btn-accent" onClick={clearList}>
+          limpar fila
+        </button>
       </div>
       <div
         id="CardContainer"

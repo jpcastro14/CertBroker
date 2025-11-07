@@ -16,6 +16,7 @@ export interface BrokerStateProps {
 export interface BrokerContextData {
   brokerList: BrokerStateProps[];
   createList: (broker: BrokerStateProps) => void;
+  clearList: () => void;
 }
 
 interface BrokerProviderProps {
@@ -24,7 +25,10 @@ interface BrokerProviderProps {
 export const BrokerContext = createContext({} as BrokerContextData);
 
 export const BrokerProvider = ({ children }: BrokerProviderProps) => {
-  const [brokerList, setBrokerList] = useState<BrokerStateProps[]>([]);
+  const [brokerList, setBrokerList] = useState<BrokerStateProps[]>(() => {
+    const localStorageRow = localStorage.getItem("row");
+    return localStorageRow ? JSON.parse(localStorageRow) : [];
+  });
 
   function createList(broker: BrokerStateProps) {
     const brokerIndex = brokerList.findIndex((item) => item.id === broker.id);
@@ -35,34 +39,22 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
     }
 
     setBrokerList((prevState) => [...prevState, broker]);
-    localStorage.setItem("row", JSON.stringify(brokerList));
 
     console.log(brokerList);
 
     return;
   }
 
-  function CheckRow() {
-    const json = localStorage.getItem("row");
-
-    if (!json) {
-      return null;
-    }
-
-    const row = JSON.parse(json);
-
-    return row ?? null;
+  function clearList() {
+    setBrokerList([]);
   }
 
   useEffect(() => {
-    const fila = CheckRow();
-    if (fila) {
-      setBrokerList(fila);
-    }
-  }, []);
+    localStorage.setItem("row", JSON.stringify(brokerList));
+  }, [brokerList]);
 
   return (
-    <BrokerContext.Provider value={{ brokerList, createList }}>
+    <BrokerContext.Provider value={{ brokerList, createList, clearList }}>
       {children}
     </BrokerContext.Provider>
   );
