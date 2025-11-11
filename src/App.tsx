@@ -4,6 +4,7 @@ import { Home } from "./pages/home";
 import { List } from "./pages/list";
 import { Login } from "./pages/login";
 import { ProtectedLayout } from "./components/protectedLayout";
+import { BrokerList } from "./pages/brokerList";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/list",
         element: <ProtectedLayout children={<List />} />,
+      },
+      {
+        path: "/brokerProfile/:id",
+        element: <ProtectedLayout children={<BrokerList />} />,
       },
     ],
   },
