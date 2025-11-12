@@ -23,16 +23,17 @@ export function List() {
 
   return (
     <>
-      <div id="PageTitle" className="w-full max-w-7xl mx-auto shadow-2xs">
-        <div className="flex flex-col">
-          <h2 className="text-black text-xl mt-10 mx-4">Fila de corretores</h2>
-
-          <button
-            className=" max-w-50 btn btn-success btn-sm"
-            onClick={() => clearList()}
-          >
-            Próximo da fila
-          </button>
+      <div id="PageTitle" className="max-w-7xl xl:mx-auto">
+        <div className="flex flex-col items-start mt-10 xl:flex-row px-2 ">
+          <h2 className="text-black text-xl mx-4">Fila de corretores</h2>
+          {brokerList.length > 0 && (
+            <button
+              className=" w-full btn btn-success btn-sm px-2 xl:max-w-50 "
+              onClick={() => clearList()}
+            >
+              Próximo da fila
+            </button>
+          )}
         </div>
       </div>
 
@@ -78,7 +79,9 @@ export function List() {
                     id="BrokerIndex"
                     className="absolute btn btn-circle border-slate-200 rounded-full bg-warning p-1 -top-3 right-2"
                   >
-                    <p className="text-slate-900">{index + 1}</p>
+                    <p className="text-slate-900 text-xl font-semibold">
+                      {index + 1}
+                    </p>
                   </span>
                 )}
 
@@ -112,8 +115,8 @@ export function List() {
                     Sair
                   </button>
                   <button className="btn btn-success">
-                    Venda
                     <FontAwesomeIcon icon={faMoneyBill1} />
+                    Venda
                   </button>
                 </div>
               </div>
@@ -158,7 +161,7 @@ export function List() {
               </div>
               <div
                 id="CardInfo"
-                className="w-44 card-body pl-2  bg-white text-black"
+                className="w-80 xl:max-w-44 card-body pl-2 bg-white text-black"
               >
                 <h2 id="CardTitle" className="card-title">
                   {item.title}
