@@ -4,13 +4,14 @@ import {
   BrokerContext,
   type BrokerStateProps,
 } from "../../contexts/brokerProvider";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { BrokerApi } from "../../services/api";
 import { Link } from "react-router";
 
 export function List() {
   const [brokers, setBrokers] = useState<BrokerStateProps[]>([]);
-  const { brokerList, createList, clearList } = useContext(BrokerContext);
+  const { brokerList, createList, clearList, open, setOpen } =
+    useContext(BrokerContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -23,12 +24,32 @@ export function List() {
 
   return (
     <>
+      <div
+        className={`bg-red-100  border-red-400 text-red-700 px-4 py-3 rounded relative max-w-7xl mx-auto ${open}  `}
+        role="alert"
+      >
+        <strong className="font-bold">Atenção! </strong>
+        <span className="block sm:inline">O corretor já está na fila!</span>
+        <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+          <svg
+            onClick={() => setOpen("hidden")}
+            className="fill-current h-6 w-6 text-red-500"
+            role="button"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <title>Close</title>
+            <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+          </svg>
+        </span>
+      </div>
+
       <div id="PageTitle" className="max-w-7xl xl:mx-auto">
-        <div className="flex flex-col items-start mt-10 xl:flex-row px-2 ">
+        <div className="flex flex-col items-start mt-10 md:flex-row lg:flex-row xl:flex-row px-2 ">
           <h2 className="text-black text-xl mx-4">Fila de corretores</h2>
           {brokerList.length > 0 && (
             <button
-              className=" w-full btn btn-success btn-sm px-2 xl:max-w-50 "
+              className=" w-full btn btn-success btn-sm px-2 md:max-w-50 lg:max-w-50 xl:max-w-50 "
               onClick={() => clearList()}
             >
               Próximo da fila

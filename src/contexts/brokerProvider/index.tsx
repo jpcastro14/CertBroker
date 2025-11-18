@@ -17,6 +17,8 @@ export interface BrokerContextData {
   brokerList: BrokerStateProps[];
   createList: (broker: BrokerStateProps) => void;
   clearList: (broker?: BrokerStateProps) => void;
+  open: string;
+  setOpen: (open: string) => void;
 }
 
 interface BrokerProviderProps {
@@ -25,6 +27,7 @@ interface BrokerProviderProps {
 export const BrokerContext = createContext({} as BrokerContextData);
 
 export const BrokerProvider = ({ children }: BrokerProviderProps) => {
+  const [open, setOpen] = useState<string>("hidden");
   const [brokerList, setBrokerList] = useState<BrokerStateProps[]>(() => {
     const localStorageRow = localStorage.getItem("row");
     return localStorageRow ? JSON.parse(localStorageRow) : [];
@@ -34,7 +37,7 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
     const brokerIndex = brokerList.findIndex((item) => item.id === broker.id);
 
     if (brokerIndex !== -1) {
-      console.log("O corretor ja está na fila");
+      setOpen("block");
       return;
     }
 
@@ -63,7 +66,9 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
   }, [brokerList]);
 
   return (
-    <BrokerContext.Provider value={{ brokerList, createList, clearList }}>
+    <BrokerContext.Provider
+      value={{ brokerList, createList, clearList, open, setOpen }}
+    >
       {children}
     </BrokerContext.Provider>
   );
