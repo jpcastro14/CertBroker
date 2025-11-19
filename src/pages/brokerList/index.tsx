@@ -39,8 +39,7 @@ export function BrokerProfile() {
         >
           <img
             className="btn btn-circle h-40 w-40 m-2 object-cover border-2 border-blue-800"
-            src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-            alt=""
+            src={broker.photo}
           />
           <div
             id="BrokerRegister"

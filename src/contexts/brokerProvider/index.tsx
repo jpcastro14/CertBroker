@@ -11,14 +11,15 @@ export interface BrokerStateProps {
   title: string;
   team: string;
   sales: Sales[];
+  photo: string;
 }
 
 export interface BrokerContextData {
   brokerList: BrokerStateProps[];
   createList: (broker: BrokerStateProps) => void;
   clearList: (broker?: BrokerStateProps) => void;
-  open: string;
-  setOpen: (open: string) => void;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface BrokerProviderProps {
@@ -27,7 +28,7 @@ interface BrokerProviderProps {
 export const BrokerContext = createContext({} as BrokerContextData);
 
 export const BrokerProvider = ({ children }: BrokerProviderProps) => {
-  const [open, setOpen] = useState<string>("hidden");
+  const [open, setOpen] = useState<boolean>(false);
   const [brokerList, setBrokerList] = useState<BrokerStateProps[]>(() => {
     const localStorageRow = localStorage.getItem("row");
     return localStorageRow ? JSON.parse(localStorageRow) : [];
@@ -37,7 +38,7 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
     const brokerIndex = brokerList.findIndex((item) => item.id === broker.id);
 
     if (brokerIndex !== -1) {
-      setOpen("block");
+      setOpen(!open);
       return;
     }
 

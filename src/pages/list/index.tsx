@@ -4,7 +4,7 @@ import {
   BrokerContext,
   type BrokerStateProps,
 } from "../../contexts/brokerProvider";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrokerApi } from "../../services/api";
 import { Link } from "react-router";
 
@@ -24,25 +24,22 @@ export function List() {
 
   return (
     <>
-      <div
-        className={`bg-red-100  border-red-400 text-red-700 px-4 py-3 rounded relative max-w-7xl mx-auto ${open}  `}
-        role="alert"
-      >
-        <strong className="font-bold">Atenção! </strong>
-        <span className="block sm:inline">O corretor já está na fila!</span>
-        <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-          <svg
-            onClick={() => setOpen("hidden")}
-            className="fill-current h-6 w-6 text-red-500"
-            role="button"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-          >
-            <title>Close</title>
-            <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
-          </svg>
-        </span>
-      </div>
+      <dialog id="my_modal_1" className="modal" open={open}>
+        <div className="modal-box bg-white ">
+          <h3 className="font-bold text-lg text-slate-600">Ops!</h3>
+          <p className="py-4 text-slate-500 ">
+            O corretor ja está na fila de atendimento
+          </p>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn btn-error" onClick={() => setOpen(!open)}>
+                Fechar
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
 
       <div id="PageTitle" className="max-w-7xl xl:mx-auto">
         <div className="flex flex-col items-start mt-10 md:flex-row lg:flex-row xl:flex-row px-2 ">
@@ -77,10 +74,10 @@ export function List() {
                 className="bg-slate-100 min-w-24 justify-center flex pt-6"
               >
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                  src={item.photo}
                   alt="Movie"
                   className="w-20 h-20 btn btn-circle object-cover"
-                ></img>
+                />
               </div>
               <div
                 id="CardInfo"
@@ -174,7 +171,7 @@ export function List() {
               >
                 <Link to={`/brokerProfile/${item.id}`}>
                   <img
-                    src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                    src={item.photo}
                     alt="Movie"
                     className="w-20 h-20 btn btn-circle object-cover"
                   />
