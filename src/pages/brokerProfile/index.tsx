@@ -22,7 +22,7 @@ export function BrokerProfile() {
   return (
     <>
       <div id="ReturnButtonWrapper" className="mx-6 mt-6">
-        <Link to={"/list"}>
+        <Link to={"/"}>
           <button className="h-12 w-12 flex items-center justify-center border border-slate-200 p-2 rounded-[100px]">
             <FontAwesomeIcon
               icon={faArrowAltCircleLeft}
@@ -32,10 +32,13 @@ export function BrokerProfile() {
           </button>
         </Link>
       </div>
-      <div id="wrapper" className="max-w-7xl mx-2 mt-10 xl:mx-auto">
+      <div
+        id="BrokerProfileWrapper"
+        className="max-w-7xl mx-2 mt-10 xl:mx-auto "
+      >
         <div
           id="BrokerProfile"
-          className="w-full max-w-7xl mx-auto mt-10 flex flex-col items-center xl:flex-row xl:border p-4 xl:shadow rounded-md"
+          className="w-full max-w-7xl mx-auto mt-10 flex flex-col items-center md:flex-row xl:flex-row xl:border p-4 xl:shadow rounded-md"
         >
           <img
             className="btn btn-circle h-40 w-40 m-2 object-cover border-2 border-blue-800"
@@ -54,13 +57,32 @@ export function BrokerProfile() {
             <p className="text-slate-400 font-medium text-xl uppercase">
               EmaildoCorretor@email.com
             </p>
-            <button className="btn btn-warning xl:hidden ">
+            <button className="btn btn-warning xl:hidden">
               Editar Contatos
             </button>
             <button className="btn bg-amber-400 border-0 hidden xl:block absolute right-6 top-6 ">
-              a
+              Editar Contatos
             </button>
           </div>
+        </div>
+      </div>
+
+      <div
+        id="SalesWrapper"
+        className="w-full max-w-7xl mt-6 mx-auto flex shadow rounded-md p-4 gap-4 "
+      >
+        <div
+          id="SalesContainer"
+          className="w-full border border-green-300 rounded p-4 "
+        >
+          <p className="text-slate-500">Vendas</p>
+        </div>
+
+        <div
+          id="ComissionsContainer"
+          className="w-full border border-blue-300 rounded p-4"
+        >
+          <p className="text-slate-400">Comisssões</p>
         </div>
       </div>
     </>

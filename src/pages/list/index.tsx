@@ -152,8 +152,8 @@ export function List() {
       </div>
 
       <div
-        id="CardContainer"
-        className=" w-full max-w-7xl mx-auto flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
+        id="AvailableBrokersCardContainer"
+        className=" w-full max-w-7xl mx-auto pb-20 flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
       >
         {brokers.map((item) => (
           <div
