@@ -69,13 +69,41 @@ export function BrokerProfile() {
 
       <div
         id="SalesWrapper"
-        className="w-full max-w-7xl mt-6 mx-auto flex shadow rounded-md p-4 gap-4 "
+        className=" mb-4 max-w-7xl mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row shadow rounded-md p-4 gap-4 "
       >
         <div
           id="SalesContainer"
           className="w-full border border-green-300 rounded p-4 "
         >
           <p className="text-slate-500">Vendas</p>
+          <div className="overflow-x-auto text-black">
+            <table className="table table-xs">
+              <thead className="text-black">
+                <tr>
+                  <th></th>
+                  <th>Nome</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>1</th>
+                  <td>Real Esplendor</td>
+                  <td>1.200.000</td>
+                </tr>
+                <tr>
+                  <th>2</th>
+                  <td>Real Bothanic</td>
+                  <td>6.4 M</td>
+                </tr>
+                <tr>
+                  <th>3</th>
+                  <td>Real Bauhaus</td>
+                  <td>3.4 M</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div
