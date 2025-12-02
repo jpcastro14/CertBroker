@@ -10,6 +10,7 @@ export function BrokerProfile() {
   const [broker, setBroker] = useState<BrokerStateProps>(
     {} as BrokerStateProps
   );
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -21,6 +22,50 @@ export function BrokerProfile() {
 
   return (
     <>
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+      <dialog id="my_modal_1" className="modal" open={visible}>
+        <div className="modal-box bg-white w-fit">
+          <h3 className="font-bold text-lg text-slate-700">Alterar contatos</h3>
+
+          <div id="FormWrapper" className="m-4">
+            <div className="grid grid-cols-2 gap-4 ">
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend">Nome</legend>
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="My awesome page"
+                />
+              </fieldset>
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend">Creci</legend>
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="My awesome page"
+                />
+              </fieldset>
+              <fieldset className="fieldset col-span-2">
+                <legend className="fieldset-legend">Email</legend>
+                <input
+                  type="text"
+                  className="input w-full"
+                  placeholder="My awesome page"
+                />
+              </fieldset>
+            </div>
+          </div>
+
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn" onClick={() => setVisible(!visible)}>
+                Fechar
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
       <div id="ReturnButtonWrapper" className="mx-6 mt-6">
         <Link to={"/"}>
           <button className="h-12 w-12 flex items-center justify-center border border-slate-200 p-2 rounded-[100px]">
@@ -60,7 +105,10 @@ export function BrokerProfile() {
             <button className="btn btn-warning xl:hidden">
               Editar Contatos
             </button>
-            <button className="btn bg-amber-400 border-0 hidden xl:block absolute right-6 top-6 ">
+            <button
+              className="btn bg-amber-400 border-0 hidden xl:block absolute right-6 top-6"
+              onClick={() => setVisible(!visible)}
+            >
               Editar Contatos
             </button>
           </div>
@@ -71,46 +119,79 @@ export function BrokerProfile() {
         id="SalesWrapper"
         className=" mb-4 max-w-7xl mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row shadow rounded-md p-4 gap-4 "
       >
-        <div
-          id="SalesContainer"
-          className="w-full border border-green-300 rounded p-4 "
-        >
-          <p className="text-slate-500">Vendas</p>
-          <div className="overflow-x-auto text-black">
-            <table className="table table-xs">
-              <thead className="text-black">
+        <div id="SalesContainer" className="w-full border  rounded p-4 ">
+          <p className="text-slate-900 border border-green-300 p-2 rounded">
+            Vendas
+          </p>
+
+          <div id="SalesTable" className="overflow-x-auto">
+            <table className="table table-md text-slate-700 ">
+              <thead className="text-slate-700">
                 <tr>
                   <th></th>
-                  <th>Nome</th>
+                  <th>Empreendimento</th>
                   <th>Valor</th>
+                  <th>Data da venda</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr className="border-b border-slate-200">
                   <th>1</th>
-                  <td>Real Esplendor</td>
-                  <td>1.200.000</td>
+                  <td>Esplendor</td>
+                  <td>1.2 M</td>
+                  <td>11/01/2024</td>
                 </tr>
-                <tr>
+                <tr className="border-b border-slate-200">
                   <th>2</th>
-                  <td>Real Bothanic</td>
+                  <td>Bothanic</td>
                   <td>6.4 M</td>
+                  <td>02/02/2025</td>
                 </tr>
-                <tr>
+                <tr className="border-b border-slate-200">
                   <th>3</th>
-                  <td>Real Bauhaus</td>
+                  <td>Bauhaus</td>
                   <td>3.4 M</td>
+                  <td>03/09/2025</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <div
-          id="ComissionsContainer"
-          className="w-full border border-blue-300 rounded p-4"
-        >
-          <p className="text-slate-400">Comisssões</p>
+        <div id="ComissionsContainer" className="w-full rounded p-4 shadow">
+          <p className="text-slate-900 border border-blue-300 p-2 rounded ">
+            Comisssões
+          </p>
+          <table className="table table-md text-slate-700 ">
+            <thead className="text-slate-700">
+              <tr>
+                <th></th>
+                <th>Empreendimento</th>
+                <th>Valor</th>
+                <th>Data da venda</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-slate-200">
+                <th>1</th>
+                <td>Esplendor</td>
+                <td>24 k </td>
+                <td>11/01/2024</td>
+              </tr>
+              <tr className="border-b border-slate-200">
+                <th>2</th>
+                <td>Bothanic</td>
+                <td>128 K</td>
+                <td>02/02/2025</td>
+              </tr>
+              <tr className="border-b border-slate-200">
+                <th>3</th>
+                <td>Bauhaus</td>
+                <td>68 K</td>
+                <td>03/09/2025</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </>
