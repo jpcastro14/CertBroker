@@ -4,6 +4,7 @@ export type Sales = {
   id: number;
   title: string;
   date: string;
+  saleValue: number;
 };
 
 export interface BrokerStateProps {

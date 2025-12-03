@@ -4,6 +4,8 @@ import { BrokerApi } from "../../services/api";
 import type { BrokerStateProps } from "../../contexts/brokerProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons/faArrowAltCircleLeft";
+import { useForm } from "react-hook-form";
+import { PatternFormat } from "react-number-format";
 
 export function BrokerProfile() {
   const { id } = useParams();
@@ -11,6 +13,11 @@ export function BrokerProfile() {
     {} as BrokerStateProps
   );
   const [visible, setVisible] = useState(false);
+  const {
+    getValues,
+    register,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     const getData = async () => {
@@ -20,49 +27,72 @@ export function BrokerProfile() {
     getData();
   }, []);
 
+  function updateContact() {
+    const values = getValues();
+
+    console.log(values);
+  }
+
   return (
     <>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
-      <dialog id="my_modal_1" className="modal" open={visible}>
+      <dialog id="ChangeContactModal" className="modal" open={visible}>
         <div className="modal-box bg-white w-fit">
           <h3 className="font-bold text-lg text-slate-700">Alterar contatos</h3>
 
           <div id="FormWrapper" className="m-4">
-            <div className="grid grid-cols-2 gap-4 ">
+            <div className="grid grid-cols-2 gap-2 ">
               <fieldset className="fieldset">
                 <legend className="fieldset-legend">Nome</legend>
                 <input
+                  {...register("title")}
                   type="text"
                   className="input"
-                  placeholder="My awesome page"
+                  placeholder="Nome Completo"
+                  defaultValue={broker.title}
                 />
               </fieldset>
               <fieldset className="fieldset">
                 <legend className="fieldset-legend">Creci</legend>
-                <input
-                  type="text"
+                <PatternFormat
+                  {...register("creci")}
                   className="input"
-                  placeholder="My awesome page"
+                  displayType="input"
+                  format="###### - F"
                 />
               </fieldset>
               <fieldset className="fieldset col-span-2">
                 <legend className="fieldset-legend">Email</legend>
                 <input
+                  {...register("email")}
                   type="text"
                   className="input w-full"
-                  placeholder="My awesome page"
+                  placeholder="Email"
+                />
+              </fieldset>
+              <fieldset className="fieldset col-span-2">
+                <legend className="fieldset-legend">Telefone</legend>
+                <PatternFormat
+                  {...register("phoneNumber")}
+                  className="input  w-full "
+                  format="(##) # ####-####"
                 />
               </fieldset>
             </div>
           </div>
 
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn" onClick={() => setVisible(!visible)}>
-                Fechar
-              </button>
-            </form>
+          <div className="modal-action grid grid-cols-2 w-full">
+            <button
+              className="btn btn-success "
+              onClick={() => updateContact()}
+            >
+              Alterar Dados
+            </button>
+            <button
+              className="btn btn-error"
+              onClick={() => setVisible(!visible)}
+            >
+              Cancelar
+            </button>
           </div>
         </div>
       </dialog>
@@ -83,7 +113,7 @@ export function BrokerProfile() {
       >
         <div
           id="BrokerProfile"
-          className="w-full max-w-7xl mx-auto mt-10 flex flex-col items-center md:flex-row xl:flex-row xl:border p-4 xl:shadow rounded-md"
+          className="w-full max-w-7xl mx-auto mt-10 flex flex-col items-center md:flex-row xl:flex-row  p-4 xl:shadow rounded-md"
         >
           <img
             className="btn btn-circle h-40 w-40 m-2 object-cover border-2 border-blue-800"
@@ -119,7 +149,7 @@ export function BrokerProfile() {
         id="SalesWrapper"
         className=" mb-4 max-w-7xl mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row shadow rounded-md p-4 gap-4 "
       >
-        <div id="SalesContainer" className="w-full border  rounded p-4 ">
+        <div id="SalesContainer" className="w-full rounded p-4 shadow ">
           <p className="text-slate-900 border border-green-300 p-2 rounded">
             Vendas
           </p>
@@ -128,31 +158,27 @@ export function BrokerProfile() {
             <table className="table table-md text-slate-700 ">
               <thead className="text-slate-700">
                 <tr>
-                  <th></th>
+                  <th>#</th>
                   <th>Empreendimento</th>
                   <th>Valor</th>
                   <th>Data da venda</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-slate-200">
-                  <th>1</th>
-                  <td>Esplendor</td>
-                  <td>1.2 M</td>
-                  <td>11/01/2024</td>
-                </tr>
-                <tr className="border-b border-slate-200">
-                  <th>2</th>
-                  <td>Bothanic</td>
-                  <td>6.4 M</td>
-                  <td>02/02/2025</td>
-                </tr>
-                <tr className="border-b border-slate-200">
-                  <th>3</th>
-                  <td>Bauhaus</td>
-                  <td>3.4 M</td>
-                  <td>03/09/2025</td>
-                </tr>
+                {broker &&
+                  broker.sales?.map((sale) => (
+                    <tr key={sale.id} className="border-b border-slate-200">
+                      <th>{sale.id}</th>
+                      <td>{sale.title}</td>
+                      <td>
+                        {sale.saleValue.toLocaleString("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        })}
+                      </td>
+                      <td>{sale.date}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
@@ -165,31 +191,25 @@ export function BrokerProfile() {
           <table className="table table-md text-slate-700 ">
             <thead className="text-slate-700">
               <tr>
-                <th></th>
+                <th>#</th>
                 <th>Empreendimento</th>
                 <th>Valor</th>
-                <th>Data da venda</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-slate-200">
-                <th>1</th>
-                <td>Esplendor</td>
-                <td>24 k </td>
-                <td>11/01/2024</td>
-              </tr>
-              <tr className="border-b border-slate-200">
-                <th>2</th>
-                <td>Bothanic</td>
-                <td>128 K</td>
-                <td>02/02/2025</td>
-              </tr>
-              <tr className="border-b border-slate-200">
-                <th>3</th>
-                <td>Bauhaus</td>
-                <td>68 K</td>
-                <td>03/09/2025</td>
-              </tr>
+              {broker &&
+                broker.sales?.map((comission) => (
+                  <tr key={comission.id} className="border-b border-slate-200">
+                    <th>{comission.id}</th>
+                    <td>{comission.title}</td>
+                    <td>
+                      {((comission.saleValue / 100) * 0.2).toLocaleString(
+                        "pt-BR",
+                        { style: "currency", currency: "BRL" }
+                      )}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

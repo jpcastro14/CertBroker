@@ -7,10 +7,30 @@
       "team": "Breno",
       "photo": "https://avatar.iran.liara.run/public/12",
       "sales": [
-        { "id": 1, "title": "Leparc", "date": "12/10" },
-        { "id": 2, "title": "Bothanic", "date": "31/10" },
-        { "id": 3, "title": "Urban Life", "date": "08/05" },
-        { "id": 4, "title": "Urban Life", "date": "22/04" }
+        {
+          "id": 1,
+          "title": "Leparc",
+          "date": "12/10",
+          "saleValue": 6063909
+        },
+        {
+          "id": 2,
+          "title": "Bothanic",
+          "date": "31/10",
+          "saleValue": 2713471
+        },
+        {
+          "id": 3,
+          "title": "Urban Life",
+          "date": "08/05",
+          "saleValue": 4434549
+        },
+        {
+          "id": 4,
+          "title": "Urban Life",
+          "date": "22/04",
+          "saleValue": 4676830
+        }
       ]
     },
     {
@@ -20,8 +40,18 @@
       "team": "Mara",
       "photo": "https://avatar.iran.liara.run/public/76",
       "sales": [
-        { "id": 1, "title": "Bauhaus", "date": "14/03" },
-        { "id": 2, "title": "Bothanic", "date": "14/03" }
+        {
+          "id": 1,
+          "title": "Bauhaus",
+          "date": "14/03",
+          "saleValue": 1488820
+        },
+        {
+          "id": 2,
+          "title": "Bothanic",
+          "date": "14/03",
+          "saleValue": 3643871
+        }
       ]
     },
     {
@@ -31,9 +61,24 @@
       "team": "Breno",
       "photo": "https://avatar.iran.liara.run/public/91",
       "sales": [
-        { "id": 1, "title": "Bothanic", "date": "19/06" },
-        { "id": 2, "title": "Leparc", "date": "05/04" },
-        { "id": 3, "title": "Urban Life", "date": "11/08" }
+        {
+          "id": 1,
+          "title": "Bothanic",
+          "date": "19/06",
+          "saleValue": 5280001
+        },
+        {
+          "id": 2,
+          "title": "Leparc",
+          "date": "05/04",
+          "saleValue": 4748841
+        },
+        {
+          "id": 3,
+          "title": "Urban Life",
+          "date": "11/08",
+          "saleValue": 3247089
+        }
       ]
     },
     {
@@ -43,9 +88,24 @@
       "team": "Breno",
       "photo": "https://avatar.iran.liara.run/public/38",
       "sales": [
-        { "id": 1, "title": "Leparc", "date": "16/06" },
-        { "id": 2, "title": "Bothanic", "date": "21/05" },
-        { "id": 3, "title": "Urban Life", "date": "07/12" }
+        {
+          "id": 1,
+          "title": "Leparc",
+          "date": "16/06",
+          "saleValue": 3384175
+        },
+        {
+          "id": 2,
+          "title": "Bothanic",
+          "date": "21/05",
+          "saleValue": 4657359
+        },
+        {
+          "id": 3,
+          "title": "Urban Life",
+          "date": "07/12",
+          "saleValue": 6281308
+        }
       ]
     },
     {
@@ -55,8 +115,18 @@
       "team": "Mara",
       "photo": "https://avatar.iran.liara.run/public/68",
       "sales": [
-        { "id": 1, "title": "Leparc", "date": "10/02" },
-        { "id": 2, "title": "Bauhaus", "date": "22/07" }
+        {
+          "id": 1,
+          "title": "Leparc",
+          "date": "10/02",
+          "saleValue": 2509087
+        },
+        {
+          "id": 2,
+          "title": "Bauhaus",
+          "date": "22/07",
+          "saleValue": 2632991
+        }
       ]
     },
     {
@@ -66,9 +136,24 @@
       "team": "Breno",
       "photo": "https://avatar.iran.liara.run/public/18",
       "sales": [
-        { "id": 1, "title": "Urban Life", "date": "03/03" },
-        { "id": 2, "title": "Bothanic", "date": "15/09" },
-        { "id": 3, "title": "Leparc", "date": "28/11" }
+        {
+          "id": 1,
+          "title": "Urban Life",
+          "date": "03/03",
+          "saleValue": 5848756
+        },
+        {
+          "id": 2,
+          "title": "Bothanic",
+          "date": "15/09",
+          "saleValue": 1595191
+        },
+        {
+          "id": 3,
+          "title": "Leparc",
+          "date": "28/11",
+          "saleValue": 2046362
+        }
       ]
     },
     {
@@ -78,8 +163,18 @@
       "team": "Mara",
       "photo": "https://avatar.iran.liara.run/public/63",
       "sales": [
-        { "id": 1, "title": "Bauhaus", "date": "09/01" },
-        { "id": 2, "title": "Urban Life", "date": "17/08" }
+        {
+          "id": 1,
+          "title": "Bauhaus",
+          "date": "09/01",
+          "saleValue": 6619553
+        },
+        {
+          "id": 2,
+          "title": "Urban Life",
+          "date": "17/08",
+          "saleValue": 3254233
+        }
       ]
     },
     {
@@ -89,9 +184,24 @@
       "team": "Breno",
       "photo": "https://avatar.iran.liara.run/public/36",
       "sales": [
-        { "id": 1, "title": "Bothanic", "date": "12/04" },
-        { "id": 2, "title": "Leparc", "date": "19/05" },
-        { "id": 3, "title": "Urban Life", "date": "23/09" }
+        {
+          "id": 1,
+          "title": "Bothanic",
+          "date": "12/04",
+          "saleValue": 6115395
+        },
+        {
+          "id": 2,
+          "title": "Leparc",
+          "date": "19/05",
+          "saleValue": 5319149
+        },
+        {
+          "id": 3,
+          "title": "Urban Life",
+          "date": "23/09",
+          "saleValue": 2979063
+        }
       ]
     },
     {
@@ -101,8 +211,18 @@
       "team": "Mara",
       "photo": "https://avatar.iran.liara.run/public/67",
       "sales": [
-        { "id": 1, "title": "Leparc", "date": "06/06" },
-        { "id": 2, "title": "Bothanic", "date": "14/10" }
+        {
+          "id": 1,
+          "title": "Leparc",
+          "date": "06/06",
+          "saleValue": 1352819
+        },
+        {
+          "id": 2,
+          "title": "Bothanic",
+          "date": "14/10",
+          "saleValue": 1400715
+        }
       ]
     },
     {
@@ -112,8 +232,18 @@
       "team": "Breno",
       "photo": "https://avatar.iran.liara.run/public/34",
       "sales": [
-        { "id": 1, "title": "Urban Life", "date": "02/02" },
-        { "id": 2, "title": "Bauhaus", "date": "11/11" }
+        {
+          "id": 1,
+          "title": "Urban Life",
+          "date": "02/02",
+          "saleValue": 3027675
+        },
+        {
+          "id": 2,
+          "title": "Bauhaus",
+          "date": "11/11",
+          "saleValue": 3278383
+        }
       ]
     },
     {
@@ -123,8 +253,18 @@
       "team": "Mara",
       "photo": "https://avatar.iran.liara.run/public/70",
       "sales": [
-        { "id": 1, "title": "Bothanic", "date": "08/08" },
-        { "id": 2, "title": "Urban Life", "date": "20/12" }
+        {
+          "id": 1,
+          "title": "Bothanic",
+          "date": "08/08",
+          "saleValue": 2965511
+        },
+        {
+          "id": 2,
+          "title": "Urban Life",
+          "date": "20/12",
+          "saleValue": 1444175
+        }
       ]
     },
     {
@@ -134,9 +274,24 @@
       "team": "Breno",
       "photo": "https://avatar.iran.liara.run/public/15",
       "sales": [
-        { "id": 1, "title": "Leparc", "date": "04/03" },
-        { "id": 2, "title": "Bothanic", "date": "29/07" },
-        { "id": 3, "title": "Urban Life", "date": "15/10" }
+        {
+          "id": 1,
+          "title": "Leparc",
+          "date": "04/03",
+          "saleValue": 6626357
+        },
+        {
+          "id": 2,
+          "title": "Bothanic",
+          "date": "29/07",
+          "saleValue": 4222896
+        },
+        {
+          "id": 3,
+          "title": "Urban Life",
+          "date": "15/10",
+          "saleValue": 3809212
+        }
       ]
     },
     {
@@ -146,8 +301,18 @@
       "team": "Mara",
       "photo": "https://avatar.iran.liara.run/public/76",
       "sales": [
-        { "id": 1, "title": "Bauhaus", "date": "13/05" },
-        { "id": 2, "title": "Leparc", "date": "27/09" }
+        {
+          "id": 1,
+          "title": "Bauhaus",
+          "date": "13/05",
+          "saleValue": 4495086
+        },
+        {
+          "id": 2,
+          "title": "Leparc",
+          "date": "27/09",
+          "saleValue": 3840133
+        }
       ]
     },
     {
@@ -157,8 +322,18 @@
       "team": "Breno",
       "photo": "https://avatar.iran.liara.run/public/31",
       "sales": [
-        { "id": 1, "title": "Urban Life", "date": "18/01" },
-        { "id": 2, "title": "Bothanic", "date": "30/06" }
+        {
+          "id": 1,
+          "title": "Urban Life",
+          "date": "18/01",
+          "saleValue": 3518437
+        },
+        {
+          "id": 2,
+          "title": "Bothanic",
+          "date": "30/06",
+          "saleValue": 5353537
+        }
       ]
     }
   ]
