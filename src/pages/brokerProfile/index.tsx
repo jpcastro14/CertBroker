@@ -5,7 +5,18 @@ import type { BrokerStateProps } from "../../contexts/brokerProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons/faArrowAltCircleLeft";
 import { useForm } from "react-hook-form";
-import { PatternFormat } from "react-number-format";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const updateSchema = z.object({
+  title: z.string().min(1, { error: "Informe o nome do corretor" }),
+  creci: z
+    .string()
+    .min(6, { error: "Informe o registro do corretor, somente numeros" })
+    .refine((v) => !Number.isNaN(parseInt(v, 10))),
+});
+
+type BrokerSchema = z.infer<typeof updateSchema>;
 
 export function BrokerProfile() {
   const { id } = useParams();
@@ -17,7 +28,11 @@ export function BrokerProfile() {
     getValues,
     register,
     formState: { errors },
-  } = useForm();
+    handleSubmit,
+  } = useForm<BrokerSchema>({
+    resolver: zodResolver(updateSchema),
+    mode: "onSubmit",
+  });
 
   useEffect(() => {
     const getData = async () => {
@@ -53,14 +68,17 @@ export function BrokerProfile() {
               </fieldset>
               <fieldset className="fieldset">
                 <legend className="fieldset-legend">Creci</legend>
-                <PatternFormat
+                <input
                   {...register("creci")}
                   className="input"
-                  displayType="input"
-                  format="###### - F"
+                  type="text"
+                  max={6}
                 />
+                {errors.creci?.message && (
+                  <p className="text-red-500">{errors.creci.message}</p>
+                )}
               </fieldset>
-              <fieldset className="fieldset col-span-2">
+              {/* <fieldset className="fieldset col-span-2">
                 <legend className="fieldset-legend">Email</legend>
                 <input
                   {...register("email")}
@@ -68,22 +86,23 @@ export function BrokerProfile() {
                   className="input w-full"
                   placeholder="Email"
                 />
-              </fieldset>
-              <fieldset className="fieldset col-span-2">
+                
+              </fieldset> */}
+              {/* <fieldset className="fieldset col-span-2">
                 <legend className="fieldset-legend">Telefone</legend>
                 <PatternFormat
                   {...register("phoneNumber")}
                   className="input  w-full "
                   format="(##) # ####-####"
                 />
-              </fieldset>
+              </fieldset> */}
             </div>
           </div>
 
           <div className="modal-action grid grid-cols-2 w-full">
             <button
               className="btn btn-success "
-              onClick={() => updateContact()}
+              onClick={() => handleSubmit(updateContact)()}
             >
               Alterar Dados
             </button>
