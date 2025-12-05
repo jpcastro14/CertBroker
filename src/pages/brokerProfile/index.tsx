@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, replace, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { BrokerApi } from "../../services/api";
 import type { BrokerStateProps } from "../../contexts/brokerProvider";
@@ -6,17 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons/faArrowAltCircleLeft";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
-const updateSchema = z.object({
-  title: z.string().min(1, { error: "Informe o nome do corretor" }),
-  creci: z
-    .string()
-    .min(6, { error: "Informe o registro do corretor, somente numeros" })
-    .refine((v) => !Number.isNaN(parseInt(v, 10))),
-});
-
-type BrokerSchema = z.infer<typeof updateSchema>;
+import { updateSchema, type BrokerSchema } from "./schema";
+import axios from "axios";
 
 export function BrokerProfile() {
   const { id } = useParams();
@@ -24,6 +15,16 @@ export function BrokerProfile() {
     {} as BrokerStateProps
   );
   const [visible, setVisible] = useState(false);
+  const regexPattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
+
+  const pattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
+
+  const formattedBrokerPhone = broker.phoneNumber
+    ?.toString()
+    .replace(regexPattern, "$1 ($2) $3 $4 $5");
+
+  console.log(formattedBrokerPhone);
+
   const {
     getValues,
     register,
@@ -31,7 +32,7 @@ export function BrokerProfile() {
     handleSubmit,
   } = useForm<BrokerSchema>({
     resolver: zodResolver(updateSchema),
-    mode: "onSubmit",
+    mode: "onChange",
   });
 
   useEffect(() => {
@@ -45,40 +46,57 @@ export function BrokerProfile() {
   function updateContact() {
     const values = getValues();
 
-    console.log(values);
+    const updatedBrokerData = {
+      ...broker,
+      creci: values.creci,
+      email: values.email,
+      phoneNumber: values.phoneNumber,
+    };
+
+    console.log(updatedBrokerData);
+
+    BrokerApi.put(`/brokers/${id}`, updatedBrokerData).then((r) => {
+      r.status == 200 &&
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+    });
   }
 
   return (
     <>
       <dialog id="ChangeContactModal" className="modal" open={visible}>
-        <div className="modal-box bg-white w-fit">
+        <div className="modal-box bg-white">
           <h3 className="font-bold text-lg text-slate-700">Alterar contatos</h3>
 
           <div id="FormWrapper" className="m-4">
             <div className="grid grid-cols-2 gap-2 ">
-              <fieldset className="fieldset">
+              <fieldset className="fieldset col-span-2 xl:col-span-1 ">
                 <legend className="fieldset-legend">Nome</legend>
                 <input
                   {...register("title")}
+                  defaultValue={broker.title}
                   type="text"
                   className="input"
-                  placeholder="Nome Completo"
-                  defaultValue={broker.title}
+                  placeholder={broker.title}
                 />
+                {errors.title && (
+                  <p className="text-red-50">{errors.title.message}</p>
+                )}
               </fieldset>
-              <fieldset className="fieldset">
+              <fieldset className="fieldset col-span-2 xl:col-span-1 ">
                 <legend className="fieldset-legend">Creci</legend>
                 <input
                   {...register("creci")}
                   className="input"
                   type="text"
-                  max={6}
+                  maxLength={6}
                 />
-                {errors.creci?.message && (
+                {errors.creci && (
                   <p className="text-red-500">{errors.creci.message}</p>
                 )}
               </fieldset>
-              {/* <fieldset className="fieldset col-span-2">
+              <fieldset className="fieldset col-span-2">
                 <legend className="fieldset-legend">Email</legend>
                 <input
                   {...register("email")}
@@ -86,16 +104,22 @@ export function BrokerProfile() {
                   className="input w-full"
                   placeholder="Email"
                 />
-                
-              </fieldset> */}
-              {/* <fieldset className="fieldset col-span-2">
+                {errors.email?.message && (
+                  <p className="text-red-500">{errors.email.message}</p>
+                )}
+              </fieldset>
+              <fieldset className="fieldset col-span-2">
                 <legend className="fieldset-legend">Telefone</legend>
-                <PatternFormat
+                <input
+                  type="text"
                   {...register("phoneNumber")}
                   className="input  w-full "
-                  format="(##) # ####-####"
+                  maxLength={11}
                 />
-              </fieldset> */}
+                {errors.phoneNumber?.message && (
+                  <p className="text-red-500">{errors.phoneNumber.message}</p>
+                )}
+              </fieldset>
             </div>
           </div>
 
@@ -115,6 +139,8 @@ export function BrokerProfile() {
           </div>
         </div>
       </dialog>
+
+      {/* -------------------- Return Button -------------------- */}
       <div id="ReturnButtonWrapper" className="mx-6 mt-6">
         <Link to={"/"}>
           <button className="h-12 w-12 flex items-center justify-center border border-slate-200 p-2 rounded-[100px]">
@@ -126,15 +152,19 @@ export function BrokerProfile() {
           </button>
         </Link>
       </div>
+
+      {/* -------------------- Return Button -------------------- */}
+
       <div
         id="BrokerProfileWrapper"
         className="max-w-7xl mx-2 mt-10 xl:mx-auto "
       >
         <div
           id="BrokerProfile"
-          className="w-full max-w-7xl mx-auto mt-10 flex flex-col items-center md:flex-row xl:flex-row  p-4 xl:shadow rounded-md"
+          className="w-full max-w-7xl mx-auto mt-10 flex flex-col items-center align-middle md:flex-row xl:flex-row  p-4 xl:shadow rounded-md"
         >
           <img
+            id="BrokerProfilePicture"
             className="btn btn-circle h-40 w-40 m-2 object-cover border-2 border-blue-800"
             src={broker.photo}
           />
@@ -143,15 +173,18 @@ export function BrokerProfile() {
             className=" relative w-full rounded p-6 mt-4 flex flex-col gap-3 border-slate-300 xl:h-40 xl:ml-4 justify-center bg-slate-100"
           >
             <p className="text-slate-600 font-medium text-2xl">
-              {broker.title} - Creci xxxxxxx
+              {broker.title} - CRECI {broker.creci}
             </p>
             <p className="text-slate-400 font-medium text-xl ">
-              (61) 9 9999 9999
+              {formattedBrokerPhone}
             </p>
             <p className="text-slate-400 font-medium text-xl uppercase">
-              EmaildoCorretor@email.com
+              {broker.email}
             </p>
-            <button className="btn btn-warning xl:hidden">
+            <button
+              className="btn btn-warning xl:hidden"
+              onClick={() => setVisible(!visible)}
+            >
               Editar Contatos
             </button>
             <button

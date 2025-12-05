@@ -13,6 +13,9 @@ export interface BrokerStateProps {
   team: string;
   sales: Sales[];
   photo: string;
+  creci: number;
+  email: string;
+  phoneNumber: number;
 }
 
 export interface BrokerContextData {

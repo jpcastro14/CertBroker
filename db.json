@@ -1,7 +1,7 @@
 {
   "brokers": [
     {
-      "id": 1,
+      "id": "1",
       "preference": 1,
       "title": "Silvio Rodrigues",
       "team": "Breno",
@@ -31,10 +31,13 @@
           "date": "22/04",
           "saleValue": 4676830
         }
-      ]
+      ],
+      "creci": "455555",
+      "email": "ds@g.com",
+      "phoneNumber": "65416565651"
     },
     {
-      "id": 2,
+      "id": "2",
       "preference": 2,
       "title": "Luiza Sonza",
       "team": "Mara",
@@ -52,10 +55,13 @@
           "date": "14/03",
           "saleValue": 3643871
         }
-      ]
+      ],
+      "creci": "777777",
+      "email": "ddada@wscaca.com",
+      "phoneNumber": "51566516516"
     },
     {
-      "id": 3,
+      "id": "3",
       "preference": 3,
       "title": "Bethania Soares",
       "team": "Breno",
@@ -79,10 +85,13 @@
           "date": "11/08",
           "saleValue": 3247089
         }
-      ]
+      ],
+      "creci": "516516",
+      "email": "fvvcvs@asas.co",
+      "phoneNumber": "77777777777"
     },
     {
-      "id": 4,
+      "id": "4",
       "preference": 4,
       "title": "Wesley Carvalho",
       "team": "Breno",
@@ -109,7 +118,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": "5",
       "preference": 5,
       "title": "Mariana Lima",
       "team": "Mara",
@@ -130,7 +139,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": "6",
       "preference": 6,
       "title": "Carlos Mendes",
       "team": "Breno",
@@ -157,7 +166,7 @@
       ]
     },
     {
-      "id": 7,
+      "id": "7",
       "preference": 7,
       "title": "Fernanda Souza",
       "team": "Mara",
@@ -178,7 +187,7 @@
       ]
     },
     {
-      "id": 8,
+      "id": "8",
       "preference": 8,
       "title": "João Almeida",
       "team": "Breno",
@@ -205,7 +214,7 @@
       ]
     },
     {
-      "id": 9,
+      "id": "9",
       "preference": 9,
       "title": "Patrícia Gomes",
       "team": "Mara",
@@ -226,7 +235,7 @@
       ]
     },
     {
-      "id": 10,
+      "id": "10",
       "preference": 10,
       "title": "Ricardo Silva",
       "team": "Breno",
@@ -247,7 +256,7 @@
       ]
     },
     {
-      "id": 11,
+      "id": "11",
       "preference": 11,
       "title": "Camila Torres",
       "team": "Mara",
@@ -268,7 +277,7 @@
       ]
     },
     {
-      "id": 12,
+      "id": "12",
       "preference": 12,
       "title": "Eduardo Castro",
       "team": "Breno",
@@ -295,7 +304,7 @@
       ]
     },
     {
-      "id": 13,
+      "id": "13",
       "preference": 13,
       "title": "Isabela Martins",
       "team": "Mara",
@@ -316,7 +325,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": "14",
       "preference": 14,
       "title": "Thiago Pereira",
       "team": "Breno",
