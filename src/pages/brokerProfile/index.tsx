@@ -15,16 +15,7 @@ export function BrokerProfile() {
     {} as BrokerStateProps
   );
   const [visible, setVisible] = useState(false);
-  const regexPattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
-
-  const pattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
-
-  const formattedBrokerPhone = broker.phoneNumber
-    ?.toString()
-    .replace(regexPattern, "$1 ($2) $3 $4 $5");
-
-  console.log(formattedBrokerPhone);
-
+  const phonePattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
   const {
     getValues,
     register,
@@ -32,7 +23,11 @@ export function BrokerProfile() {
     handleSubmit,
   } = useForm<BrokerSchema>({
     resolver: zodResolver(updateSchema),
-    mode: "onChange",
+    defaultValues: {
+      title: broker.title,
+      email: broker.email,
+    },
+    mode: "onBlur",
   });
 
   useEffect(() => {
@@ -46,21 +41,22 @@ export function BrokerProfile() {
   function updateContact() {
     const values = getValues();
 
-    const updatedBrokerData = {
+    /* const updatedBrokerData = {
       ...broker,
+      title: values.title,
       creci: values.creci,
       email: values.email,
       phoneNumber: values.phoneNumber,
-    };
+    }; */
 
-    console.log(updatedBrokerData);
+    console.log(values);
 
-    BrokerApi.put(`/brokers/${id}`, updatedBrokerData).then((r) => {
+    /* BrokerApi.put(`/brokers/${id}`, updatedBrokerData).then((r) => {
       r.status == 200 &&
         setTimeout(() => {
           window.location.reload();
         }, 2000);
-    });
+    }); */
   }
 
   return (
@@ -75,20 +71,19 @@ export function BrokerProfile() {
                 <legend className="fieldset-legend">Nome</legend>
                 <input
                   {...register("title")}
-                  defaultValue={broker.title}
                   type="text"
-                  className="input"
-                  placeholder={broker.title}
+                  className="input w-full"
+                  defaultValue={broker.title ? broker.title : undefined}
                 />
                 {errors.title && (
-                  <p className="text-red-50">{errors.title.message}</p>
+                  <p className="text-red-500">{errors.title.message}</p>
                 )}
               </fieldset>
               <fieldset className="fieldset col-span-2 xl:col-span-1 ">
                 <legend className="fieldset-legend">Creci</legend>
                 <input
                   {...register("creci")}
-                  className="input"
+                  className="input w-full"
                   type="text"
                   maxLength={6}
                 />
@@ -102,7 +97,6 @@ export function BrokerProfile() {
                   {...register("email")}
                   type="text"
                   className="input w-full"
-                  placeholder="Email"
                 />
                 {errors.email?.message && (
                   <p className="text-red-500">{errors.email.message}</p>
@@ -176,7 +170,10 @@ export function BrokerProfile() {
               {broker.title} - CRECI {broker.creci}
             </p>
             <p className="text-slate-400 font-medium text-xl ">
-              {formattedBrokerPhone}
+              {broker.phoneNumber &&
+                broker.phoneNumber
+                  .toString()
+                  .replace(phonePattern, "$1 ($2) $3 $4 $5")}
             </p>
             <p className="text-slate-400 font-medium text-xl uppercase">
               {broker.email}

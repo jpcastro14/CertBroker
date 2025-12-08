@@ -9,7 +9,5 @@ export const ProtectedLayout = ({ children }: { children: ReactElement }) => {
     return <Login />;
   }
 
-  console.log(auth.email);
-
   return children;
 };
