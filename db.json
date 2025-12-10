@@ -274,7 +274,10 @@
           "date": "20/12",
           "saleValue": 1444175
         }
-      ]
+      ],
+      "creci": "516516",
+      "email": "teste@camila.com",
+      "phoneNumber": "77777777777"
     },
     {
       "id": "12",
@@ -301,7 +304,10 @@
           "date": "15/10",
           "saleValue": 3809212
         }
-      ]
+      ],
+      "creci": "555555",
+      "email": "eduardolalala@lalala.com",
+      "phoneNumber": "61998881581"
     },
     {
       "id": "13",

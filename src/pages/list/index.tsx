@@ -7,20 +7,30 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { BrokerApi } from "../../services/api";
 import { Link } from "react-router";
+import { FilterComponent } from "./FilterComponent";
 
 export function List() {
   const [brokers, setBrokers] = useState<BrokerStateProps[]>([]);
+  const [parameter, setParameter] = useState("-title");
   const { brokerList, createList, clearList, open, setOpen } =
     useContext(BrokerContext);
 
   useEffect(() => {
     const getData = async () => {
-      await BrokerApi.get("brokers")
+      await BrokerApi.get(`brokers?_sort=${parameter}`)
         .then((response) => setBrokers(response.data))
         .catch((error) => console.log(error));
     };
     getData();
-  }, []);
+  }, [parameter]);
+
+  function setFilter(param?: string) {
+    if (!param) {
+      setParameter("-sales");
+      return;
+    }
+    setParameter(param);
+  }
 
   return (
     <>
@@ -69,16 +79,19 @@ export function List() {
               id="CardBackground"
               className="w-full max-h-72 max-w-94 card card-side shadow"
             >
-              <div
-                id="profilePicture"
-                className="bg-slate-100 min-w-24 justify-center flex pt-6"
-              >
-                <img
-                  src={item.photo}
-                  alt="Movie"
-                  className="w-20 h-20 btn btn-circle object-cover"
-                />
-              </div>
+              <Link to={`/brokerProfile/${item.id}`}>
+                <div
+                  id="profilePicture"
+                  className="bg-slate-100 min-w-24 h-full justify-center flex pt-6"
+                >
+                  <img
+                    src={item.photo}
+                    alt="Movie"
+                    className="w-20 h-20 btn btn-circle object-cover"
+                  />
+                </div>
+              </Link>
+
               <div
                 id="CardInfo"
                 className=" min-w-44 min-h-72 max-w-44 card-body pl-2 bg-white text-black"
@@ -151,6 +164,7 @@ export function List() {
         </h2>
       </div>
 
+      <FilterComponent setParam={setFilter} />
       <div
         id="AvailableBrokersCardContainer"
         className=" w-full max-w-7xl mx-auto pb-20 flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"

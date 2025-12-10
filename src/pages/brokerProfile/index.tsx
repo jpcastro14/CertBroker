@@ -1,4 +1,4 @@
-import { Link, replace, useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { BrokerApi } from "../../services/api";
 import type { BrokerStateProps } from "../../contexts/brokerProvider";
@@ -7,7 +7,6 @@ import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons/faArro
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateSchema, type BrokerSchema } from "./schema";
-import axios from "axios";
 
 export function BrokerProfile() {
   const { id } = useParams();
@@ -41,22 +40,22 @@ export function BrokerProfile() {
   function updateContact() {
     const values = getValues();
 
-    /* const updatedBrokerData = {
+    const updatedBrokerData = {
       ...broker,
       title: values.title,
       creci: values.creci,
       email: values.email,
       phoneNumber: values.phoneNumber,
-    }; */
+    };
 
     console.log(values);
 
-    /* BrokerApi.put(`/brokers/${id}`, updatedBrokerData).then((r) => {
+    BrokerApi.put(`/brokers/${id}`, updatedBrokerData).then((r) => {
       r.status == 200 &&
         setTimeout(() => {
           window.location.reload();
         }, 2000);
-    }); */
+    });
   }
 
   return (
@@ -135,7 +134,7 @@ export function BrokerProfile() {
       </dialog>
 
       {/* -------------------- Return Button -------------------- */}
-      <div id="ReturnButtonWrapper" className="mx-6 mt-6">
+      <div id="ReturnButtonWrapper" className="mt-6 max-w-7xl mx-auto">
         <Link to={"/"}>
           <button className="h-12 w-12 flex items-center justify-center border border-slate-200 p-2 rounded-[100px]">
             <FontAwesomeIcon
@@ -196,9 +195,12 @@ export function BrokerProfile() {
 
       <div
         id="SalesWrapper"
-        className=" mb-4 max-w-7xl mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row shadow rounded-md p-4 gap-4 "
+        className=" mb-4 max-w-7xl bg-slate-50 mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row shadow rounded-md p-4 gap-4 "
       >
-        <div id="SalesContainer" className="w-full rounded p-4 shadow ">
+        <div
+          id="SalesContainer"
+          className="w-full bg-white rounded p-4 shadow "
+        >
           <p className="text-slate-900 border border-green-300 p-2 rounded">
             Vendas
           </p>
@@ -233,7 +235,10 @@ export function BrokerProfile() {
           </div>
         </div>
 
-        <div id="ComissionsContainer" className="w-full rounded p-4 shadow">
+        <div
+          id="ComissionsContainer"
+          className="w-full bg-white rounded p-4 shadow"
+        >
           <p className="text-slate-900 border border-blue-300 p-2 rounded ">
             Comisssões
           </p>
