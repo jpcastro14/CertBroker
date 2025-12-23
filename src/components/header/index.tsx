@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../contexts/authProvider/useAuth";
 import { faAddressCard } from "@fortawesome/free-regular-svg-icons/faAddressCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -25,25 +26,27 @@ export function Header() {
         open={open}
         onClose={() => setOpen(!open)}
       >
-        <div className="modal-box w-80 max-w-5xl">
-          <h3 className="font-bold text-lg">Atenção!</h3>
-          <p className="py-4">Tem certeza que quer sair?</p>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button, it will close the modal */}
+        <div className="modal-box w-100 max-w-5xl">
+          <h3 className="font-semibold text-lg  w-full bg-slate-100 rounded p-2">
+            Menu
+          </h3>
+          <div className="modal-action flex  items-stretch">
+            {/* if there is a button, it will close the modal */}
+            <Link to="/admin">
               <button
-                className="btn btn-error mx-4 "
-                onClick={() => auth.logout()}
-              >
-                Sair
-              </button>
-              <button
-                className="btn btn-success"
+                className="btn btn-primary"
                 onClick={() => setOpen(!open)}
               >
-                Cancelar
+                Administrador
               </button>
-            </form>
+            </Link>
+
+            <button className="btn btn-warning" onClick={() => auth.logout()}>
+              Sair
+            </button>
+            <button className="btn btn-success" onClick={() => setOpen(!open)}>
+              Cancelar
+            </button>
           </div>
         </div>
       </dialog>

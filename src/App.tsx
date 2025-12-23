@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router";
 import { Layout } from "./components/layout";
-import { Home } from "./pages/home";
 import { List } from "./pages/list";
 import { ProtectedLayout } from "./components/protectedLayout";
 import { BrokerProfile } from "./pages/brokerProfile";
+import { AdminPage } from "./pages/adminPage";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/brokerProfile/:id",
         element: <ProtectedLayout children={<BrokerProfile />} />,
+      },
+      {
+        path: "/admin",
+        element: <ProtectedLayout children={<AdminPage />} />,
       },
     ],
   },

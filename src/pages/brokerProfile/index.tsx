@@ -134,7 +134,10 @@ export function BrokerProfile() {
       </dialog>
 
       {/* -------------------- Return Button -------------------- */}
-      <div id="ReturnButtonWrapper" className="mt-6 max-w-7xl mx-auto">
+      <div
+        id="ReturnButtonWrapper"
+        className="mt-6 max-w-7xl mx-auto pl-4 xl:pl-0 "
+      >
         <Link to={"/"}>
           <button className="h-12 w-12 flex items-center justify-center border border-slate-200 p-2 rounded-[100px]">
             <FontAwesomeIcon
