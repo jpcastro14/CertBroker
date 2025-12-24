@@ -4,6 +4,7 @@ import { List } from "./pages/list";
 import { ProtectedLayout } from "./components/protectedLayout";
 import { BrokerProfile } from "./pages/brokerProfile";
 import { AdminPage } from "./pages/adminPage";
+import { NewBroker } from "./pages/newBroker";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <ProtectedLayout children={<AdminPage />} />,
+      },
+      {
+        path: "/newBroker",
+        element: <ProtectedLayout children={<NewBroker />} />,
       },
     ],
   },

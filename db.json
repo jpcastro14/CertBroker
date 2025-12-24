@@ -93,7 +93,7 @@
     {
       "id": "4",
       "preference": 4,
-      "title": "Wesley Carvalho",
+      "title": "Fernanda Montenegro",
       "team": "Breno",
       "photo": "https://avatar.iran.liara.run/public/38",
       "sales": [
@@ -115,7 +115,10 @@
           "date": "07/12",
           "saleValue": 6281308
         }
-      ]
+      ],
+      "creci": "587858",
+      "email": "fmonte@monte.com",
+      "phoneNumber": "61993388141"
     },
     {
       "id": "5",

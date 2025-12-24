@@ -13,7 +13,9 @@ export function AdminPage() {
           <button className="btn w-44 btn-primary ">
             Gerenciar corretores
           </button>
-          <button className="btn btn-success ">Novo corretor</button>
+          <Link to="/newBroker">
+            <button className="btn btn-success ">Novo corretor</button>
+          </Link>
           <button className="btn btn-warning ">Ranking</button>
         </div>
       </div>

@@ -7,6 +7,8 @@ import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons/faArro
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateSchema, type BrokerSchema } from "./schema";
+import { message, Button } from "antd";
+import { success } from "zod";
 
 export function BrokerProfile() {
   const { id } = useParams();
@@ -14,6 +16,7 @@ export function BrokerProfile() {
     {} as BrokerStateProps
   );
   const [visible, setVisible] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
   const phonePattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
   const {
     getValues,
@@ -51,15 +54,22 @@ export function BrokerProfile() {
     console.log(values);
 
     BrokerApi.put(`/brokers/${id}`, updatedBrokerData).then((r) => {
-      r.status == 200 &&
+      if (r.status == 200) {
+        messageApi.info({
+          type: "success",
+          content: "Informações atualizadas com êxito.",
+        });
         setTimeout(() => {
           window.location.reload();
         }, 2000);
+        setVisible(!visible);
+      }
     });
   }
 
   return (
     <>
+      {contextHolder}
       <dialog id="ChangeContactModal" className="modal" open={visible}>
         <div className="modal-box bg-white">
           <h3 className="font-bold text-lg text-slate-700">Alterar contatos</h3>
