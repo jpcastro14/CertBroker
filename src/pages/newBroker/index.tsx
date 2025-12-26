@@ -3,19 +3,20 @@ import { updateSchema, type BrokerSchema } from "../brokerProfile/schema";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { message } from "antd";
 
 export function NewBroker() {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    resetField,
     formState: { errors },
   } = useForm<BrokerSchema>({
     resolver: zodResolver(updateSchema),
     mode: "onBlur",
   });
 
-  const randomPhoto = (Math.random() * 100).toPrecision(2);
   function createBroker(data: BrokerSchema) {
     console.log(data);
 
@@ -28,11 +29,15 @@ export function NewBroker() {
     };
 
     axios.post(`http://localhost:3000/brokers/`, broker).then((response) => {
-      if (response.status == 200) {
-        console.log("Novo corretor criado", response.data.id);
+      if (response.status == 201) {
+        resetField("title"),
+          resetField("creci"),
+          resetField("email"),
+          resetField("phoneNumber");
+        message.info("Corretor cadastrado com êxito");
+        navigate(`/brokerProfile/${response.data.id}`);
       }
     });
-    console.log(broker);
   }
 
   return (
