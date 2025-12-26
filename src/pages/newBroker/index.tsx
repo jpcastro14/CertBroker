@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateSchema, type BrokerSchema } from "../brokerProfile/schema";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { number } from "zod";
+import { useNavigate } from "react-router";
 
 export function NewBroker() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,9 +24,14 @@ export function NewBroker() {
       creci: data.creci,
       email: data.email,
       phoneNumber: data.phoneNumber,
-      photo: `https://avatar.iran.liara.run/public/${randomPhoto}`,
+      photo: `https://ui-avatars.com/api/?name=${data.title}`,
     };
 
+    axios.post(`http://localhost:3000/brokers/`, broker).then((response) => {
+      if (response.status == 200) {
+        console.log("Novo corretor criado", response.data.id);
+      }
+    });
     console.log(broker);
   }
 

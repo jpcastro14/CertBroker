@@ -5,7 +5,7 @@
       "preference": 1,
       "title": "Silvio Rodrigues",
       "team": "Breno",
-      "photo": "https://avatar.iran.liara.run/public/12",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -41,7 +41,7 @@
       "preference": 2,
       "title": "Luiza Sonza",
       "team": "Mara",
-      "photo": "https://avatar.iran.liara.run/public/76",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -65,7 +65,7 @@
       "preference": 3,
       "title": "Bethania Soares",
       "team": "Breno",
-      "photo": "https://avatar.iran.liara.run/public/91",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -95,7 +95,7 @@
       "preference": 4,
       "title": "Fernanda Montenegro",
       "team": "Breno",
-      "photo": "https://avatar.iran.liara.run/public/38",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -125,7 +125,7 @@
       "preference": 5,
       "title": "Mariana Lima",
       "team": "Mara",
-      "photo": "https://avatar.iran.liara.run/public/68",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -146,7 +146,7 @@
       "preference": 6,
       "title": "Carlos Mendes",
       "team": "Breno",
-      "photo": "https://avatar.iran.liara.run/public/18",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -173,7 +173,7 @@
       "preference": 7,
       "title": "Fernanda Souza",
       "team": "Mara",
-      "photo": "https://avatar.iran.liara.run/public/63",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -194,7 +194,7 @@
       "preference": 8,
       "title": "João Almeida",
       "team": "Breno",
-      "photo": "https://avatar.iran.liara.run/public/36",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -221,7 +221,7 @@
       "preference": 9,
       "title": "Patrícia Gomes",
       "team": "Mara",
-      "photo": "https://avatar.iran.liara.run/public/67",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -242,7 +242,7 @@
       "preference": 10,
       "title": "Ricardo Silva",
       "team": "Breno",
-      "photo": "https://avatar.iran.liara.run/public/34",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -263,7 +263,7 @@
       "preference": 11,
       "title": "Camila Torres",
       "team": "Mara",
-      "photo": "https://avatar.iran.liara.run/public/70",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -287,7 +287,7 @@
       "preference": 12,
       "title": "Eduardo Castro",
       "team": "Breno",
-      "photo": "https://avatar.iran.liara.run/public/15",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -317,7 +317,7 @@
       "preference": 13,
       "title": "Isabela Martins",
       "team": "Mara",
-      "photo": "https://avatar.iran.liara.run/public/76",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -338,7 +338,7 @@
       "preference": 14,
       "title": "Thiago Pereira",
       "team": "Breno",
-      "photo": "https://avatar.iran.liara.run/public/31",
+      "photo": "",
       "sales": [
         {
           "id": 1,
@@ -353,6 +353,22 @@
           "saleValue": 5353537
         }
       ]
+    },
+    {
+      "id": "4f87",
+      "title": "João teste massivo",
+      "creci": 111111,
+      "email": "teste@massivo.com",
+      "phoneNumber": 10210271286,
+      "photo": "https://i.pravatar.cc/150"
+    },
+    {
+      "id": "0c18",
+      "title": "Andre Xucro Malso",
+      "creci": 516516,
+      "email": "castrovoip@gmail.com",
+      "phoneNumber": 45785785278,
+      "photo": "https://ui-avatars.com/api/?name=Andre Xucro Malso"
     }
   ]
 }
