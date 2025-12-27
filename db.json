@@ -5,7 +5,7 @@
       "preference": 1,
       "title": "Silvio Rodrigues",
       "team": "Breno",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Silvio Rodrigues",
       "sales": [
         {
           "id": 1,
@@ -41,7 +41,7 @@
       "preference": 2,
       "title": "Luiza Sonza",
       "team": "Mara",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Luiza Sonza",
       "sales": [
         {
           "id": 1,
@@ -65,7 +65,7 @@
       "preference": 3,
       "title": "Bethania Soares",
       "team": "Breno",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Bethania Soares",
       "sales": [
         {
           "id": 1,
@@ -95,7 +95,7 @@
       "preference": 4,
       "title": "Fernanda Montenegro",
       "team": "Breno",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Fernanda Montenegro",
       "sales": [
         {
           "id": 1,
@@ -125,7 +125,7 @@
       "preference": 5,
       "title": "Mariana Lima",
       "team": "Mara",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=MAriana Lima",
       "sales": [
         {
           "id": 1,
@@ -146,7 +146,7 @@
       "preference": 6,
       "title": "Carlos Mendes",
       "team": "Breno",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Carlos Mendes",
       "sales": [
         {
           "id": 1,
@@ -173,7 +173,7 @@
       "preference": 7,
       "title": "Fernanda Souza",
       "team": "Mara",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Fernanda Souza",
       "sales": [
         {
           "id": 1,
@@ -194,7 +194,7 @@
       "preference": 8,
       "title": "João Almeida",
       "team": "Breno",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=João Almeida",
       "sales": [
         {
           "id": 1,
@@ -221,7 +221,7 @@
       "preference": 9,
       "title": "Patrícia Gomes",
       "team": "Mara",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Patricia Gomes",
       "sales": [
         {
           "id": 1,
@@ -242,7 +242,7 @@
       "preference": 10,
       "title": "Ricardo Silva",
       "team": "Breno",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Ricardo Silva",
       "sales": [
         {
           "id": 1,
@@ -263,7 +263,7 @@
       "preference": 11,
       "title": "Camila Torres",
       "team": "Mara",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Camila Torres",
       "sales": [
         {
           "id": 1,
@@ -287,7 +287,7 @@
       "preference": 12,
       "title": "Eduardo Castro",
       "team": "Breno",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Eduardo Castro",
       "sales": [
         {
           "id": 1,
@@ -317,7 +317,7 @@
       "preference": 13,
       "title": "Isabela Martins",
       "team": "Mara",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Isabela Martins",
       "sales": [
         {
           "id": 1,
@@ -338,7 +338,7 @@
       "preference": 14,
       "title": "Thiago Pereira",
       "team": "Breno",
-      "photo": "",
+      "photo": "https://ui-avatars.com/api/?name=Thiago Pereira",
       "sales": [
         {
           "id": 1,
@@ -352,79 +352,19 @@
           "date": "30/06",
           "saleValue": 5353537
         }
-      ]
+      ],
+      "creci": "555555",
+      "email": "castrovoip@gmail.com",
+      "phoneNumber": "77777777777"
     },
     {
-      "id": "4f87",
-      "title": "João teste massivo",
-      "creci": 111111,
-      "email": "teste@massivo.com",
-      "phoneNumber": 10210271286,
-      "photo": "https://i.pravatar.cc/150"
-    },
-    {
-      "id": "0c18",
-      "title": "Andre Xucro Malso",
+      "id": "f8e2",
+      "title": "Smart Fella",
       "creci": 516516,
       "email": "castrovoip@gmail.com",
-      "phoneNumber": 45785785278,
-      "photo": "https://ui-avatars.com/api/?name=Andre Xucro Malso"
-    },
-    {
-      "id": "82a1",
-      "title": "Nabucodonozor",
-      "creci": 191921,
-      "email": "ohhoh@Ouhouh.com",
-      "phoneNumber": 51566516516,
-      "photo": "https://ui-avatars.com/api/?name=Nabucodonozor"
-    },
-    {
-      "id": "e66f",
-      "title": "Nabucodonozor",
-      "creci": 191921,
-      "email": "ohhoh@Ouhouh.com",
-      "phoneNumber": 51566516516,
-      "photo": "https://ui-avatars.com/api/?name=Nabucodonozor"
-    },
-    {
-      "id": "a413",
-      "title": "Helio Neres",
-      "creci": 516516,
-      "email": "castrovoip@gmail.com",
-      "phoneNumber": 45785785278,
-      "photo": "https://ui-avatars.com/api/?name=Helio Neres"
-    },
-    {
-      "id": "6373",
-      "title": "Juraci Paraguai",
-      "creci": 555555,
-      "email": "castrovoip@gmail.com",
-      "phoneNumber": 77777777777,
-      "photo": "https://ui-avatars.com/api/?name=Juraci Paraguai"
-    },
-    {
-      "id": "6404",
-      "title": "Juraci Paraguai",
-      "creci": 555555,
-      "email": "castrovoip@gmail.com",
-      "phoneNumber": 77777777777,
-      "photo": "https://ui-avatars.com/api/?name=Juraci Paraguai"
-    },
-    {
-      "id": "2921",
-      "title": "Juraci Paraguai",
-      "creci": 555555,
-      "email": "castrovoip@gmail.com",
-      "phoneNumber": 77777777777,
-      "photo": "https://ui-avatars.com/api/?name=Juraci Paraguai"
-    },
-    {
-      "id": "4282",
-      "title": "Paraguais",
-      "creci": "516516",
-      "email": "castrovoip@gmail.com",
-      "phoneNumber": "45785785278",
-      "photo": "https://ui-avatars.com/api/?name=Paraguai"
+      "phoneNumber": 61998881581,
+      "photo": "https://ui-avatars.com/api/?name=Smart Fella",
+      "sales": []
     }
   ]
 }

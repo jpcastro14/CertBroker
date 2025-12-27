@@ -26,6 +26,7 @@ export function NewBroker() {
       email: data.email,
       phoneNumber: data.phoneNumber,
       photo: `https://ui-avatars.com/api/?name=${data.title}`,
+      sales: [],
     };
 
     axios.post(`http://localhost:3000/brokers/`, broker).then((response) => {

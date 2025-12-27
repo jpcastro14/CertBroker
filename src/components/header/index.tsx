@@ -11,7 +11,9 @@ export function Header() {
     <>
       <div className=" w-full  bg-blue-800 drop-shadow-2xl   justify-center flex h-20 px-5">
         <div className="w-full max-w-7xl flex justify-between items-center text-white ">
-          <h4 className="font-light text-2xl">SureBroker</h4>
+          <Link to="/">
+            <h4 className="font-light text-2xl">SureBroker</h4>
+          </Link>
           {auth.email && (
             <button className="btn btn-circle " onClick={() => setOpen(!open)}>
               <FontAwesomeIcon icon={faAddressCard} />

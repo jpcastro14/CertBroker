@@ -8,10 +8,18 @@ import { useContext, useEffect, useState } from "react";
 import { BrokerApi } from "../../services/api";
 import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
-
+import { useForm } from "react-hook-form";
+import { NumericFormat, PatternFormat } from "react-number-format";
+import { saleSchema, type SaleSchema } from "../brokerProfile/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import SaleInput from "../../components/saleModal";
+import { Input } from "antd";
 export function List() {
   const [brokers, setBrokers] = useState<BrokerStateProps[]>([]);
   const [parameter, setParameter] = useState("-title");
+  const [openSaleModal, setOpenSaleModal] = useState(false);
+  const [brokerSaleInfo, setBrokerSaleInfo] =
+    useState<Partial<BrokerStateProps>>();
   const { brokerList, createList, clearList, open, setOpen } =
     useContext(BrokerContext);
 
@@ -32,9 +40,95 @@ export function List() {
     setParameter(param);
   }
 
+  const toggleModalOpen = ({ id, title, creci }: BrokerStateProps) => {
+    setOpenSaleModal(!openSaleModal);
+    setBrokerSaleInfo({
+      id,
+      title,
+      creci,
+    });
+    console.log(brokerSaleInfo);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SaleSchema>({
+    resolver: zodResolver(saleSchema),
+    mode: "onBlur",
+  });
+
+  function createSale(data: SaleSchema) {
+    console.log(data);
+  }
+
   return (
     <>
-      <dialog id="my_modal_1" className="modal" open={open}>
+      <dialog id="SaleModal" className="modal" open={openSaleModal}>
+        <div className="modal-box bg-white ">
+          <h3 className="font-bold text-lg text-slate-600">
+            Cadastro de venda
+          </h3>
+          <p className="py-4 text-slate-500 ">
+            Informar venda para o corretor{" "}
+            <strong>
+              {brokerSaleInfo?.title} - {brokerSaleInfo?.creci}
+            </strong>
+          </p>
+          <div id="FormWrapper" className="m-4">
+            <div className="grid grid-cols-2 gap-2 ">
+              <fieldset className="fieldset col-span-2 xl:col-span-1 ">
+                <legend className="fieldset-legend">Empreendimento</legend>
+                {errors.title && (
+                  <p className="text-red-500">{errors.title.message}</p>
+                )}
+                <input
+                  {...register("title")}
+                  type="text"
+                  className="input w-full"
+                />
+              </fieldset>
+              <fieldset className="fieldset col-span-2 xl:col-span-1 ">
+                <legend className="fieldset-legend">Data da venda</legend>
+                {errors.date && (
+                  <p className="text-red-500">{errors.date.message}</p>
+                )}
+                <input
+                  {...register("date")}
+                  className="input w-full"
+                  type="date"
+                  maxLength={6}
+                />
+              </fieldset>
+              <fieldset className="fieldset col-span-2">
+                <legend className="fieldset-legend">Valor da venda</legend>
+                {errors.saleValue && (
+                  <p className="text-red-500">{errors.saleValue.message}</p>
+                )}
+                <NumericFormat max={12} thousandSeparator customInput={Input} />
+              </fieldset>
+            </div>
+          </div>
+          <div className="modal-action flex gap-4">
+            {/* if there is a button in form, it will close the modal */}
+            <button
+              className="btn btn-success"
+              onClick={() => handleSubmit(createSale)()}
+            >
+              Informar Venda
+            </button>
+            <button
+              className="btn btn-error"
+              onClick={() => setOpenSaleModal(!openSaleModal)}
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog id="AlreadyOnRowAlert" className="modal" open={open}>
         <div className="modal-box bg-white ">
           <h3 className="font-bold text-lg text-slate-600">Ops!</h3>
           <p className="py-4 text-slate-500 ">
@@ -145,7 +239,10 @@ export function List() {
                   >
                     Sair
                   </button>
-                  <button className="btn btn-success">
+                  <button
+                    onClick={() => toggleModalOpen(item)}
+                    className="btn btn-success"
+                  >
                     <FontAwesomeIcon icon={faMoneyBill1} />
                     Venda
                   </button>
@@ -193,7 +290,7 @@ export function List() {
               </div>
               <div
                 id="CardInfo"
-                className="w-80 xl:max-w-44 card-body pl-2 bg-white text-black"
+                className="w-80 xl:max-w-44 h-50 card-body pl-2 bg-white text-black"
               >
                 <h2 id="CardTitle" className="card-title">
                   {item.title}
@@ -220,4 +317,11 @@ export function List() {
       </div>
     </>
   );
+}
+function register(
+  arg0: string
+): import("react/jsx-runtime").JSX.IntrinsicAttributes &
+  import("react").ClassAttributes<HTMLInputElement> &
+  import("react").InputHTMLAttributes<HTMLInputElement> {
+  throw new Error("Function not implemented.");
 }
