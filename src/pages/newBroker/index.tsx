@@ -110,7 +110,6 @@ export function NewBroker() {
         >
           Salvar
         </button>
-        <button className="btn btn-warning">Cancelar</button>
       </div>
     </div>
   );

@@ -59,21 +59,20 @@ export function List() {
     resolver: zodResolver(saleSchema),
     mode: "onSubmit",
     defaultValues: {
-      saleValue: "55.442.123,648",
+      saleValue: "",
     },
   });
 
   function createSale(data: SaleSchema) {
-    if (sale.length <= 0) {
+    if (sale.length == 0) {
       setError("saleValue", {
-        type: "min",
-        message: "Informe o valor da venda",
+        message: "Informe esta merda",
       });
     } else {
       const finalSale: Sales = {
         title: data.title,
-        saleValue: sale,
-        saleDate: new Date().toString(),
+        saleValue: parseInt(sale),
+        saleDate: new Date(),
       };
 
       const saleBroker = brokers.find((item) => item.id === brokerSaleInfo?.id);
@@ -132,7 +131,6 @@ export function List() {
             </div>
           </div>
           <div className="modal-action flex gap-4">
-            {/* if there is a button in form, it will close the modal */}
             <button
               className="btn btn-success"
               onClick={() => handleSubmit(createSale)()}
@@ -157,7 +155,6 @@ export function List() {
           </p>
           <div className="modal-action">
             <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
               <button className="btn btn-error" onClick={() => setOpen(!open)}>
                 Fechar
               </button>

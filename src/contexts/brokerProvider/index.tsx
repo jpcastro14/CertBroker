@@ -3,8 +3,8 @@ import { createContext, useEffect, useState } from "react";
 export type Sales = {
   id?: string;
   title: string;
-  saleDate: string;
-  saleValue: string;
+  saleDate: Date;
+  saleValue: number;
 };
 
 export interface BrokerStateProps {

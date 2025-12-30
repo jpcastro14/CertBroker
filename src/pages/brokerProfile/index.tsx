@@ -234,7 +234,12 @@ export function BrokerProfile() {
                     <tr key={sale.id} className="border-b border-slate-200">
                       <th>{sale.id}</th>
                       <td>{sale.title}</td>
-                      <td>{sale.saleValue}</td>
+                      <td>
+                        {sale.saleValue.toLocaleString("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        })}
+                      </td>
                       <td>
                         {new Date(sale.saleDate).getMonth()} /{" "}
                         {new Date(sale.saleDate).getFullYear()}
