@@ -1,10 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 
 export type Sales = {
-  id: number;
+  id?: string;
   title: string;
-  date: string;
-  saleValue: number;
+  saleDate: string;
+  saleValue: string;
 };
 
 export interface BrokerStateProps {

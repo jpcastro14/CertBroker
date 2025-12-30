@@ -234,13 +234,11 @@ export function BrokerProfile() {
                     <tr key={sale.id} className="border-b border-slate-200">
                       <th>{sale.id}</th>
                       <td>{sale.title}</td>
+                      <td>{sale.saleValue}</td>
                       <td>
-                        {sale.saleValue.toLocaleString("pt-BR", {
-                          style: "currency",
-                          currency: "BRL",
-                        })}
+                        {new Date(sale.saleDate).getMonth()} /{" "}
+                        {new Date(sale.saleDate).getFullYear()}
                       </td>
-                      <td>{sale.date}</td>
                     </tr>
                   ))}
               </tbody>
@@ -269,12 +267,7 @@ export function BrokerProfile() {
                   <tr key={comission.id} className="border-b border-slate-200">
                     <th>{comission.id}</th>
                     <td>{comission.title}</td>
-                    <td>
-                      {((comission.saleValue / 100) * 0.2).toLocaleString(
-                        "pt-BR",
-                        { style: "currency", currency: "BRL" }
-                      )}
-                    </td>
+                    <td>{comission.saleValue}</td>
                   </tr>
                 ))}
             </tbody>

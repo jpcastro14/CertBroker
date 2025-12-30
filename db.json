@@ -10,25 +10,25 @@
         {
           "id": 1,
           "title": "Leparc",
-          "date": "12/10",
+          "saleDate": "Mon Dec 29 2025 21:16:50 GMT-0300 (Horário Padrão de Brasília)",
           "saleValue": 6063909
         },
         {
           "id": 2,
           "title": "Bothanic",
-          "date": "31/10",
+          "saleDate": "Mon Dec 29 2025 21:16:50 GMT-0300 (Horário Padrão de Brasília)",
           "saleValue": 2713471
         },
         {
           "id": 3,
           "title": "Urban Life",
-          "date": "08/05",
+          "saleDate": "Mon Dec 29 2025 21:16:50 GMT-0300 (Horário Padrão de Brasília)",
           "saleValue": 4434549
         },
         {
           "id": 4,
           "title": "Urban Life",
-          "date": "22/04",
+          "saleDate": "Mon Dec 29 2025 21:16:50 GMT-0300 (Horário Padrão de Brasília)",
           "saleValue": 4676830
         }
       ],
@@ -46,13 +46,13 @@
         {
           "id": 1,
           "title": "Bauhaus",
-          "date": "14/03",
+          "saleDate": "14/03",
           "saleValue": 1488820
         },
         {
           "id": 2,
           "title": "Bothanic",
-          "date": "14/03",
+          "saleDate": "14/03",
           "saleValue": 3643871
         }
       ],
@@ -70,19 +70,19 @@
         {
           "id": 1,
           "title": "Bothanic",
-          "date": "19/06",
+          "saleDate": "19/06",
           "saleValue": 5280001
         },
         {
           "id": 2,
           "title": "Leparc",
-          "date": "05/04",
+          "saleDate": "05/04",
           "saleValue": 4748841
         },
         {
           "id": 3,
           "title": "Urban Life",
-          "date": "11/08",
+          "saleDate": "11/08",
           "saleValue": 3247089
         }
       ],
@@ -100,19 +100,19 @@
         {
           "id": 1,
           "title": "Leparc",
-          "date": "16/06",
+          "saleDate": "16/06",
           "saleValue": 3384175
         },
         {
           "id": 2,
           "title": "Bothanic",
-          "date": "21/05",
+          "saleDate": "21/05",
           "saleValue": 4657359
         },
         {
           "id": 3,
           "title": "Urban Life",
-          "date": "07/12",
+          "saleDate": "07/12",
           "saleValue": 6281308
         }
       ],
@@ -130,13 +130,13 @@
         {
           "id": 1,
           "title": "Leparc",
-          "date": "10/02",
+          "saleDate": "10/02",
           "saleValue": 2509087
         },
         {
           "id": 2,
           "title": "Bauhaus",
-          "date": "22/07",
+          "saleDate": "22/07",
           "saleValue": 2632991
         }
       ]
@@ -151,19 +151,19 @@
         {
           "id": 1,
           "title": "Urban Life",
-          "date": "03/03",
+          "saleDate": "03/03",
           "saleValue": 5848756
         },
         {
           "id": 2,
           "title": "Bothanic",
-          "date": "15/09",
+          "saleDate": "15/09",
           "saleValue": 1595191
         },
         {
           "id": 3,
           "title": "Leparc",
-          "date": "28/11",
+          "saleDate": "28/11",
           "saleValue": 2046362
         }
       ]
@@ -178,13 +178,13 @@
         {
           "id": 1,
           "title": "Bauhaus",
-          "date": "09/01",
+          "saleDate": "09/01",
           "saleValue": 6619553
         },
         {
           "id": 2,
           "title": "Urban Life",
-          "date": "17/08",
+          "saleDate": "17/08",
           "saleValue": 3254233
         }
       ]
@@ -199,19 +199,19 @@
         {
           "id": 1,
           "title": "Bothanic",
-          "date": "12/04",
+          "saleDate": "12/04",
           "saleValue": 6115395
         },
         {
           "id": 2,
           "title": "Leparc",
-          "date": "19/05",
+          "saleDate": "19/05",
           "saleValue": 5319149
         },
         {
           "id": 3,
           "title": "Urban Life",
-          "date": "23/09",
+          "saleDate": "23/09",
           "saleValue": 2979063
         }
       ]
@@ -226,13 +226,13 @@
         {
           "id": 1,
           "title": "Leparc",
-          "date": "06/06",
+          "saleDate": "06/06",
           "saleValue": 1352819
         },
         {
           "id": 2,
           "title": "Bothanic",
-          "date": "14/10",
+          "saleDate": "14/10",
           "saleValue": 1400715
         }
       ]
@@ -247,13 +247,13 @@
         {
           "id": 1,
           "title": "Urban Life",
-          "date": "02/02",
+          "saleDate": "02/02",
           "saleValue": 3027675
         },
         {
           "id": 2,
           "title": "Bauhaus",
-          "date": "11/11",
+          "saleDate": "11/11",
           "saleValue": 3278383
         }
       ]
@@ -268,13 +268,13 @@
         {
           "id": 1,
           "title": "Bothanic",
-          "date": "08/08",
+          "saleDate": "08/08",
           "saleValue": 2965511
         },
         {
           "id": 2,
           "title": "Urban Life",
-          "date": "20/12",
+          "saleDate": "20/12",
           "saleValue": 1444175
         }
       ],
@@ -292,19 +292,19 @@
         {
           "id": 1,
           "title": "Leparc",
-          "date": "04/03",
+          "saleDate": "04/03",
           "saleValue": 6626357
         },
         {
           "id": 2,
           "title": "Bothanic",
-          "date": "29/07",
+          "saleDate": "29/07",
           "saleValue": 4222896
         },
         {
           "id": 3,
           "title": "Urban Life",
-          "date": "15/10",
+          "saleDate": "15/10",
           "saleValue": 3809212
         }
       ],
@@ -322,13 +322,13 @@
         {
           "id": 1,
           "title": "Bauhaus",
-          "date": "13/05",
+          "saleDate": "13/05",
           "saleValue": 4495086
         },
         {
           "id": 2,
           "title": "Leparc",
-          "date": "27/09",
+          "saleDate": "27/09",
           "saleValue": 3840133
         }
       ]
@@ -343,13 +343,13 @@
         {
           "id": 1,
           "title": "Urban Life",
-          "date": "18/01",
+          "saleDate": "18/01",
           "saleValue": 3518437
         },
         {
           "id": 2,
           "title": "Bothanic",
-          "date": "30/06",
+          "saleDate": "30/06",
           "saleValue": 5353537
         }
       ],

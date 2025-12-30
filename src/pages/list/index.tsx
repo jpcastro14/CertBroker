@@ -3,21 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   BrokerContext,
   type BrokerStateProps,
+  type Sales,
 } from "../../contexts/brokerProvider";
 import { useContext, useEffect, useState } from "react";
 import { BrokerApi } from "../../services/api";
 import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
 import { useForm } from "react-hook-form";
-import { NumericFormat, PatternFormat } from "react-number-format";
 import { saleSchema, type SaleSchema } from "../brokerProfile/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import SaleInput from "../../components/saleModal";
-import { Input } from "antd";
+
 export function List() {
   const [brokers, setBrokers] = useState<BrokerStateProps[]>([]);
   const [parameter, setParameter] = useState("-title");
   const [openSaleModal, setOpenSaleModal] = useState(false);
+  const [sale, setSale] = useState<string>("");
   const [brokerSaleInfo, setBrokerSaleInfo] =
     useState<Partial<BrokerStateProps>>();
   const { brokerList, createList, clearList, open, setOpen } =
@@ -53,14 +53,42 @@ export function List() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<SaleSchema>({
     resolver: zodResolver(saleSchema),
-    mode: "onBlur",
+    mode: "onSubmit",
+    defaultValues: {
+      saleValue: "55.442.123,648",
+    },
   });
 
   function createSale(data: SaleSchema) {
-    console.log(data);
+    if (sale.length <= 0) {
+      setError("saleValue", {
+        type: "min",
+        message: "Informe o valor da venda",
+      });
+    } else {
+      const finalSale: Sales = {
+        title: data.title,
+        saleValue: sale,
+        saleDate: new Date().toString(),
+      };
+
+      const saleBroker = brokers.find((item) => item.id === brokerSaleInfo?.id);
+      saleBroker?.sales.push(finalSale);
+      console.log(saleBroker);
+    }
+  }
+
+  function handleSale(e: React.ChangeEvent<HTMLInputElement>) {
+    const overpriced = /([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{3})/;
+    const formattedSaleValue = e.target.value.replace(
+      overpriced,
+      "$1.$2.$3,$4"
+    );
+    setSale(formattedSaleValue);
   }
 
   return (
@@ -78,7 +106,7 @@ export function List() {
           </p>
           <div id="FormWrapper" className="m-4">
             <div className="grid grid-cols-2 gap-2 ">
-              <fieldset className="fieldset col-span-2 xl:col-span-1 ">
+              <fieldset className="fieldset col-span-2 xl:col-span-2 ">
                 <legend className="fieldset-legend">Empreendimento</legend>
                 {errors.title && (
                   <p className="text-red-500">{errors.title.message}</p>
@@ -89,24 +117,17 @@ export function List() {
                   className="input w-full"
                 />
               </fieldset>
-              <fieldset className="fieldset col-span-2 xl:col-span-1 ">
-                <legend className="fieldset-legend">Data da venda</legend>
-                {errors.date && (
-                  <p className="text-red-500">{errors.date.message}</p>
-                )}
-                <input
-                  {...register("date")}
-                  className="input w-full"
-                  type="date"
-                  maxLength={6}
-                />
-              </fieldset>
               <fieldset className="fieldset col-span-2">
                 <legend className="fieldset-legend">Valor da venda</legend>
                 {errors.saleValue && (
                   <p className="text-red-500">{errors.saleValue.message}</p>
                 )}
-                <NumericFormat max={12} thousandSeparator customInput={Input} />
+                <input
+                  value={sale}
+                  onChange={handleSale}
+                  className="input w-full"
+                  type="text"
+                />
               </fieldset>
             </div>
           </div>
@@ -224,7 +245,9 @@ export function List() {
                     <p className="text-xl">Vendas: {item.sales.length} </p>
                     {item.sales.map((item) => (
                       <p key={item.id} className="text-slate-400 border-b">
-                        {item.title} - {item.date}{" "}
+                        {item.title} - {new Date(item.saleDate).getMonth()}
+                        {"/"}
+                        {new Date(item.saleDate).getMonth()}
                       </p>
                     ))}
                   </span>
@@ -323,5 +346,8 @@ function register(
 ): import("react/jsx-runtime").JSX.IntrinsicAttributes &
   import("react").ClassAttributes<HTMLInputElement> &
   import("react").InputHTMLAttributes<HTMLInputElement> {
+  throw new Error("Function not implemented.");
+}
+function setError(arg0: string, arg1: { type: string; message: string }) {
   throw new Error("Function not implemented.");
 }

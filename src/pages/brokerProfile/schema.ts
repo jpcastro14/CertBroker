@@ -10,8 +10,7 @@ export const updateSchema = z.object({
 
 export const saleSchema = z.object({
     title: z.string().min(1, { error: 'Informe o nome do empreendimento' }),
-    date: z.string(),
-    saleValue: z.string().min(1, { error: 'Informe o valor da venda' }),
+    saleValue: z.string()
 })
 
 export type SaleSchema = z.infer<typeof saleSchema>
