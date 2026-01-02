@@ -18,8 +18,9 @@ export function List() {
   const [parameter, setParameter] = useState("-title");
   const [openSaleModal, setOpenSaleModal] = useState(false);
   const [sale, setSale] = useState<string>("");
-  const [brokerSaleInfo, setBrokerSaleInfo] =
-    useState<Partial<BrokerStateProps>>();
+  const [brokerSaleInfo, setBrokerSaleInfo] = useState<
+    Partial<BrokerStateProps>
+  >({} as BrokerStateProps);
   const { brokerList, createList, clearList, open, setOpen } =
     useContext(BrokerContext);
 
@@ -42,11 +43,7 @@ export function List() {
 
   const toggleModalOpen = ({ id, title, creci }: BrokerStateProps) => {
     setOpenSaleModal(!openSaleModal);
-    setBrokerSaleInfo({
-      id,
-      title,
-      creci,
-    });
+    setBrokerSaleInfo((prevState) => ({ ...prevState, id, title, creci }));
     console.log(brokerSaleInfo);
   };
 
@@ -82,11 +79,15 @@ export function List() {
   }
 
   function handleSale(e: React.ChangeEvent<HTMLInputElement>) {
-    const overpriced = /([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{3})/;
-    const formattedSaleValue = e.target.value.replace(
-      overpriced,
-      "$1.$2.$3,$4"
-    );
+    const value = e.target.value;
+
+    const formattedSaleValue = value
+      .replace(/\D/g, "")
+      .replace(/(\d)(\d{2})$/, "$1.$2")
+      .replace(/(?=(\d{3})+(\D))\B/g, ",");
+
+    console.log(formattedSaleValue);
+
     setSale(formattedSaleValue);
   }
 
@@ -242,9 +243,9 @@ export function List() {
                     <p className="text-xl">Vendas: {item.sales.length} </p>
                     {item.sales.map((item) => (
                       <p key={item.id} className="text-slate-400 border-b">
-                        {item.title} - {new Date(item.saleDate).getMonth()}
+                        {item.title} - {new Date(item.saleDate).getDay()}
                         {"/"}
-                        {new Date(item.saleDate).getMonth()}
+                        {new Date(item.saleDate).getMonth() + 1}
                       </p>
                     ))}
                   </span>
