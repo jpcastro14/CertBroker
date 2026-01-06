@@ -8,12 +8,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateSchema, type BrokerSchema } from "./schema";
 import { message } from "antd";
+import { useFetchBrokers } from "../../customHooks/useFetchBokers";
 
 export function BrokerProfile() {
   const { id } = useParams();
-  const [broker, setBroker] = useState<BrokerStateProps>(
-    {} as BrokerStateProps
-  );
+  const { filteredBroker } = useFetchBrokers(id);
   const [visible, setVisible] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const phonePattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
@@ -25,25 +24,18 @@ export function BrokerProfile() {
   } = useForm<BrokerSchema>({
     resolver: zodResolver(updateSchema),
     defaultValues: {
-      title: broker.title,
-      email: broker.email,
+      title: filteredBroker?.title,
+      email: filteredBroker?.email,
     },
     mode: "onBlur",
   });
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await BrokerApi.get(`/brokers/${id}`);
-      setBroker(response.data);
-    };
-    getData();
-  }, []);
+  console.log(filteredBroker);
 
   function updateContact() {
     const values = getValues();
 
     const updatedBrokerData = {
-      ...broker,
+      ...filteredBroker,
       title: values.title,
       creci: values.creci,
       email: values.email,
@@ -81,7 +73,9 @@ export function BrokerProfile() {
                   {...register("title")}
                   type="text"
                   className="input w-full"
-                  defaultValue={broker.title ? broker.title : undefined}
+                  defaultValue={
+                    filteredBroker?.title ? filteredBroker?.title : undefined
+                  }
                 />
                 {errors.title && (
                   <p className="text-red-500">{errors.title.message}</p>
@@ -171,23 +165,23 @@ export function BrokerProfile() {
           <img
             id="BrokerProfilePicture"
             className="btn btn-circle h-40 w-40 m-2 object-cover border-2 border-blue-800"
-            src={broker.photo}
+            src={filteredBroker?.photo}
           />
           <div
             id="BrokerRegister"
             className=" relative w-full rounded p-6 mt-4 flex flex-col gap-3 border-slate-300 xl:h-40 xl:ml-4 justify-center bg-slate-100"
           >
             <p className="text-slate-600 font-medium text-2xl">
-              {broker.title} - CRECI {broker.creci}
+              {filteredBroker?.title} - CRECI {filteredBroker?.creci}
             </p>
             <p className="text-slate-400 font-medium text-xl ">
-              {broker.phoneNumber &&
-                broker.phoneNumber
+              {filteredBroker?.phoneNumber &&
+                filteredBroker?.phoneNumber
                   .toString()
                   .replace(phonePattern, "$1 ($2) $3 $4 $5")}
             </p>
             <p className="text-slate-400 font-medium text-xl uppercase">
-              {broker.email}
+              {filteredBroker?.email}
             </p>
             <button
               className="btn btn-warning xl:hidden"
@@ -228,8 +222,8 @@ export function BrokerProfile() {
                 </tr>
               </thead>
               <tbody>
-                {broker &&
-                  broker.sales?.map((sale) => (
+                {filteredBroker &&
+                  filteredBroker.sales?.map((sale) => (
                     <tr key={sale.id} className="border-b border-slate-200">
                       <th>{sale.id}</th>
                       <td>{sale.title}</td>
@@ -266,8 +260,8 @@ export function BrokerProfile() {
               </tr>
             </thead>
             <tbody>
-              {broker &&
-                broker.sales?.map((comission) => (
+              {filteredBroker &&
+                filteredBroker.sales?.map((comission) => (
                   <tr key={comission.id} className="border-b border-slate-200">
                     <th>{comission.id}</th>
                     <td>{comission.title}</td>

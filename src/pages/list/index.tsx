@@ -6,15 +6,14 @@ import {
   type Sales,
 } from "../../contexts/brokerProvider";
 import { useContext, useEffect, useState } from "react";
-import { BrokerApi } from "../../services/api";
 import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
 import { useForm } from "react-hook-form";
 import { saleSchema, type SaleSchema } from "../brokerProfile/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useFetchBrokers } from "../../customHooks/useFetchBokers";
 
 export function List() {
-  const [brokers, setBrokers] = useState<BrokerStateProps[]>([]);
   const [parameter, setParameter] = useState("-title");
   const [openSaleModal, setOpenSaleModal] = useState(false);
   const [sale, setSale] = useState<string>("");
@@ -24,14 +23,7 @@ export function List() {
   const { brokerList, createList, clearList, open, setOpen } =
     useContext(BrokerContext);
 
-  useEffect(() => {
-    const getData = async () => {
-      await BrokerApi.get(`brokers?_sort=${parameter}`)
-        .then((response) => setBrokers(response.data))
-        .catch((error) => console.log(error));
-    };
-    getData();
-  }, [parameter]);
+  const { brokers } = useFetchBrokers();
 
   function setFilter(param?: string) {
     if (!param) {
@@ -72,9 +64,10 @@ export function List() {
         saleDate: new Date(),
       };
 
-      const saleBroker = brokers.find((item) => item.id === brokerSaleInfo?.id);
+      const saleBroker = brokers?.find(
+        (item) => item.id === brokerSaleInfo?.id
+      );
       saleBroker?.sales.push(finalSale);
-      console.log(saleBroker);
     }
   }
 
@@ -287,7 +280,7 @@ export function List() {
         id="AvailableBrokersCardContainer"
         className=" w-full max-w-7xl mx-auto pb-20 flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
       >
-        {brokers.map((item) => (
+        {brokers?.map((item) => (
           <div
             key={item.id}
             id="CardWrapper"
@@ -338,14 +331,4 @@ export function List() {
       </div>
     </>
   );
-}
-function register(
-  arg0: string
-): import("react/jsx-runtime").JSX.IntrinsicAttributes &
-  import("react").ClassAttributes<HTMLInputElement> &
-  import("react").InputHTMLAttributes<HTMLInputElement> {
-  throw new Error("Function not implemented.");
-}
-function setError(arg0: string, arg1: { type: string; message: string }) {
-  throw new Error("Function not implemented.");
 }

@@ -11,3 +11,10 @@ export const BrokerApi = axios.create({
     baseURL: "http://localhost:3000/"
 })
 
+export async function fetchBrokers() {
+    const response = await BrokerApi.get("/brokers")
+    if (response.status !== 200) {
+        throw new Error("Failed to fetch brokers");
+    }
+    return response.data;
+}
