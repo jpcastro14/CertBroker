@@ -3,23 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   BrokerContext,
   type BrokerStateProps,
-  type Sales,
 } from "../../contexts/brokerProvider";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
-import { useForm } from "react-hook-form";
-import { saleSchema, type SaleSchema } from "../brokerProfile/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useFetchBrokers } from "../../customHooks/useFetchBokers";
+import { SaleModal } from "./saleModal";
 
 export function List() {
   const [parameter, setParameter] = useState("-title");
   const [openSaleModal, setOpenSaleModal] = useState(false);
-  const [sale, setSale] = useState<string>("");
-  const [brokerSaleInfo, setBrokerSaleInfo] = useState<
-    Partial<BrokerStateProps>
-  >({} as BrokerStateProps);
+  const [brokerPayload, setBrokerPayload] = useState<BrokerStateProps>(
+    {} as BrokerStateProps
+  );
   const { brokerList, createList, clearList, open, setOpen } =
     useContext(BrokerContext);
 
@@ -33,113 +29,19 @@ export function List() {
     setParameter(param);
   }
 
-  const toggleModalOpen = ({ id, title, creci }: BrokerStateProps) => {
+  const toggleModalOpen = (item: BrokerStateProps) => {
     setOpenSaleModal(!openSaleModal);
-    setBrokerSaleInfo((prevState) => ({ ...prevState, id, title, creci }));
-    console.log(brokerSaleInfo);
+    setBrokerPayload(item);
+    console.log(brokerPayload);
   };
-
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors },
-  } = useForm<SaleSchema>({
-    resolver: zodResolver(saleSchema),
-    mode: "onSubmit",
-    defaultValues: {
-      saleValue: "",
-    },
-  });
-
-  function createSale(data: SaleSchema) {
-    if (sale.length == 0) {
-      setError("saleValue", {
-        message: "Informe esta merda",
-      });
-    } else {
-      const finalSale: Sales = {
-        title: data.title,
-        saleValue: parseInt(sale),
-        saleDate: new Date(),
-      };
-
-      const saleBroker = brokers?.find(
-        (item) => item.id === brokerSaleInfo?.id
-      );
-      saleBroker?.sales.push(finalSale);
-    }
-  }
-
-  function handleSale(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
-
-    const formattedSaleValue = value
-      .replace(/\D/g, "")
-      .replace(/(\d)(\d{2})$/, "$1.$2")
-      .replace(/(?=(\d{3})+(\D))\B/g, ",");
-
-    console.log(formattedSaleValue);
-
-    setSale(formattedSaleValue);
-  }
 
   return (
     <>
-      <dialog id="SaleModal" className="modal" open={openSaleModal}>
-        <div className="modal-box bg-white ">
-          <h3 className="font-bold text-lg text-slate-600">
-            Cadastro de venda
-          </h3>
-          <p className="py-4 text-slate-500 ">
-            Informar venda para o corretor{" "}
-            <strong>
-              {brokerSaleInfo?.title} - {brokerSaleInfo?.creci}
-            </strong>
-          </p>
-          <div id="FormWrapper" className="m-4">
-            <div className="grid grid-cols-2 gap-2 ">
-              <fieldset className="fieldset col-span-2 xl:col-span-2 ">
-                <legend className="fieldset-legend">Empreendimento</legend>
-                {errors.title && (
-                  <p className="text-red-500">{errors.title.message}</p>
-                )}
-                <input
-                  {...register("title")}
-                  type="text"
-                  className="input w-full"
-                />
-              </fieldset>
-              <fieldset className="fieldset col-span-2">
-                <legend className="fieldset-legend">Valor da venda</legend>
-                {errors.saleValue && (
-                  <p className="text-red-500">{errors.saleValue.message}</p>
-                )}
-                <input
-                  value={sale}
-                  onChange={handleSale}
-                  className="input w-full"
-                  type="text"
-                />
-              </fieldset>
-            </div>
-          </div>
-          <div className="modal-action flex gap-4">
-            <button
-              className="btn btn-success"
-              onClick={() => handleSubmit(createSale)()}
-            >
-              Informar Venda
-            </button>
-            <button
-              className="btn btn-error"
-              onClick={() => setOpenSaleModal(!openSaleModal)}
-            >
-              Fechar
-            </button>
-          </div>
-        </div>
-      </dialog>
+      <SaleModal
+        isModalOpen={openSaleModal}
+        closeModal={() => setOpenSaleModal(false)}
+        payload={brokerPayload}
+      />
 
       <dialog id="AlreadyOnRowAlert" className="modal" open={open}>
         <div className="modal-box bg-white ">

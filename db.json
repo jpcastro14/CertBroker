@@ -6,21 +6,16 @@
       "title": "Silvio Rodrigues",
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Silvio Rodrigues",
-      "sales": [],
+      "sales": [
+        {
+          "title": "teste de venda 001",
+          "saleValue": 1000000,
+          "saleDate": "2026-01-08T22:47:06.729Z"
+        }
+      ],
       "creci": "555555",
       "email": "iugygyfgyg@gmail.com",
       "phoneNumber": "61999999999"
-    },
-    {
-      "id": "550e8400-e29b-41d4-a716-446655440002",
-      "preference": 2,
-      "title": "Luiza Sonza",
-      "team": "Mara",
-      "photo": "https://ui-avatars.com/api/?name=Luiza Sonza",
-      "sales": [],
-      "creci": "777777",
-      "email": "ddada@wscaca.com",
-      "phoneNumber": "51566516516"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440003",
