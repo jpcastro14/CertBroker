@@ -4,6 +4,7 @@ import type { BrokerStateProps, Sales } from "../../contexts/brokerProvider";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BrokerApi } from "../../services/api";
+import { uuidv4 } from "zod";
 
 type SaleModalProps = {
   isModalOpen: boolean;
@@ -38,8 +39,6 @@ export function SaleModal({
       .replace(/(\d)(\d{2})$/, "$1.$2")
       .replace(/(?=(\d{3})+(\D))\B/g, ",");
 
-    console.log(formattedSaleValue);
-
     setSale(formattedSaleValue);
   }
 
@@ -51,14 +50,13 @@ export function SaleModal({
       return;
     }
     const finalSale: Sales = {
+      id: crypto.randomUUID(),
       title: data.title,
       saleValue: parseFloat(sale.replace(/,/g, "")),
       saleDate: new Date(),
     };
 
     payload.sales.push(finalSale);
-
-    console.log(payload);
 
     BrokerApi.put(`/brokers/${payload?.id}`, payload).then((response) => {
       if (response.status === 200) {

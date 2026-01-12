@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
 export type Sales = {
-  id?: string;
+  id: string;
   title: string;
   saleDate: Date;
   saleValue: number;
@@ -10,7 +10,7 @@ export type Sales = {
 export interface BrokerStateProps {
   id: number;
   title: string;
-  team: string;
+  team: "Breno" | "Mara";
   sales: Sales[];
   photo: string;
   creci: number;
@@ -45,11 +45,7 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
       setOpen(!open);
       return;
     }
-
     setBrokerList((prevState) => [...prevState, broker]);
-
-    console.log(brokerList);
-
     return;
   }
 
@@ -60,8 +56,6 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
       setBrokerList(brokerList.filter((item) => item.id !== brokerIndex.id));
       return;
     }
-
-    console.log(brokerIndex);
     setBrokerList(brokerList.filter((item) => item.id !== broker.id));
     return;
   }
