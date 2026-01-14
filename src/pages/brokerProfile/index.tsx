@@ -1,18 +1,17 @@
 import { Link, useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrokerApi } from "../../services/api";
-import type { BrokerStateProps } from "../../contexts/brokerProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons/faArrowAltCircleLeft";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateSchema, type BrokerSchema } from "./schema";
 import { message } from "antd";
-import { useFetchBrokers } from "../../customHooks/useFetchBokers";
+import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
 
 export function BrokerProfile() {
   const { id } = useParams();
-  const { filteredBroker } = useFetchBrokers(id);
+  const { filteredBroker } = useFetchBrokers(false, id);
   const [visible, setVisible] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const phonePattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
@@ -29,7 +28,6 @@ export function BrokerProfile() {
     },
     mode: "onBlur",
   });
-  console.log(filteredBroker);
 
   function updateContact() {
     const values = getValues();

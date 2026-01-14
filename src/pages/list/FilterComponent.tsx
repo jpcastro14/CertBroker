@@ -1,5 +1,5 @@
 type functionProps = {
-  setParam: (param?: string) => void;
+  setParam: (param: string) => void;
 };
 
 export function FilterComponent({ setParam }: functionProps) {
@@ -9,7 +9,7 @@ export function FilterComponent({ setParam }: functionProps) {
       <button onClick={() => setParam("title")} className="btn btn-primary">
         A-Z
       </button>
-      <button onClick={() => setParam()} className="btn btn-warning">
+      <button onClick={() => setParam("sales")} className="btn btn-warning">
         Vendas
       </button>
     </div>

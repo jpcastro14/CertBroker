@@ -4,14 +4,16 @@ import {
   BrokerContext,
   type BrokerStateProps,
 } from "../../contexts/brokerProvider";
-import { useContext, useState } from "react";
+import { useContext, useState} from "react";
 import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
-import { useFetchBrokers } from "../../customHooks/useFetchBokers";
+import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
 import { SaleModal } from "./saleModal";
 
+
 export function List() {
-  const [parameter, setParameter] = useState("-title");
+  const [filtered, setFiltered] = useState<string>("");
+  const { brokers } = useFetchBrokers(filtered);
   const [openSaleModal, setOpenSaleModal] = useState(false);
   const [brokerPayload, setBrokerPayload] = useState<BrokerStateProps>(
     {} as BrokerStateProps
@@ -19,16 +21,10 @@ export function List() {
   const { brokerList, createList, clearList, open, setOpen } =
     useContext(BrokerContext);
 
-  const { brokers } = useFetchBrokers();
-
-  function setFilter(param?: string) {
-    if (!param) {
-      setParameter("-sales");
-      return;
+    function setFilter(param: string) {
+     setFiltered(param)
     }
-    setParameter(param);
-  }
-
+    
   const toggleModalOpen = (item: BrokerStateProps) => {
     setOpenSaleModal(!openSaleModal);
     setBrokerPayload(item);
