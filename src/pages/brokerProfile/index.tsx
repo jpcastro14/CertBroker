@@ -11,7 +11,7 @@ import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
 
 export function BrokerProfile() {
   const { id } = useParams();
-  const { filteredBroker } = useFetchBrokers(false, id);
+  const { filteredBroker } = useFetchBrokers("false",id);
   const [visible, setVisible] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const phonePattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
@@ -197,9 +197,10 @@ export function BrokerProfile() {
         </div>
       </div>
 
-      <div
+
+      {filteredBroker && filteredBroker.sales?.length > 0 && <div
         id="SalesWrapper"
-        className=" mb-4 max-w-7xl bg-slate-50 mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row shadow rounded-md p-4 gap-4 "
+        className="mb-4 max-w-7xl bg-white mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row shadow rounded-md p-4 gap-4 "
       >
         <div
           id="SalesContainer"
@@ -223,7 +224,7 @@ export function BrokerProfile() {
                 {filteredBroker &&
                   filteredBroker.sales?.map((sale) => (
                     <tr key={sale.id} className="border-b border-slate-200">
-                      <th>{sale.id}</th>
+                      <th>{sale.id.slice(0,8)}</th>
                       <td>{sale.title}</td>
                       <td>
                         {sale.saleValue.toLocaleString("pt-BR", {
@@ -232,7 +233,7 @@ export function BrokerProfile() {
                         })}
                       </td>
                       <td>
-                        {new Date(sale.saleDate).getMonth()} /{" "}
+                        {new Date(sale.saleDate).getMonth() + 1 } /{" "}
                         {new Date(sale.saleDate).getFullYear()}
                       </td>
                     </tr>
@@ -261,7 +262,7 @@ export function BrokerProfile() {
               {filteredBroker &&
                 filteredBroker.sales?.map((comission) => (
                   <tr key={comission.id} className="border-b border-slate-200">
-                    <th>{comission.id}</th>
+                    <th>{comission.id.slice(0,8)}</th>
                     <td>{comission.title}</td>
                     <td>{comission.saleValue}</td>
                   </tr>
@@ -269,7 +270,8 @@ export function BrokerProfile() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> }
+      
     </>
   );
 }
