@@ -24,33 +24,33 @@ export function Header() {
 
       <dialog
         id="my_modal_4"
-        className="modal"
+        className="modal" 
         open={open}
         onClose={() => setOpen(!open)}
       >
-        <div className="modal-box w-100 max-w-5xl">
+        <div className="modal-box w-100 max-w-5xl absolute top-20 right-5" >
           <h3 className="font-semibold text-lg  w-full bg-slate-100 rounded p-2">
             Menu
           </h3>
-          <div className="modal-action flex  items-stretch">
+          <div className="modal-action flex flex-col items-stretch">
             {/* if there is a button, it will close the modal */}
             <Link to="/admin">
               <button
-                className="btn btn-primary"
+                className="btn btn-primary w-full"
                 onClick={() => setOpen(!open)}
               >
                 Administrador
               </button>
             </Link>
-
-            <button className="btn btn-warning" onClick={() => auth.logout()}>
+            <button className="btn btn-warning " onClick={() => setOpen(!open)}>
+              Voltar
+            </button>
+            <button className="btn btn-error" onClick={() => auth.logout()}>
               Sair
             </button>
-            <button className="btn btn-success" onClick={() => setOpen(!open)}>
-              Cancelar
-            </button>
+            </div>
           </div>
-        </div>
+          
       </dialog>
     </>
   );
