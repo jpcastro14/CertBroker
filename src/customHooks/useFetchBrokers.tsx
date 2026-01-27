@@ -27,7 +27,13 @@ export function useFetchBrokers(filtered?:string, id?:string) {
 
   }, [filtered]);
   
-  if (filtered == "sales") {    
+
+  if(filtered && filtered !== "sales" && filtered !== "title") {
+    const filteredBrokers = brokers.filter((broker) =>
+      broker.title.toLowerCase().includes(filtered.toLowerCase())
+    );
+    return { brokers:filteredBrokers};
+  } else if (filtered == "sales") {    
     const brokersbySales = brokers?.sort((a, b) => b.sales.length - a.sales.length);
     return { brokers:brokersbySales};
   }else if (filtered == "title") {

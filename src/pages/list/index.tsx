@@ -25,11 +25,21 @@ export function List() {
      setFiltered(param)
     }
     
+    function setSearchParam(value: string) {
+      if (value !== '') {
+        setFiltered(value);
+      }else{
+        setFiltered('');
+      }
+
+    }
+    
   const toggleModalOpen = (item: BrokerStateProps) => {
     setOpenSaleModal(!openSaleModal);
     setBrokerPayload(item);
     console.log(brokerPayload);
   };
+  
 
   return (
     <>
@@ -55,7 +65,7 @@ export function List() {
         </div>
       </dialog>
 
-      <div id="PageTitle" className="max-w-7xl xl:mx-auto">
+      <div id="BrokerRow" className="max-w-7xl xl:mx-auto">
         <div className="flex flex-col items-start mt-10 md:flex-row lg:flex-row xl:flex-row px-2 ">
           <h2 className="text-black text-xl mx-4">Fila de corretores</h2>
           {brokerList.length > 0 && (
@@ -173,7 +183,8 @@ export function List() {
         </h2>
       </div>
 
-      <FilterComponent setParam={setFilter} />
+      <FilterComponent setParam={setFilter} setSearchParam={setSearchParam} />
+     
       <div
         id="AvailableBrokersCardContainer"
         className=" w-full max-w-7xl mx-auto pb-20 flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"

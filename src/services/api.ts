@@ -3,7 +3,7 @@ import axios from "axios";
 export const AuthApi = axios.create({
     baseURL: "https://reqres.in/api",
     headers: {
-        'x-api-key': 'reqres-free-v1'
+        'x-api-key': 'reqres_a3ebb2e55933443daca1125f3d515058'
     }
 })
 

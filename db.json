@@ -35,7 +35,14 @@
       "title": "Fernanda Montenegro",
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Fernanda Montenegro",
-      "sales": [],
+      "sales": [
+        {
+          "id": "5078c374-4951-4f5f-852e-ff13afe3506f",
+          "title": "Real Bauhaus",
+          "saleValue": 3000000,
+          "saleDate": "2026-01-26T18:17:03.218Z"
+        }
+      ],
       "creci": "587858",
       "email": "fmonte@monte.com",
       "phoneNumber": "61993388141"
