@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
 export type Sales = {
-  id: string;
+  id: number | string;
   title: string;
   saleDate: Date;
   saleValue: number;

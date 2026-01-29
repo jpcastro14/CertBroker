@@ -11,7 +11,7 @@ import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
 
 export function BrokerProfile() {
   const { id } = useParams();
-  const { filteredBroker } = useFetchBrokers("false",id);
+  const { brokerById } = useFetchBrokers("false",id);
   const [visible, setVisible] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const phonePattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
@@ -23,24 +23,22 @@ export function BrokerProfile() {
   } = useForm<BrokerSchema>({
     resolver: zodResolver(updateSchema),
     defaultValues: {
-      title: filteredBroker?.title,
-      email: filteredBroker?.email,
+      title: brokerById?.title,
+      email: brokerById?.email,
     },
     mode: "onBlur",
   });
-
+  
   function updateContact() {
     const values = getValues();
 
     const updatedBrokerData = {
-      ...filteredBroker,
+      ...brokerById,
       title: values.title,
       creci: values.creci,
       email: values.email,
       phoneNumber: values.phoneNumber,
     };
-
-    console.log(values);
 
     BrokerApi.put(`/brokers/${id}`, updatedBrokerData).then((r) => {
       if (r.status == 200) {
@@ -72,7 +70,7 @@ export function BrokerProfile() {
                   type="text"
                   className="input w-full"
                   defaultValue={
-                    filteredBroker?.title ? filteredBroker?.title : undefined
+                    brokerById?.title ? brokerById?.title : undefined
                   }
                 />
                 {errors.title && (
@@ -163,23 +161,23 @@ export function BrokerProfile() {
           <img
             id="BrokerProfilePicture"
             className="btn btn-circle h-40 w-40 m-2 object-cover border-2 border-blue-800"
-            src={filteredBroker?.photo}
+            src={brokerById?.photo}
           />
           <div
             id="BrokerRegister"
             className=" relative w-full rounded p-6 mt-4 flex flex-col gap-3 border-slate-300 xl:h-40 xl:ml-4 justify-center bg-slate-100"
           >
             <p className="text-slate-600 font-medium text-2xl">
-              {filteredBroker?.title} - CRECI {filteredBroker?.creci}
+              {brokerById?.title} - CRECI {brokerById?.creci}
             </p>
             <p className="text-slate-400 font-medium text-xl ">
-              {filteredBroker?.phoneNumber &&
-                filteredBroker?.phoneNumber
+              {brokerById?.phoneNumber &&
+                brokerById?.phoneNumber
                   .toString()
                   .replace(phonePattern, "$1 ($2) $3 $4 $5")}
             </p>
             <p className="text-slate-400 font-medium text-xl uppercase">
-              {filteredBroker?.email}
+              {brokerById?.email}
             </p>
             <button
               className="btn btn-warning xl:hidden"
@@ -198,7 +196,7 @@ export function BrokerProfile() {
       </div>
 
 
-      {filteredBroker && filteredBroker.sales?.length > 0 && <div
+      {brokerById && brokerById.sales?.length > 0 && <div
         id="SalesWrapper"
         className="mb-4 max-w-7xl bg-white mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row shadow rounded-md p-4 gap-4 "
       >
@@ -221,10 +219,10 @@ export function BrokerProfile() {
                 </tr>
               </thead>
               <tbody>
-                {filteredBroker &&
-                  filteredBroker.sales?.map((sale) => (
+                {brokerById &&
+                  brokerById.sales?.map((sale) => (
                     <tr key={sale.id} className="border-b border-slate-200">
-                      <th>{sale.id.slice(0,8)}</th>
+                      <th>{sale.id.toString().slice(2,7).toUpperCase()}</th>
                       <td>{sale.title}</td>
                       <td>
                         {sale.saleValue.toLocaleString("pt-BR", {
@@ -238,6 +236,12 @@ export function BrokerProfile() {
                       </td>
                     </tr>
                   ))}
+                  <tr className="bg-slate-50" >
+                    <th>Total</th>
+                    <td></td>
+                    <td className="bg-slate-50" >{brokerById.sales.reduce((acc,sale)=> acc + sale.saleValue,0).toLocaleString('pt-br',{style:"currency",currency:'BRL'})}</td>
+                    <td></td>
+                  </tr>
               </tbody>
             </table>
           </div>
@@ -256,17 +260,25 @@ export function BrokerProfile() {
                 <th>#</th>
                 <th>Empreendimento</th>
                 <th>Valor</th>
+                <th>Comissão</th>
               </tr>
             </thead>
             <tbody>
-              {filteredBroker &&
-                filteredBroker.sales?.map((comission) => (
+              {brokerById &&
+                brokerById.sales?.map((comission) => (
                   <tr key={comission.id} className="border-b border-slate-200">
-                    <th>{comission.id.slice(0,8)}</th>
+                    <th>{comission.id.toString().slice(2,8).toUpperCase()}</th>
                     <td>{comission.title}</td>
-                    <td>{comission.saleValue}</td>
+                    <td>{(comission.saleValue * 0.003).toLocaleString('pt-br',{style:'currency',currency:"BRL"})}</td>
+                    <td>{(comission.saleValue * 0.003).toLocaleString('pt-br',{style:'currency',currency:"BRL"})}</td>
                   </tr>
                 ))}
+                <tr className="bg-slate-50" >
+                  <th>Total</th>
+                  <td></td>
+                  <td></td>
+                  <td className="font-bold" >{brokerById.sales.reduce((acc, sale)=> acc + sale.saleValue * 0.003,0).toLocaleString('pt-br',{style:"currency", currency:"BRL"})}</td>
+                </tr>
             </tbody>
           </table>
         </div>

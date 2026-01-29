@@ -37,9 +37,8 @@ export function List() {
   const toggleModalOpen = (item: BrokerStateProps) => {
     setOpenSaleModal(!openSaleModal);
     setBrokerPayload(item);
-    console.log(brokerPayload);
   };
-  
+
 
   return (
     <>

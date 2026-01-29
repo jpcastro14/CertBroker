@@ -28,24 +28,27 @@ export function useFetchBrokers(filtered?:string, id?:string) {
   }, [filtered]);
   
 
-  if(filtered && filtered !== "sales" && filtered !== "title") {
-    const filteredBrokers = brokers.filter((broker) =>
+  let filteredBrokers: BrokerStateProps[] = brokers;
+  let brokerById: BrokerStateProps | null = null;
+
+  if (filtered && filtered !== "sales" && filtered !== "title") {
+    filteredBrokers = brokers.filter((broker) =>
       broker.title.toLowerCase().includes(filtered.toLowerCase())
     );
-    return { brokers:filteredBrokers};
-  } else if (filtered == "sales") {    
-    const brokersbySales = brokers?.sort((a, b) => b.sales.length - a.sales.length);
-    return { brokers:brokersbySales};
-  }else if (filtered == "title") {
-    const brokersbyTitle = brokers?.sort((a, b) => a.title.localeCompare(b.title));
-    return { brokers:brokersbyTitle};
+  } else if (filtered === "sales") {
+    filteredBrokers = brokers?.slice().sort((a, b) => b.sales.length - a.sales.length);
+  } else if (filtered === "title") {
+    filteredBrokers = brokers?.slice().sort((a, b) => a.title.localeCompare(b.title));
   }
 
   if (id) {
-    const filteredBroker = brokers.find((broker) => String(broker.id) === id);
-    return { filteredBroker, loading, error };
-  } 
+    brokerById = brokers.find((broker) => String(broker.id) === id) || null;
+  }
 
-  return {brokers}
-
+  return {
+    brokers: filteredBrokers,
+    brokerById,
+    loading,
+    error,
+  };
 }

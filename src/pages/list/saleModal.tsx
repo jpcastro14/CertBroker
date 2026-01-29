@@ -1,16 +1,19 @@
 import { useForm } from "react-hook-form";
 import { saleSchema, type SaleSchema } from "../brokerProfile/schema";
-import type { BrokerStateProps, Sales } from "../../contexts/brokerProvider";
+import { BrokerContext, type BrokerStateProps, type Sales } from "../../contexts/brokerProvider";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BrokerApi } from "../../services/api";
-import { uuidv4 } from "zod";
+import { message } from "antd";
+import { useContext } from "react";
 
 type SaleModalProps = {
   isModalOpen: boolean;
   closeModal: () => void;
   payload: BrokerStateProps;
 };
+
+
 
 export function SaleModal({
   isModalOpen,
@@ -30,6 +33,7 @@ export function SaleModal({
       saleValue: "",
     },
   });
+  const { clearList } = useContext(BrokerContext);
 
   function handleSale(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
@@ -50,7 +54,7 @@ export function SaleModal({
       return;
     }
     const finalSale: Sales = {
-      id: crypto.randomUUID(),
+      id: Math.random().toString(36),
       title: data.title,
       saleValue: parseFloat(sale.replace(/,/g, "")),
       saleDate: new Date(),
@@ -61,8 +65,8 @@ export function SaleModal({
     BrokerApi.put(`/brokers/${payload?.id}`, payload).then((response) => {
       if (response.status === 200) {
         closeModal();
-        console.log("deu certo");
-        console.log(response.data);
+        message.success("Venda informada com sucesso!");
+        clearList();
       }
     });
   }
@@ -119,3 +123,4 @@ export function SaleModal({
     </dialog>
   );
 }
+

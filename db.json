@@ -24,7 +24,32 @@
       "title": "Bethania Soares",
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Bethania Soares",
-      "sales": [],
+      "sales": [
+        {
+          "id": "0.zjy71vivvw",
+          "title": "Teste bethania",
+          "saleValue": 51111.11,
+          "saleDate": "2026-01-28T21:52:41.704Z"
+        },
+        {
+          "id": "0.d4ees81v7s",
+          "title": "Bauhaus 500 - 204",
+          "saleValue": 5000000,
+          "saleDate": "2026-01-29T20:28:07.346Z"
+        },
+        {
+          "id": "0.gr2rxl2k4ek",
+          "title": "Bothanic 2003",
+          "saleValue": 3500000,
+          "saleDate": "2026-01-29T20:31:05.052Z"
+        },
+        {
+          "id": "0.3xcdjcajobg",
+          "title": "Leparc 602",
+          "saleValue": 1500000,
+          "saleDate": "2026-01-29T20:31:39.143Z"
+        }
+      ],
       "creci": "516516",
       "email": "fvvcvs@asas.co",
       "phoneNumber": "77777777777"
@@ -41,6 +66,12 @@
           "title": "Real Bauhaus",
           "saleValue": 3000000,
           "saleDate": "2026-01-26T18:17:03.218Z"
+        },
+        {
+          "id": "0.yq2d77m6er",
+          "title": "teste",
+          "saleValue": 500000,
+          "saleDate": "2026-01-28T21:52:27.344Z"
         }
       ],
       "creci": "587858",

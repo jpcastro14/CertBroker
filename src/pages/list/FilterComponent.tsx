@@ -15,12 +15,12 @@ export function FilterComponent({ setParam, setSearchParam }: functionProps) {
       <button onClick={() => setParam("sales")} className="btn btn-warning">
         Vendas
       </button>
-       <div className="w-full max-w-3xl h-10 mx-auto grid grid-cols-3 " >
-        <label className=" label col-span-1" >Buscar por Nome</label>
+       <div className="w-full h-10 mx-auto grid grid-cols-3" >
+        <label className="label text-black col-span-1 justify-self-end mr-6">Buscar por Nome</label>
         <input
           type="text"
           onChange={(e)=> setSearchParam(e.target.value)}
-          className="w-fulla h-full px-4 input input-bordered col-span-2"
+          className="w-full h-full px-4 input input-bordered col-span-2"
         />
       </div>
     </div>
