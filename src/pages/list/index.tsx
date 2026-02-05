@@ -131,7 +131,7 @@ export function List() {
                 <div id="CardSales" className="card-actions justify-start">
                   <span className=" overflow-y-hidden max-h-32 rounded px-1 flex flex-col bg-slate-50 w-full justify-center ">
                     <p className="text-xl">Vendas: {item.sales.length} </p>
-                    {item.sales.map((item) => (
+                    {item.sales.slice(0,3).map((item) => (
                       <p key={item.id} className="text-slate-400 border-b">
                         {item.title} - {new Date(item.saleDate).getDay()}
                         {"/"}
@@ -202,7 +202,7 @@ export function List() {
               </div>
               <div
                 id="CardInfo"
-                className="w-80 xl:max-w-44 h-50 card-body pl-2 bg-white text-black"
+                className="w-80 xl:max-w-44 card-body pl-2 bg-white text-black"
               >
                 <h2 id="CardTitle" className="card-title">
                   {item.title}
@@ -214,12 +214,19 @@ export function List() {
                 >
                   Equipe {item.team}
                 </span>
-                <div id="profileActions" className="w-full mt-4">
+                <div id="profileActions" className="w-full">
                   <button
                     className="btn btn-warning w-full "
                     onClick={() => createList(item)}
                   >
                     Adicionar à fila
+                  </button>
+                  <button
+                    onClick={() => toggleModalOpen(item)}
+                    className="btn btn-success w-full mt-2"
+                  >
+                    <FontAwesomeIcon icon={faMoneyBill1} />
+                    Venda
                   </button>
                 </div>
               </div>

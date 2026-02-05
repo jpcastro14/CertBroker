@@ -29,18 +29,15 @@ export function Header() {
         onClose={() => setOpen(!open)}
       >
         <div className="modal-box w-100 max-w-5xl absolute top-20 right-5" >
-          <h3 className="font-semibold text-lg  w-full bg-slate-100 rounded p-2">
+          <h3 className="font-semibold text-lg w-full bg-slate-100 rounded p-2">
             Menu
           </h3>
           <div className="modal-action flex flex-col items-stretch">
             {/* if there is a button, it will close the modal */}
-            <Link to="/admin">
-              <button
-                className="btn btn-primary w-full"
-                onClick={() => setOpen(!open)}
-              >
-                Administrador
-              </button>
+            <Link to={`/newBroker`}>
+            <button className="btn btn-success w-full" onClick={() => setOpen(!open)}>
+              Novo Corretor
+            </button>
             </Link>
             <button className="btn btn-warning " onClick={() => setOpen(!open)}>
               Voltar
