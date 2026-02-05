@@ -79,35 +79,22 @@ export function List() {
       </div>
 
       <div
-        id="CardContainer"
+        id="BrokerRowContainer"
         className=" w-full max-w-7xl mx-auto flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
       >
         {brokerList.map((item, index) => (
           <div
             key={item.id}
             id="CardWrapper"
-            className=" min-w-l max-w-xl justify-self-center mt-10 mx-2 border rounded border-slate-200"
+            className=" w-64 justify-self-center mt-10 mx-2 border rounded  border-slate-200"
           >
             <div
               id="CardBackground"
-              className="w-full max-h-72 max-w-94 card card-side shadow"
+              className="max-h-72 card card-side shadow"
             >
-              <Link to={`/brokerProfile/${item.id}`}>
-                <div
-                  id="profilePicture"
-                  className="bg-slate-100 min-w-24 h-full justify-center flex pt-6"
-                >
-                  <img
-                    src={item.photo}
-                    alt="Movie"
-                    className="w-20 h-20 btn btn-circle object-cover"
-                  />
-                </div>
-              </Link>
-
               <div
                 id="CardInfo"
-                className=" min-w-44 min-h-72 max-w-44 card-body pl-2 bg-white text-black"
+                className="min-h-72 card-body bg-white text-black"
               >
                 {index == 0 && (
                   <span
@@ -128,10 +115,13 @@ export function List() {
                     </p>
                   </span>
                 )}
-
+                <Link to={`/brokerProfile/${item.id}`} >
+                
                 <h2 id="CardTitle" className="card-title">
                   {item.title}
                 </h2>
+                </Link>
+
                 <span
                   id="CardTeam"
                   className="border border-slate-700 rounded-full pl-1 flex justify-center "
