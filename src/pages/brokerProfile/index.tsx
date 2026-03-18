@@ -40,7 +40,7 @@ export function BrokerProfile() {
       phoneNumber: values.phoneNumber,
     };
 
-    BrokerApi.put(`/brokers/${id}`, updatedBrokerData).then((r) => {
+    BrokerApi.put(`/broker/${id}`, updatedBrokerData).then((r) => {
       if (r.status == 200) {
         messageApi.info({
           type: "success",
@@ -53,6 +53,9 @@ export function BrokerProfile() {
       }
     });
   }
+
+  const bigestSalary = brokerById?.clients.sort((a,b)=> b.salary - a.salary) 
+
 
   return (
     <>
@@ -198,13 +201,13 @@ export function BrokerProfile() {
 
       {brokerById && brokerById.sales?.length > 0 && <div
         id="SalesWrapper"
-        className="mb-4 max-w-7xl bg-white mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row shadow rounded-md p-4 gap-4 "
+        className="mb-4 max-w-7xl bg-white mt-6 mx-6 xl:mx-auto flex flex-col xl:flex-row xl: shadow rounded-md p-4 gap-4 "
       >
         <div
           id="SalesContainer"
           className="w-full bg-white rounded p-4 shadow "
         >
-          <p className="text-slate-900 border border-green-300 p-2 rounded">
+          <p className="text-slate-900 bg-green-300 p-2 rounded">
             Vendas
           </p>
 
@@ -251,7 +254,7 @@ export function BrokerProfile() {
           id="ComissionsContainer"
           className="w-full bg-white rounded p-4 shadow"
         >
-          <p className="text-slate-900 border border-blue-300 p-2 rounded ">
+          <p className="text-slate-900 bg-blue-300 p-2 rounded ">
             Comisssões
           </p>
           <table className="table table-md text-slate-700 ">
@@ -265,7 +268,7 @@ export function BrokerProfile() {
             </thead>
             <tbody>
               {brokerById &&
-                brokerById.sales?.map((comission) => (
+                brokerById.sales.map((comission) => (
                   <tr key={comission.id} className="border-b border-slate-200">
                     <th>{comission.id.toString().slice(2,8).toUpperCase()}</th>
                     <td>{comission.title}</td>
@@ -283,6 +286,45 @@ export function BrokerProfile() {
           </table>
         </div>
       </div> }
+      <div id="clientsWrapper" className="max-w-7xl mx-auto" >
+                        <div
+          id="ClientsContainer"
+          className="w-full bg-white rounded p-4 shadow"
+        >
+          <p className="text-slate-900 border bg-yellow-400 border-white p-2 rounded ">
+            Clientes
+          </p>
+          <table className="table table-md text-slate-700 ">
+            <thead className="text-slate-700">
+              <tr>
+                <th>Servidor</th>
+                <th>Nome</th>
+                <th>Salário</th>
+                <th>Interesses</th>
+                <th>Contato</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bigestSalary &&
+                bigestSalary.map((client) => (
+                  <tr key={client.id} className="border-b border-slate-200">
+                    <th className={client.servidor ? "bg-green-100 w-0 " : "bg-white w-0"  } >{client.servidor ? <span>Servidor</span> : "" }</th>
+                    <td>{client.name}</td>
+                    <td>{(client.salary).toLocaleString('pt-br',{style:'currency',currency:"BRL"})}</td>
+                    <td>{client.interest.map((item)=> <h6 className="text-xs" >{item}</h6>)}</td>
+                    <td>{client.contact.toString()
+                  .replace(phonePattern, "$1 ($2) $3 $4 $5")}</td>
+                  <td>{client.email}</td>
+                  </tr>
+
+                ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+      </div>
       
     </>
   );

@@ -7,6 +7,16 @@ export type Sales = {
   saleValue: number;
 };
 
+export type Clients = {
+  id:number | string;
+  name:string;
+  email:string;
+  interest:string[];
+  salary:number;
+  contact:number;
+  servidor:boolean
+}
+
 export interface BrokerStateProps {
   id: number;
   title: string;
@@ -16,6 +26,7 @@ export interface BrokerStateProps {
   creci: number;
   email: string;
   phoneNumber: number;
+  clients: Clients[];
 }
 
 export interface BrokerContextData {

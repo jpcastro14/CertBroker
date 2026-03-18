@@ -8,11 +8,12 @@ export const AuthApi = axios.create({
 })
 
 export const BrokerApi = axios.create({
-    baseURL: "http://172.28.239.228:3000"
+    //baseURL: "http://172.28.239.228:3000"
+    baseURL:"http://172.28.239.228:9000/api/v1/"
 })
 
 export async function fetchBrokers() {
-    const response = await BrokerApi.get("/brokers/")
+    const response = await BrokerApi.get("/broker/")
     if (response.status !== 200) {
         throw new Error("Failed to fetch brokers");
     }
