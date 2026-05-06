@@ -8,14 +8,40 @@
       "photo": "https://ui-avatars.com/api/?name=Silvio Rodrigues",
       "sales": [
         {
-          "id": "303a96b9-6329-4432-adcf-316ce4bd458e",
-          "title": "Teste de venda Silvio Rodrigues",
-          "saleValue": 10000000,
-          "saleDate": "2026-01-12T18:19:08.610Z"
+          "id": "0.ter7evow7c",
+          "title": "Teste de venda ",
+          "saleValue": 500000,
+          "saleDate": "2026-05-06T19:30:05.260Z"
+        }
+      ],
+      "clients": [
+        {
+          "isServer": true,
+          "name": "Rafael Souza",
+          "salary": 12000,
+          "interest": "venda",
+          "contact": 61911110003,
+          "email": "rafael@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Lucas Pereira",
+          "salary": 8000,
+          "interest": "venda",
+          "contact": 61911110001,
+          "email": "lucas@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Ana Clara",
+          "salary": 4500,
+          "interest": "aluguel",
+          "contact": 61911110002,
+          "email": "ana@email.com"
         }
       ],
       "creci": "555555",
-      "email": "iugygyfgyg@gmail.com",
+      "email": "castrovoip@gmail.com",
       "phoneNumber": "61999999999"
     },
     {
@@ -24,35 +50,33 @@
       "title": "Bethania Soares",
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Bethania Soares",
-      "sales": [
+      "sales": [],
+      "clients": [
         {
-          "id": "0.zjy71vivvw",
-          "title": "Teste bethania",
-          "saleValue": 51111.11,
-          "saleDate": "2026-01-28T21:52:41.704Z"
+          "isServer": false,
+          "name": "Pedro Henrique",
+          "salary": 7000,
+          "interest": "aluguel",
+          "contact": 61911110004,
+          "email": "pedro@email.com"
         },
         {
-          "id": "0.d4ees81v7s",
-          "title": "Bauhaus 500 - 204",
-          "saleValue": 5000000,
-          "saleDate": "2026-01-29T20:28:07.346Z"
+          "isServer": true,
+          "name": "Marina Lopes",
+          "salary": 15000,
+          "interest": "venda",
+          "contact": 61911110005,
+          "email": "marina@email.com"
         },
         {
-          "id": "0.gr2rxl2k4ek",
-          "title": "Bothanic 2003",
-          "saleValue": 3500000,
-          "saleDate": "2026-01-29T20:31:05.052Z"
-        },
-        {
-          "id": "0.3xcdjcajobg",
-          "title": "Leparc 602",
-          "saleValue": 1500000,
-          "saleDate": "2026-01-29T20:31:39.143Z"
+          "isServer": false,
+          "name": "Carlos Eduardo",
+          "salary": 6000,
+          "interest": "aluguel",
+          "contact": 61911110006,
+          "email": "carlos@email.com"
         }
-      ],
-      "creci": "516516",
-      "email": "fvvcvs@asas.co",
-      "phoneNumber": "77777777777"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440005",
@@ -61,9 +85,32 @@
       "team": "Mara",
       "photo": "https://ui-avatars.com/api/?name=MAriana Lima",
       "sales": [],
-      "creci": "516516",
-      "email": "castrovoip@gmail.com",
-      "phoneNumber": "61998881581"
+      "clients": [
+        {
+          "isServer": true,
+          "name": "Juliana Martins",
+          "salary": 9000,
+          "interest": "venda",
+          "contact": 61911110007,
+          "email": "juliana@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Gustavo Rocha",
+          "salary": 5000,
+          "interest": "aluguel",
+          "contact": 61911110008,
+          "email": "gustavo@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Felipe Castro",
+          "salary": 11000,
+          "interest": "venda",
+          "contact": 61911110009,
+          "email": "felipe@email.com"
+        }
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440006",
@@ -71,7 +118,33 @@
       "title": "Carlos Mendes",
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Carlos Mendes",
-      "sales": []
+      "sales": [],
+      "clients": [
+        {
+          "isServer": false,
+          "name": "Daniel Alves",
+          "salary": 4000,
+          "interest": "aluguel",
+          "contact": 61911110010,
+          "email": "daniel@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Patricia Souza",
+          "salary": 13000,
+          "interest": "venda",
+          "contact": 61911110011,
+          "email": "patricia@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Rodrigo Lima",
+          "salary": 5500,
+          "interest": "venda",
+          "contact": 61911110012,
+          "email": "rodrigo@email.com"
+        }
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440007",
@@ -79,7 +152,33 @@
       "title": "Fernanda Souza",
       "team": "Mara",
       "photo": "https://ui-avatars.com/api/?name=Fernanda Souza",
-      "sales": []
+      "sales": [],
+      "clients": [
+        {
+          "isServer": true,
+          "name": "Amanda Silva",
+          "salary": 8000,
+          "interest": "aluguel",
+          "contact": 61911110013,
+          "email": "amanda@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Bruno Costa",
+          "salary": 6000,
+          "interest": "venda",
+          "contact": 61911110014,
+          "email": "bruno@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Diego Santos",
+          "salary": 10000,
+          "interest": "venda",
+          "contact": 61911110015,
+          "email": "diego@email.com"
+        }
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440008",
@@ -87,7 +186,33 @@
       "title": "João Almeida",
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=João Almeida",
-      "sales": []
+      "sales": [],
+      "clients": [
+        {
+          "isServer": false,
+          "name": "Lucas Gomes",
+          "salary": 5000,
+          "interest": "aluguel",
+          "contact": 61911110016,
+          "email": "lucasg@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Thiago Alves",
+          "salary": 9000,
+          "interest": "venda",
+          "contact": 61911110017,
+          "email": "thiago@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Renata Lima",
+          "salary": 7000,
+          "interest": "venda",
+          "contact": 61911110018,
+          "email": "renata@email.com"
+        }
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440009",
@@ -95,7 +220,33 @@
       "title": "Patrícia Gomes",
       "team": "Mara",
       "photo": "https://ui-avatars.com/api/?name=Patricia Gomes",
-      "sales": []
+      "sales": [],
+      "clients": [
+        {
+          "isServer": true,
+          "name": "Camila Rocha",
+          "salary": 11000,
+          "interest": "venda",
+          "contact": 61911110019,
+          "email": "camila@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Eduardo Silva",
+          "salary": 4000,
+          "interest": "aluguel",
+          "contact": 61911110020,
+          "email": "eduardo@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "José Martins",
+          "salary": 9500,
+          "interest": "venda",
+          "contact": 61911110021,
+          "email": "jose@email.com"
+        }
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440010",
@@ -103,7 +254,33 @@
       "title": "Ricardo Silva",
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Ricardo Silva",
-      "sales": []
+      "sales": [],
+      "clients": [
+        {
+          "isServer": false,
+          "name": "Vitor Costa",
+          "salary": 6000,
+          "interest": "aluguel",
+          "contact": 61911110022,
+          "email": "vitor@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Bruna Lopes",
+          "salary": 14000,
+          "interest": "venda",
+          "contact": 61911110023,
+          "email": "bruna@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Paulo Souza",
+          "salary": 7000,
+          "interest": "venda",
+          "contact": 61911110024,
+          "email": "paulo@email.com"
+        }
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440011",
@@ -112,9 +289,32 @@
       "team": "Mara",
       "photo": "https://ui-avatars.com/api/?name=Camila Torres",
       "sales": [],
-      "creci": "516516",
-      "email": "teste@camila.com",
-      "phoneNumber": "77777777777"
+      "clients": [
+        {
+          "isServer": true,
+          "name": "Julia Fernandes",
+          "salary": 12000,
+          "interest": "venda",
+          "contact": 61911110025,
+          "email": "julia@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Fernando Cruz",
+          "salary": 5000,
+          "interest": "aluguel",
+          "contact": 61911110026,
+          "email": "fernando@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Rodrigo Nunes",
+          "salary": 8000,
+          "interest": "venda",
+          "contact": 61911110027,
+          "email": "rodrigo@email.com"
+        }
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440012",
@@ -123,9 +323,32 @@
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Eduardo Castro",
       "sales": [],
-      "creci": "555555",
-      "email": "eduardolalala@lalala.com",
-      "phoneNumber": "61998881581"
+      "clients": [
+        {
+          "isServer": false,
+          "name": "Leonardo Melo",
+          "salary": 6000,
+          "interest": "aluguel",
+          "contact": 61911110028,
+          "email": "leo@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Simone Araujo",
+          "salary": 15000,
+          "interest": "venda",
+          "contact": 61911110029,
+          "email": "simone@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Mateus Silva",
+          "salary": 7000,
+          "interest": "venda",
+          "contact": 61911110030,
+          "email": "mateus@email.com"
+        }
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440013",
@@ -133,7 +356,33 @@
       "title": "Isabela Martins",
       "team": "Mara",
       "photo": "https://ui-avatars.com/api/?name=Isabela Martins",
-      "sales": []
+      "sales": [],
+      "clients": [
+        {
+          "isServer": true,
+          "name": "Larissa Costa",
+          "salary": 9000,
+          "interest": "venda",
+          "contact": 61911110031,
+          "email": "larissa@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "André Souza",
+          "salary": 5500,
+          "interest": "aluguel",
+          "contact": 61911110032,
+          "email": "andre@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Claudio Reis",
+          "salary": 10000,
+          "interest": "venda",
+          "contact": 61911110033,
+          "email": "claudio@email.com"
+        }
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440014",
@@ -142,9 +391,32 @@
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Thiago Pereira",
       "sales": [],
-      "creci": "555555",
-      "email": "castrovoip@gmail.com",
-      "phoneNumber": "77777777777"
+      "clients": [
+        {
+          "isServer": false,
+          "name": "Igor Carvalho",
+          "salary": 5000,
+          "interest": "aluguel",
+          "contact": 61911110034,
+          "email": "igor@email.com"
+        },
+        {
+          "isServer": true,
+          "name": "Vanessa Lima",
+          "salary": 14000,
+          "interest": "venda",
+          "contact": 61911110035,
+          "email": "vanessa@email.com"
+        },
+        {
+          "isServer": false,
+          "name": "Roberto Dias",
+          "salary": 8000,
+          "interest": "venda",
+          "contact": 61911110036,
+          "email": "roberto@email.com"
+        }
+      ]
     }
   ]
 }
