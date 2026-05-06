@@ -8,13 +8,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { updateSchema, type BrokerSchema } from "./schema";
 import { message } from "antd";
 import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
+import { ClientsTable } from "./clientsTable";
+import type { Clients } from "../../contexts/brokerProvider";
 
 export function BrokerProfile() {
   const { id } = useParams();
   const { brokerById } = useFetchBrokers("false",id);
   const [visible, setVisible] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
-  const phonePattern = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
+  const phonePattern: RegExp = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
   const {
     getValues,
     register,
@@ -40,7 +42,7 @@ export function BrokerProfile() {
       phoneNumber: values.phoneNumber,
     };
 
-    BrokerApi.put(`/broker/${id}`, updatedBrokerData).then((r) => {
+    BrokerApi.put(`/brokers/${id}`, updatedBrokerData).then((r) => {
       if (r.status == 200) {
         messageApi.info({
           type: "success",
@@ -54,7 +56,7 @@ export function BrokerProfile() {
     });
   }
 
-  const bigestSalary = brokerById?.clients.sort((a,b)=> b.salary - a.salary) 
+  const bigestSalary: Clients[] = (brokerById?.clients || []).sort((a,b)=> b.salary - a.salary) 
 
 
   return (
@@ -286,43 +288,7 @@ export function BrokerProfile() {
           </table>
         </div>
       </div> }
-      <div id="clientsWrapper" className="max-w-7xl mx-auto" >
-                        <div
-          id="ClientsContainer"
-          className="w-full bg-white rounded p-4 shadow"
-        >
-          <p className="text-slate-900 border bg-yellow-400 border-white p-2 rounded ">
-            Clientes
-          </p>
-          <table className="table table-md text-slate-700 ">
-            <thead className="text-slate-700">
-              <tr>
-                <th>Servidor</th>
-                <th>Nome</th>
-                <th>Salário</th>
-                <th>Interesses</th>
-                <th>Contato</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bigestSalary &&
-                bigestSalary.map((client) => (
-                  <tr key={client.id} className="border-b border-slate-200">
-                    <th className={client.servidor ? "bg-green-100 w-0 " : "bg-white w-0"  } >{client.servidor ? <span>Servidor</span> : "" }</th>
-                    <td>{client.name}</td>
-                    <td>{(client.salary).toLocaleString('pt-br',{style:'currency',currency:"BRL"})}</td>
-                    <td>{client.interest.map((item)=> <h6 className="text-xs" >{item}</h6>)}</td>
-                    <td>{client.contact.toString()
-                  .replace(phonePattern, "$1 ($2) $3 $4 $5")}</td>
-                  <td>{client.email}</td>
-                  </tr>
-
-                ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+                <ClientsTable data={bigestSalary} pattern={phonePattern} />
       <div>
       </div>
       

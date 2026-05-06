@@ -14,7 +14,7 @@ export type Clients = {
   interest:string[];
   salary:number;
   contact:number;
-  servidor:boolean
+  isServer:boolean
 }
 
 export interface BrokerStateProps {
