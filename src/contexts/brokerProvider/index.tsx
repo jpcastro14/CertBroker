@@ -8,14 +8,13 @@ export type Sales = {
 };
 
 export type Clients = {
-  id:number | string;
-  name:string;
-  email:string;
-  interest:string[];
-  salary:number;
-  contact:number;
-  isServer:boolean
-}
+  name: string;
+  email: string;
+  interest: string;
+  salary: number;
+  contact: number;
+  isServer: boolean;
+};
 
 export interface BrokerStateProps {
   id: number;

@@ -13,6 +13,17 @@ export const saleSchema = z.object({
     saleValue: z.string()
 })
 
+export const clientSchema = z.object({
+    name: z.string().min(1, { error: 'Informe o nome do cliente' }),
+    isServer: z.boolean(),
+    salary: z.transform(Number).pipe(z.number({ error: "Digite apenas números" }).min(1, { error: "Informe o registro do corretor" })),
+    interest: z.string().min(1, { error: 'Informe o salário do cliente' }),
+    contact: z.transform(Number).pipe(z.number({ error: "Digite apenas números" }).min(11, { error: 'Informe o telefone do cliente' })),
+    email: z.email({ error: 'Endereço de email inválido' }).min(3, { error: "Informe o email do cliente" })
+});
+
 export type SaleSchema = z.infer<typeof saleSchema>
 
 export type BrokerSchema = z.infer<typeof updateSchema>;
+
+export type Clientschema = z.infer<typeof clientSchema>;
