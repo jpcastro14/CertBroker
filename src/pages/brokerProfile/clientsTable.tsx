@@ -5,6 +5,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { clientSchema, type Clientschema } from "./schema";
 import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
+import { useState } from "react";
+import { message } from "antd";
 type ClientsTableProps = {
   data: Clients[];
   pattern: RegExp;
@@ -13,6 +15,7 @@ type ClientsTableProps = {
 export function ClientsTable({ data, pattern }: ClientsTableProps) {
   const { id } = useParams();
   const { brokerById } = useFetchBrokers("false", id);
+  const [open, setOpen] = useState(false);
   const {
     register,
     handleSubmit,
@@ -24,7 +27,18 @@ export function ClientsTable({ data, pattern }: ClientsTableProps) {
   function handleCreateClient(data: Clients) {
     brokerById?.clients.push(data);
 
-    console.log(brokerById?.clients);
+    axios
+      .put(`http://localhost:3000/brokers/${id}`, brokerById)
+      .then((response) => {
+        if (response.status === 200) {
+          setOpen(false);
+          message.success("Cliente cadastrado com sucesso!");
+          brokerById?.clients.push(data);
+        }
+      })
+      .catch((error) => {
+        message.error("Erro ao cadastrar cliente: " + error.message);
+      });
   }
 
   return (
@@ -37,6 +51,9 @@ export function ClientsTable({ data, pattern }: ClientsTableProps) {
           <p className="text-slate-900 border bg-yellow-400 border-white p-2 rounded ">
             Clientes
           </p>
+          <button onClick={() => setOpen(true)} className="btn bg-red-400 mb-4">
+            Cadastrar Novo Cliente
+          </button>
           <table className="table table-md text-slate-700 ">
             <thead className="text-slate-700">
               <tr>
@@ -83,7 +100,7 @@ export function ClientsTable({ data, pattern }: ClientsTableProps) {
         data-close-on-click-outside
         id="ChangeContactModal"
         className="modal w-full items-center justify-stretch border-0 p-0"
-        open={true}
+        open={open}
       >
         <div
           id="FormWrapper"

@@ -38,6 +38,54 @@
           "interest": "aluguel",
           "contact": 61911110002,
           "email": "ana@email.com"
+        },
+        {
+          "name": "João Ferreira",
+          "isServer": true,
+          "salary": 15000,
+          "interest": "aluguel",
+          "contact": 61993388141,
+          "email": "castrovoip@gmail.com"
+        },
+        {
+          "name": "João Ferreira",
+          "isServer": true,
+          "salary": 15000,
+          "interest": "aluguel",
+          "contact": 61993388141,
+          "email": "castrovoip@gmail.com"
+        },
+        {
+          "name": "Olair Francisco",
+          "isServer": false,
+          "salary": 5000,
+          "interest": "venda",
+          "contact": 1111111111,
+          "email": "Olairalaor@gmail.com"
+        },
+        {
+          "name": "João Pedro",
+          "isServer": false,
+          "salary": 5000,
+          "interest": "venda",
+          "contact": 1111111111,
+          "email": "castrovoip@gmail.com"
+        },
+        {
+          "name": "João Pedro",
+          "isServer": false,
+          "salary": 5000,
+          "interest": "venda",
+          "contact": 1111111111,
+          "email": "castrovoip@gmail.com"
+        },
+        {
+          "name": "João Pedro",
+          "isServer": false,
+          "salary": 5000,
+          "interest": "venda",
+          "contact": 1111111111,
+          "email": "castrovoip@gmail.com"
         }
       ],
       "creci": "555555",
