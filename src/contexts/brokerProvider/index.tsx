@@ -8,6 +8,7 @@ export type Sales = {
 };
 
 export type Clients = {
+  id?: string;
   name: string;
   email: string;
   interest: string;

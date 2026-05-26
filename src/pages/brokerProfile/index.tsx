@@ -317,7 +317,7 @@ export function BrokerProfile() {
           </div>
         </div>
       )}
-      <ClientsTable data={bigestSalary} pattern={phonePattern} />
+      <ClientsTable />
       <div></div>
     </>
   );

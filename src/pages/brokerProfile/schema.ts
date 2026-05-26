@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { uuidv4, z } from "zod";
 
 
 export const updateSchema = z.object({
@@ -14,6 +14,7 @@ export const saleSchema = z.object({
 })
 
 export const clientSchema = z.object({
+    id: z.string().optional(),
     name: z.string().min(1, { error: 'Informe o nome do cliente' }),
     isServer: z.boolean(),
     salary: z.transform(Number).pipe(z.number({ error: "Digite apenas números" }).min(1, { error: "Informe o registro do corretor" })),
@@ -26,4 +27,4 @@ export type SaleSchema = z.infer<typeof saleSchema>
 
 export type BrokerSchema = z.infer<typeof updateSchema>;
 
-export type Clientschema = z.infer<typeof clientSchema>;
+export type ClientSchema = z.infer<typeof clientSchema>;

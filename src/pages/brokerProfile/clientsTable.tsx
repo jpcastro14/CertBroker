@@ -1,31 +1,42 @@
-import type { Clients } from "../../contexts/brokerProvider";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { clientSchema, type Clientschema } from "./schema";
+import { clientSchema, type ClientSchema } from "./schema";
 import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
 import { useState } from "react";
 import { message } from "antd";
-type ClientsTableProps = {
-  data: Clients[];
-  pattern: RegExp;
-};
+import { v4 as uuid } from "uuid";
 
-export function ClientsTable({ data, pattern }: ClientsTableProps) {
+export function ClientsTable() {
   const { id } = useParams();
   const { brokerById } = useFetchBrokers("false", id);
   const [open, setOpen] = useState(false);
+  const phonePattern: RegExp = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Clientschema>({
+  } = useForm<ClientSchema>({
     resolver: zodResolver(clientSchema),
   });
+  //const Clientid = uuid();
 
-  function handleCreateClient(data: Clients) {
-    brokerById?.clients.push(data);
+  console.log(errors);
+
+  function handleCreateClient(data: ClientSchema) {
+    const newClient: ClientSchema = {
+      id: uuid(),
+      name: data.name,
+      isServer: data.isServer,
+      salary: data.salary,
+      interest: data.interest,
+      contact: data.contact,
+      email: data.email,
+    };
+
+    brokerById?.clients.push(newClient);
 
     axios
       .put(`http://localhost:3000/brokers/${id}`, brokerById)
@@ -33,7 +44,9 @@ export function ClientsTable({ data, pattern }: ClientsTableProps) {
         if (response.status === 200) {
           setOpen(false);
           message.success("Cliente cadastrado com sucesso!");
-          brokerById?.clients.push(data);
+          /* setTimeout(() => {
+            window.location.reload();
+          }, 3000); */
         }
       })
       .catch((error) => {
@@ -51,7 +64,10 @@ export function ClientsTable({ data, pattern }: ClientsTableProps) {
           <p className="text-slate-900 border bg-yellow-400 border-white p-2 rounded ">
             Clientes
           </p>
-          <button onClick={() => setOpen(true)} className="btn bg-red-400 mb-4">
+          <button
+            onClick={() => setOpen(true)}
+            className="btn font-medium bg-red-400 mb-4"
+          >
             Cadastrar Novo Cliente
           </button>
           <table className="table table-md text-slate-700 ">
@@ -66,32 +82,31 @@ export function ClientsTable({ data, pattern }: ClientsTableProps) {
               </tr>
             </thead>
             <tbody>
-              {data &&
-                data.map((client) => (
-                  <tr key={client.name} className="border-b border-slate-200">
-                    <th
-                      className={
-                        client.isServer ? "bg-green-100 w-0 " : "bg-white w-0"
-                      }
-                    >
-                      {client.isServer ? <span>Servidor</span> : ""}
-                    </th>
-                    <td>{client.name}</td>
-                    <td>
-                      {client.salary.toLocaleString("pt-br", {
-                        style: "currency",
-                        currency: "BRL",
-                      })}
-                    </td>
-                    <td>{client.interest}</td>
-                    <td>
-                      {client.contact
-                        .toString()
-                        .replace(pattern, "$1 ($2) $3 $4 $5")}
-                    </td>
-                    <td>{client.email}</td>
-                  </tr>
-                ))}
+              {brokerById?.clients.map((client) => (
+                <tr key={client.id} className="border-b border-slate-200">
+                  <th
+                    className={
+                      client.isServer ? "bg-green-100 w-0 " : "bg-white w-0"
+                    }
+                  >
+                    {client.isServer ? <span>Servidor</span> : ""}
+                  </th>
+                  <td>{client.name}</td>
+                  <td>
+                    {client.salary.toLocaleString("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </td>
+                  <td>{client.interest}</td>
+                  <td>
+                    {client.contact
+                      .toString()
+                      .replace(phonePattern, "$1 ($2) $3 $4 $5")}
+                  </td>
+                  <td>{client.email}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -188,7 +203,8 @@ export function ClientsTable({ data, pattern }: ClientsTableProps) {
               </button>
 
               <button
-                className="btn bg-red-400 w-full " /* onClick={closeModal} */
+                className="btn bg-red-400 w-full "
+                onClick={() => setOpen(!open)}
               >
                 Cancelar
               </button>
