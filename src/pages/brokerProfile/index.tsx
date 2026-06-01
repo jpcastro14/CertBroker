@@ -56,10 +56,6 @@ export function BrokerProfile() {
     });
   }
 
-  const bigestSalary: Clients[] = (brokerById?.clients || []).sort(
-    (a, b) => b.salary - a.salary,
-  );
-
   return (
     <>
       {contextHolder}
@@ -260,60 +256,67 @@ export function BrokerProfile() {
 
           <div
             id="ComissionsContainer"
-            className="w-full bg-white rounded p-4 shadow"
+            className="w-full bg-white rounded p-4 shadow "
           >
-            <p className="text-slate-900 bg-blue-300 p-2 rounded ">
-              Comisssões
-            </p>
-            <table className="table table-md text-slate-700 ">
-              <thead className="text-slate-700">
-                <tr>
-                  <th>#</th>
-                  <th>Empreendimento</th>
-                  <th>Valor</th>
-                  <th>Comissão</th>
-                </tr>
-              </thead>
-              <tbody>
-                {brokerById &&
-                  brokerById.sales.map((comission) => (
-                    <tr
-                      key={comission.id}
-                      className="border-b border-slate-200"
-                    >
-                      <th>
-                        {comission.id.toString().slice(2, 8).toUpperCase()}
-                      </th>
-                      <td>{comission.title}</td>
-                      <td>
-                        {(comission.saleValue * 0.003).toLocaleString("pt-br", {
+            <p className="text-slate-900 bg-blue-300 p-2 rounded">Comisssões</p>
+
+            <div id="ComissionsTable" className="overflow-x-auto">
+              <table className="table table-md text-slate-700 ">
+                <thead className="text-slate-700">
+                  <tr>
+                    <th>#</th>
+                    <th>Empreendimento</th>
+                    <th>Valor</th>
+                    <th>Comissão</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {brokerById &&
+                    brokerById.sales.map((comission) => (
+                      <tr
+                        key={comission.id}
+                        className="border-b border-slate-200"
+                      >
+                        <th>
+                          {comission.id.toString().slice(2, 8).toUpperCase()}
+                        </th>
+                        <td>{comission.title}</td>
+                        <td>
+                          {(comission.saleValue * 0.003).toLocaleString(
+                            "pt-br",
+                            {
+                              style: "currency",
+                              currency: "BRL",
+                            },
+                          )}
+                        </td>
+                        <td>
+                          {(comission.saleValue * 0.003).toLocaleString(
+                            "pt-br",
+                            {
+                              style: "currency",
+                              currency: "BRL",
+                            },
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  <tr className="bg-slate-50">
+                    <th>Total</th>
+                    <td></td>
+                    <td></td>
+                    <td className="font-bold">
+                      {brokerById.sales
+                        .reduce((acc, sale) => acc + sale.saleValue * 0.003, 0)
+                        .toLocaleString("pt-br", {
                           style: "currency",
                           currency: "BRL",
                         })}
-                      </td>
-                      <td>
-                        {(comission.saleValue * 0.003).toLocaleString("pt-br", {
-                          style: "currency",
-                          currency: "BRL",
-                        })}
-                      </td>
-                    </tr>
-                  ))}
-                <tr className="bg-slate-50">
-                  <th>Total</th>
-                  <td></td>
-                  <td></td>
-                  <td className="font-bold">
-                    {brokerById.sales
-                      .reduce((acc, sale) => acc + sale.saleValue * 0.003, 0)
-                      .toLocaleString("pt-br", {
-                        style: "currency",
-                        currency: "BRL",
-                      })}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}

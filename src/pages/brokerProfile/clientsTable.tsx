@@ -21,9 +21,6 @@ export function ClientsTable() {
   } = useForm<ClientSchema>({
     resolver: zodResolver(clientSchema),
   });
-  //const Clientid = uuid();
-
-  console.log(errors);
 
   function handleCreateClient(data: ClientSchema) {
     const newClient: ClientSchema = {
@@ -56,7 +53,10 @@ export function ClientsTable() {
 
   return (
     <>
-      <div id="clientsWrapper" className="max-w-7xl mx-auto">
+      <div
+        id="clientsWrapper"
+        className="max-w-7xl mx-auto shadow border-slate-200 p-4 rounded "
+      >
         <div
           id="ClientsContainer"
           className="w-full bg-white rounded p-4 shadow"
@@ -66,49 +66,51 @@ export function ClientsTable() {
           </p>
           <button
             onClick={() => setOpen(true)}
-            className="btn font-medium bg-red-400 mb-4"
+            className="btn font-medium bg-red-400 mb-4 w-full xl:w-50 "
           >
             Cadastrar Novo Cliente
           </button>
-          <table className="table table-md text-slate-700 ">
-            <thead className="text-slate-700">
-              <tr>
-                <th>Servidor</th>
-                <th>Nome</th>
-                <th>Salário</th>
-                <th>Interesses</th>
-                <th>Contato</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              {brokerById?.clients.map((client) => (
-                <tr key={client.id} className="border-b border-slate-200">
-                  <th
-                    className={
-                      client.isServer ? "bg-green-100 w-0 " : "bg-white w-0"
-                    }
-                  >
-                    {client.isServer ? <span>Servidor</span> : ""}
-                  </th>
-                  <td>{client.name}</td>
-                  <td>
-                    {client.salary.toLocaleString("pt-br", {
-                      style: "currency",
-                      currency: "BRL",
-                    })}
-                  </td>
-                  <td>{client.interest}</td>
-                  <td>
-                    {client.contact
-                      .toString()
-                      .replace(phonePattern, "$1 ($2) $3 $4 $5")}
-                  </td>
-                  <td>{client.email}</td>
+          <div className="overflow-x-auto">
+            <table className="table table-md text-slate-700 ">
+              <thead className="text-slate-700">
+                <tr>
+                  <th className="w-0">Servidor</th>
+                  <th>Nome</th>
+                  <th>Salário</th>
+                  <th>Interesses</th>
+                  <th>Contato</th>
+                  <th>Email</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {brokerById?.clients.map((client) => (
+                  <tr key={client.id} className="border-b border-slate-200">
+                    <th
+                      className={
+                        client.isServer ? "bg-green-100 w-0 " : "bg-white w-0"
+                      }
+                    >
+                      {client.isServer ? <span>Servidor</span> : ""}
+                    </th>
+                    <td>{client.name}</td>
+                    <td>
+                      {client.salary.toLocaleString("pt-br", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
+                    </td>
+                    <td>{client.interest}</td>
+                    <td>
+                      {client.contact
+                        .toString()
+                        .replace(phonePattern, "$1 ($2) $3 $4 $5")}
+                    </td>
+                    <td>{client.email}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <dialog
