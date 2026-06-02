@@ -11,7 +11,9 @@ import { v4 as uuid } from "uuid";
 export function ClientsTable() {
   const { id } = useParams();
   const { brokerById } = useFetchBrokers("false", id);
-  const [open, setOpen] = useState(false);
+  const [contactModalOpen, setcontactModalOpen] = useState(false);
+  const [deletedClient, setDeletedClient] = useState<ClientSchema>();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const phonePattern: RegExp = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
 
   const {
@@ -34,13 +36,13 @@ export function ClientsTable() {
     };
 
     brokerById?.clients.push(newClient);
-
     axios
       .put(`http://localhost:3000/brokers/${id}`, brokerById)
       .then((response) => {
         if (response.status === 200) {
-          setOpen(false);
+          setcontactModalOpen(false);
           message.success("Cliente cadastrado com sucesso!");
+          console.log(brokerById);
           /* setTimeout(() => {
             window.location.reload();
           }, 3000); */
@@ -48,6 +50,29 @@ export function ClientsTable() {
       })
       .catch((error) => {
         message.error("Erro ao cadastrar cliente: " + error.message);
+      });
+  }
+
+  function handleDeleteClient() {
+    const updatedClients = brokerById?.clients.filter(
+      (client) => client.id !== deletedClient?.id,
+    );
+
+    axios
+      .put(`http://localhost:3000/brokers/${id}`, {
+        ...brokerById,
+        clients: updatedClients,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          message.success("Cliente removido da carteira de clientes!");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        }
+      })
+      .catch((error) => {
+        message.error("Erro ao excluir cliente: " + error.message);
       });
   }
 
@@ -65,7 +90,7 @@ export function ClientsTable() {
             Clientes
           </p>
           <button
-            onClick={() => setOpen(true)}
+            onClick={() => setcontactModalOpen(true)}
             className="btn font-medium bg-red-400 mb-4 w-full xl:w-50 "
           >
             Cadastrar Novo Cliente
@@ -106,6 +131,17 @@ export function ClientsTable() {
                         .replace(phonePattern, "$1 ($2) $3 $4 $5")}
                     </td>
                     <td>{client.email}</td>
+                    <td>
+                      <button
+                        onClick={() => (
+                          setDeletedClient(client),
+                          setDeleteModalOpen(true)
+                        )}
+                        className="btn btn-sm btn-error"
+                      >
+                        Excluir
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -113,11 +149,13 @@ export function ClientsTable() {
           </div>
         </div>
       </div>
+      {/* ---------------------------- New Client Modal ---------------------------- */}
+
       <dialog
         data-close-on-click-outside
         id="ChangeContactModal"
         className="modal w-full items-center justify-stretch border-0 p-0"
-        open={open}
+        open={contactModalOpen}
       >
         <div
           id="FormWrapper"
@@ -206,7 +244,63 @@ export function ClientsTable() {
 
               <button
                 className="btn bg-red-400 w-full "
-                onClick={() => setOpen(!open)}
+                onClick={() => setcontactModalOpen(!contactModalOpen)}
+              >
+                Cancelar
+              </button>
+            </fieldset>
+          </div>
+        </div>
+      </dialog>
+
+      {/* ---------------------------- Delete modal ---------------------------- */}
+      <dialog
+        data-close-on-click-outside
+        id="DeleteClientModal"
+        className="modal w-full items-center justify-stretch border-0 p-0"
+        open={deleteModalOpen}
+      >
+        <div
+          id="FormWrapper"
+          className="m-4 max-w-3xl w-full p-4 mx-auto rounded-md bg-white "
+        >
+          <p className="text-slate-900 font-medium border flex justify-between bg-yellow-400 border-white p-2 rounded ">
+            Excluir cliente da carteira de clientes ?
+          </p>
+          <div>
+            <div className="flex flex-col gap-2 my-4 shadow p-4 rounded">
+              <h1
+                className={`text-xl font-bold ${deletedClient?.isServer ? "border-l-6 pl-2  border-green-500 badge-success " : "pl-2 "}`}
+              >
+                {deletedClient?.name}{" "}
+                {deletedClient?.isServer && "- Servidor Público"}
+              </h1>
+              <h3>Email: {deletedClient?.email}</h3>
+              <h3>
+                Telefone:{" "}
+                {deletedClient?.contact
+                  ?.toString()
+                  .replace(phonePattern, "$1 ($2) $3 $4 $5")}
+              </h3>
+            </div>
+            <fieldset className=" flex p-4 rounded gap-4 items-between">
+              <button
+                className="btn bg-green-400 w-50"
+                value="Cancelar"
+                onClick={() => (
+                  handleDeleteClient(),
+                  setDeleteModalOpen(false)
+                )}
+              >
+                Confirmar
+              </button>
+
+              <button
+                className="btn bg-red-400 w-50"
+                onClick={() => (
+                  setDeleteModalOpen(!deleteModalOpen),
+                  setDeletedClient(undefined)
+                )}
               >
                 Cancelar
               </button>

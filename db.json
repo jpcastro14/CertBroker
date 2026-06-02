@@ -16,33 +16,6 @@
       ],
       "clients": [
         {
-          "id": "60c27efa-adfd-47f7-bdde-76a48b2e194c",
-          "name": "Rafael Souza",
-          "salary": 12000,
-          "interest": "venda",
-          "contact": 61911110003,
-          "email": "rafael@email.com",
-          "isServer": true
-        },
-        {
-          "id": "499e6bc1-50ff-4d11-8171-6920df9345ba",
-          "name": "Lucas Pereira",
-          "salary": 8000,
-          "interest": "venda",
-          "contact": 61911110001,
-          "email": "lucas@email.com",
-          "isServer": true
-        },
-        {
-          "id": "75f3156e-1c36-4222-ab8c-fedea644034f",
-          "name": "Ana Clara",
-          "salary": 4500,
-          "interest": "aluguel",
-          "contact": 61911110002,
-          "email": "ana@email.com",
-          "isServer": false
-        },
-        {
           "id": "ba087c23-1c1e-456f-93a4-e6dccde2f383",
           "name": "João Ferreira",
           "salary": 15000,
@@ -74,6 +47,15 @@
           "name": "aaaa",
           "isServer": false,
           "salary": 4500,
+          "interest": "venda",
+          "contact": 1111111111,
+          "email": "castrovoip@gmail.com"
+        },
+        {
+          "id": "744a2ae3-7e62-4a5f-b41b-4cda4d7725f9",
+          "name": "Pimba",
+          "isServer": false,
+          "salary": 8000,
           "interest": "venda",
           "contact": 1111111111,
           "email": "castrovoip@gmail.com"
