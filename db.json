@@ -16,33 +16,6 @@
       ],
       "clients": [
         {
-          "id": "ba087c23-1c1e-456f-93a4-e6dccde2f383",
-          "name": "João Ferreira",
-          "salary": 15000,
-          "interest": "aluguel",
-          "contact": 61993388141,
-          "email": "castrovoip@gmail.com",
-          "isServer": true
-        },
-        {
-          "id": "7dcf507b-1779-454d-b025-54af7c90ff13",
-          "name": "Olair Francisco",
-          "salary": 5000,
-          "interest": "venda",
-          "contact": 1111111111,
-          "email": "Olairalaor@gmail.com",
-          "isServer": false
-        },
-        {
-          "id": "b2e3d188-a867-4dc0-8507-e894148b8a1d",
-          "name": "João Pedro",
-          "salary": 5000,
-          "interest": "venda",
-          "contact": 1111111111,
-          "email": "castrovoip@gmail.com",
-          "isServer": false
-        },
-        {
           "id": "a5851f95-66b5-47f6-94ed-b254899a4e23",
           "name": "aaaa",
           "isServer": false,
@@ -58,6 +31,24 @@
           "salary": 8000,
           "interest": "venda",
           "contact": 1111111111,
+          "email": "castrovoip@gmail.com"
+        },
+        {
+          "id": "9a0fca3e-e113-44c0-b0ef-338e1f32dc81",
+          "name": "João Pedro",
+          "isServer": false,
+          "salary": 4000,
+          "interest": "venda",
+          "contact": 61993388141,
+          "email": "castrovoip@gmail.com"
+        },
+        {
+          "id": "4b875b53-b3a9-44ec-b72d-56e059534317",
+          "name": "João Pedro",
+          "isServer": true,
+          "salary": 90000,
+          "interest": "venda",
+          "contact": 61932545875,
           "email": "castrovoip@gmail.com"
         }
       ],
@@ -139,7 +130,7 @@
     {
       "id": "550e8400-e29b-41d4-a716-446655440005",
       "preference": 3,
-      "title": "Mariana Limaa",
+      "title": "Mariana Lima",
       "team": "Mara",
       "photo": "https://ui-avatars.com/api/?name=Mariana+Limaa",
       "sales": [],
@@ -171,7 +162,10 @@
           "email": "c3c@email.com",
           "isServer": true
         }
-      ]
+      ],
+      "creci": "516516",
+      "email": "marianalima@gmail.com",
+      "phoneNumber": "61985877893"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440006",

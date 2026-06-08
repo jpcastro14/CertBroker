@@ -80,18 +80,18 @@ export function ClientsTable() {
     <>
       <div
         id="clientsWrapper"
-        className="max-w-7xl mx-auto shadow border-slate-200 p-4 rounded "
+        className="max-w-7xl mx-auto shadow border-slate-200 p-4 rounded"
       >
         <div
           id="ClientsContainer"
           className="w-full bg-white rounded p-4 shadow"
         >
-          <p className="text-slate-900 border bg-yellow-400 border-white p-2 rounded ">
+          <p className="text-slate-900 text-center xl:text-start border bg-yellow-400 border-white p-2 rounded ">
             Clientes
           </p>
           <button
             onClick={() => setcontactModalOpen(true)}
-            className="btn font-medium bg-red-400 mb-4 w-full xl:w-50 "
+            className="btn bg-red-400 mb-4 w-full mt-2 xl:w-50 "
           >
             Cadastrar Novo Cliente
           </button>
@@ -154,7 +154,7 @@ export function ClientsTable() {
       <dialog
         data-close-on-click-outside
         id="ChangeContactModal"
-        className="modal w-full items-center justify-stretch border-0 p-0"
+        className="modal w-full items-center justify-stretch border-0 p-6 "
         open={contactModalOpen}
       >
         <div
@@ -176,12 +176,12 @@ export function ClientsTable() {
                 <p className="text-red-500">{errors.name.message}</p>
               )}
             </fieldset>
-            <fieldset className="fieldset col-span-2 xl:col-span-1 border-b border-gray-200 rounded ">
+            <fieldset className="fieldset col-span-2 xl:col-span-1 border-gray-200 rounded ">
               <legend className="fieldset-legend">Servidor?</legend>
               <input
                 {...register("isServer")}
                 type="checkbox"
-                className="input checkbox justify-self-center  "
+                className="input checkbox justify-self-center"
               />
               {errors.isServer && (
                 <p className="text-red-500">{errors.isServer.message}</p>
@@ -233,7 +233,7 @@ export function ClientsTable() {
                 <p className="text-red-500">{errors.email.message}</p>
               )}
             </fieldset>
-            <fieldset className="fieldset flex items-center col-span-2 xl:col-span-1">
+            <fieldset className="fieldset flex items-center col-span-1">
               <button
                 className="btn bg-blue-400 w-full "
                 value="Cancelar"
@@ -257,12 +257,12 @@ export function ClientsTable() {
       <dialog
         data-close-on-click-outside
         id="DeleteClientModal"
-        className="modal w-full items-center justify-stretch border-0 p-0"
+        className="modal w-full items-center justify-stretch border-0 p-4"
         open={deleteModalOpen}
       >
         <div
           id="FormWrapper"
-          className="m-4 max-w-3xl w-full p-4 mx-auto rounded-md bg-white "
+          className="p-4 mx-auto rounded-md bg-white xl:w-full xl:max-w-3xl "
         >
           <p className="text-slate-900 font-medium border flex justify-between bg-yellow-400 border-white p-2 rounded ">
             Excluir cliente da carteira de clientes ?
@@ -283,20 +283,21 @@ export function ClientsTable() {
                   .replace(phonePattern, "$1 ($2) $3 $4 $5")}
               </h3>
             </div>
-            <fieldset className=" flex p-4 rounded gap-4 items-between">
+            <fieldset className="p-4 rounded gap-4 flex justify-center xl:justify-end">
               <button
-                className="btn bg-green-400 w-50"
+                className="btn bg-green-400 w-1/2"
                 value="Cancelar"
                 onClick={() => (
                   handleDeleteClient(),
-                  setDeleteModalOpen(false)
+                  setDeleteModalOpen(!deleteModalOpen),
+                  setDeletedClient(undefined)
                 )}
               >
                 Confirmar
               </button>
 
               <button
-                className="btn bg-red-400 w-50"
+                className="btn bg-red-400 w-1/2"
                 onClick={() => (
                   setDeleteModalOpen(!deleteModalOpen),
                   setDeletedClient(undefined)
