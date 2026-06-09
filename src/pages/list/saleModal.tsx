@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { saleSchema, type SaleSchema } from "../brokerProfile/schema";
 import {
-  BrokerContext,
   type BrokerStateProps,
   type Sales,
 } from "../../contexts/brokerProvider";
@@ -9,7 +8,6 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BrokerApi } from "../../services/api";
 import { message } from "antd";
-import { useContext } from "react";
 
 type SaleModalProps = {
   isModalOpen: boolean;
