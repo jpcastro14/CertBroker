@@ -4,41 +4,38 @@ import {
   BrokerContext,
   type BrokerStateProps,
 } from "../../contexts/brokerProvider";
-import { useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
 import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
 import { SaleModal } from "./saleModal";
-
 
 export function List() {
   const [filtered, setFiltered] = useState<string>("");
   const { brokers } = useFetchBrokers(filtered);
   const [openSaleModal, setOpenSaleModal] = useState(false);
   const [brokerPayload, setBrokerPayload] = useState<BrokerStateProps>(
-    {} as BrokerStateProps
+    {} as BrokerStateProps,
   );
   const { brokerList, createList, clearList, open, setOpen } =
     useContext(BrokerContext);
 
-    function setFilter(param: string) {
-     setFiltered(param)
-    }
-    
-    function setSearchParam(value: string) {
-      if (value !== '') {
-        setFiltered(value);
-      }else{
-        setFiltered('');
-      }
+  function setFilter(param: string) {
+    setFiltered(param);
+  }
 
+  function setSearchParam(value: string) {
+    if (value !== "") {
+      setFiltered(value);
+    } else {
+      setFiltered("");
     }
-    
+  }
+
   const toggleModalOpen = (item: BrokerStateProps) => {
     setOpenSaleModal(!openSaleModal);
     setBrokerPayload(item);
   };
-
 
   return (
     <>
@@ -88,10 +85,7 @@ export function List() {
             id="CardWrapper"
             className=" w-64 justify-self-center mt-10 mx-2 border rounded  border-slate-200"
           >
-            <div
-              id="CardBackground"
-              className="max-h-72 card card-side shadow"
-            >
+            <div id="CardBackground" className="max-h-72 card card-side shadow">
               <div
                 id="CardInfo"
                 className="min-h-72 card-body bg-white text-black"
@@ -115,23 +109,23 @@ export function List() {
                     </p>
                   </span>
                 )}
-                <Link to={`/brokerProfile/${item.id}`} >
-                
-                <h2 id="CardTitle" className="card-title">
-                  {item.title}
-                </h2>
+                <Link to={`/brokerProfile/${item.id}`}>
+                  <h2 id="CardTitle" className="card-title">
+                    {item.title}
+                  </h2>
                 </Link>
 
                 <span
                   id="CardTeam"
-                  className="border border-slate-700 rounded-full pl-1 flex justify-center "
+                  //className="border border-slate-700 rounded-full pl-1 flex justify-center"
+                  className={`${item.team === "Breno" ? "border-green-500" : "border-yellow-500"} border rounded-full pl-1 flex justify-center `}
                 >
                   Equipe {item.team}
                 </span>
                 <div id="CardSales" className="card-actions justify-start">
                   <span className=" overflow-y-hidden max-h-32 rounded px-1 flex flex-col bg-slate-50 w-full justify-center ">
                     <p className="text-xl">Vendas: {item.sales.length} </p>
-                    {item.sales.slice(0,3).map((item) => (
+                    {item.sales.slice(0, 3).map((item) => (
                       <p key={item.id} className="text-slate-400 border-b">
                         {item.title} - {new Date(item.saleDate).getDay()}
                         {"/"}
@@ -173,7 +167,7 @@ export function List() {
       </div>
 
       <FilterComponent setParam={setFilter} setSearchParam={setSearchParam} />
-     
+
       <div
         id="AvailableBrokersCardContainer"
         className=" w-full max-w-7xl mx-auto pb-20 flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
@@ -210,7 +204,8 @@ export function List() {
 
                 <span
                   id="CardTeam"
-                  className="border border-slate-600 rounded-full pl-1 flex justify-center "
+                  //className="border border-slate-600 rounded-full pl-1 flex justify-center "
+                  className={`${item.team === "Breno" ? "bg-success" : "bg-warning"} rounded-full pl-1 flex justify-center `}
                 >
                   Equipe {item.team}
                 </span>

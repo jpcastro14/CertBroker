@@ -68,6 +68,12 @@
           "title": "Real Bothanic",
           "saleValue": 2500000,
           "saleDate": "2026-05-26T20:31:18.222Z"
+        },
+        {
+          "id": "0.p7w7v6u0uj",
+          "title": "Bauhaus 500",
+          "saleValue": 5000000,
+          "saleDate": "2026-06-09T20:27:05.865Z"
         }
       ],
       "clients": [
@@ -133,7 +139,26 @@
       "title": "Mariana Lima",
       "team": "Mara",
       "photo": "https://ui-avatars.com/api/?name=Mariana+Limaa",
-      "sales": [],
+      "sales": [
+        {
+          "id": "0.uzwqap9cc1",
+          "title": "Bauhaus 500",
+          "saleValue": 3000000,
+          "saleDate": "2026-06-09T20:27:41.993Z"
+        },
+        {
+          "id": "0.c3j5hajx3oq",
+          "title": "Real Bothanic",
+          "saleValue": 2000000,
+          "saleDate": "2026-06-09T20:28:49.253Z"
+        },
+        {
+          "id": "0.1iqca2rgr1c",
+          "title": "Real Bothanic",
+          "saleValue": 2000000,
+          "saleDate": "2026-06-09T20:32:09.974Z"
+        }
+      ],
       "clients": [
         {
           "id": "782e474d-42a1-4cf7-bef4-1993c2e00d57",
@@ -173,7 +198,14 @@
       "title": "Carlos Mendes",
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Carlos+Mendes",
-      "sales": [],
+      "sales": [
+        {
+          "id": "0.nryx80j0mvd",
+          "title": "Real Panoramic",
+          "saleValue": 1000000,
+          "saleDate": "2026-06-09T20:31:19.105Z"
+        }
+      ],
       "clients": [
         {
           "id": "20601ac5-2f83-4388-b42a-26ef7d669ed6",

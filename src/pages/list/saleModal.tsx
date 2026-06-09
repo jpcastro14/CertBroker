@@ -1,6 +1,10 @@
 import { useForm } from "react-hook-form";
 import { saleSchema, type SaleSchema } from "../brokerProfile/schema";
-import { BrokerContext, type BrokerStateProps, type Sales } from "../../contexts/brokerProvider";
+import {
+  BrokerContext,
+  type BrokerStateProps,
+  type Sales,
+} from "../../contexts/brokerProvider";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BrokerApi } from "../../services/api";
@@ -12,8 +16,6 @@ type SaleModalProps = {
   closeModal: () => void;
   payload: BrokerStateProps;
 };
-
-
 
 export function SaleModal({
   isModalOpen,
@@ -33,11 +35,9 @@ export function SaleModal({
       saleValue: "",
     },
   });
-  const { clearList } = useContext(BrokerContext);
 
   function handleSale(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-
     const formattedSaleValue = value
       .replace(/\D/g, "")
       .replace(/(\d)(\d{2})$/, "$1.$2")
@@ -66,7 +66,6 @@ export function SaleModal({
       if (response.status === 200) {
         closeModal();
         message.success("Venda informada com sucesso!");
-        clearList();
       }
     });
   }
@@ -123,4 +122,3 @@ export function SaleModal({
     </dialog>
   );
 }
-
