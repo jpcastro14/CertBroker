@@ -10,10 +10,12 @@ import { v4 as uuid } from "uuid";
 
 export function ClientsTable() {
   const { id } = useParams();
-  const { brokerById } = useFetchBrokers("false", id);
+  const { brokerById } = useFetchBrokers("", id);
   const [contactModalOpen, setcontactModalOpen] = useState(false);
   const [deletedClient, setDeletedClient] = useState<ClientSchema>();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [sorted, setSorted] = useState(false);
+
   const phonePattern: RegExp = /(^)([0-9]{2})([0-9]{1})([0-9]{4})([0-9]{4})/;
 
   const {
@@ -76,6 +78,16 @@ export function ClientsTable() {
       });
   }
 
+  const handleSortBySalary = () => {
+    if (sorted) {
+      brokerById?.clients.sort((a, b) => a.salary - b.salary);
+      setSorted(!sorted);
+    } else {
+      brokerById?.clients.sort((a, b) => b.salary - a.salary);
+      setSorted(!sorted);
+    }
+  };
+
   return (
     <>
       <div
@@ -101,7 +113,11 @@ export function ClientsTable() {
                 <tr>
                   <th className="w-0">Servidor</th>
                   <th>Nome</th>
-                  <th>Salário</th>
+                  <th>
+                    <button className="btn" onClick={handleSortBySalary}>
+                      Ordenar Salario
+                    </button>
+                  </th>
                   <th>Interesses</th>
                   <th>Contato</th>
                   <th>Email</th>
