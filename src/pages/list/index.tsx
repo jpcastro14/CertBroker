@@ -46,10 +46,7 @@ export function List() {
         payload={brokerPayload}
       />
 
-      <AlertComponent
-        open={open}
-        message="O corretor ja está na fila de atendimento"
-      />
+      <AlertComponent message="O corretor ja está na fila de atendimento" />
 
       <div id="BrokerRow" className="max-w-7xl xl:mx-auto">
         <div className="flex flex-col items-start mt-10 md:flex-row lg:flex-row xl:flex-row px-2 ">

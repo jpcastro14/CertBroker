@@ -1,14 +1,13 @@
+import { useContext } from "react";
+import { BrokerContext } from "../../contexts/brokerProvider";
+
 type AlertComponentProps = {
-  open: boolean;
   message?: string;
-  setOpen?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export function AlertComponent({
-  open,
-  message,
-  setOpen,
-}: AlertComponentProps) {
+export function AlertComponent({ message }: AlertComponentProps) {
+  const { open, setOpen } = useContext(BrokerContext);
+
   return (
     <dialog id="AlreadyOnRowAlert" className="modal" open={open}>
       <div className="modal-box bg-white ">
@@ -18,7 +17,7 @@ export function AlertComponent({
         </p>
         <div className="modal-action">
           <form method="dialog">
-            <button className="btn btn-error" onClick={setOpen}>
+            <button className="btn btn-error" onClick={() => setOpen(!open)}>
               Fechar
             </button>
           </form>
