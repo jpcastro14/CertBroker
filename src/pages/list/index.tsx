@@ -9,6 +9,7 @@ import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
 import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
 import { SaleModal } from "./saleModal";
+import { AlertComponent } from "./AlertComponent";
 
 export function List() {
   const [filtered, setFiltered] = useState<string>("");
@@ -45,21 +46,10 @@ export function List() {
         payload={brokerPayload}
       />
 
-      <dialog id="AlreadyOnRowAlert" className="modal" open={open}>
-        <div className="modal-box bg-white ">
-          <h3 className="font-bold text-lg text-slate-600">Ops!</h3>
-          <p className="py-4 text-slate-500 ">
-            O corretor ja está na fila de atendimento
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn btn-error" onClick={() => setOpen(!open)}>
-                Fechar
-              </button>
-            </form>
-          </div>
-        </div>
-      </dialog>
+      <AlertComponent
+        open={open}
+        message="O corretor ja está na fila de atendimento"
+      />
 
       <div id="BrokerRow" className="max-w-7xl xl:mx-auto">
         <div className="flex flex-col items-start mt-10 md:flex-row lg:flex-row xl:flex-row px-2 ">
@@ -138,12 +128,15 @@ export function List() {
                   id="profileActions"
                   className=" w-full h-full items-end mt-4 grid grid-cols-2 gap-1"
                 >
-                  <button
-                    className="btn btn-error"
-                    onClick={() => clearList(item)}
-                  >
-                    Sair
-                  </button>
+                  {index != 0 && (
+                    <button
+                      className="btn btn-error"
+                      onClick={() => clearList(item)}
+                    >
+                      Sair
+                    </button>
+                  )}
+
                   <button
                     onClick={() => toggleModalOpen(item)}
                     className="btn btn-success"
