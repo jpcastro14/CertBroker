@@ -1,12 +1,8 @@
 import { useContext } from "react";
 import { BrokerContext } from "../../contexts/brokerProvider";
 
-type AlertComponentProps = {
-  message?: string;
-};
-
-export function AlertComponent({ message }: AlertComponentProps) {
-  const { open, setOpen } = useContext(BrokerContext);
+export function AlertComponent() {
+  const { open, setOpen, message } = useContext(BrokerContext);
 
   return (
     <dialog id="AlreadyOnRowAlert" className="modal" open={open}>

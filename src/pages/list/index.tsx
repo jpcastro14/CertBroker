@@ -8,8 +8,9 @@ import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
 import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
-import { SaleModal } from "./saleModal";
+import { SaleModal } from "./SaleModal";
 import { AlertComponent } from "./AlertComponent";
+import { BrokerQueue } from "./BrokerQueue";
 
 export function List() {
   const [filtered, setFiltered] = useState<string>("");
@@ -18,8 +19,7 @@ export function List() {
   const [brokerPayload, setBrokerPayload] = useState<BrokerStateProps>(
     {} as BrokerStateProps,
   );
-  const { brokerList, createList, clearList, open, setOpen } =
-    useContext(BrokerContext);
+  const { brokerList, createList, clearList } = useContext(BrokerContext);
 
   function setFilter(param: string) {
     setFiltered(param);
@@ -45,22 +45,8 @@ export function List() {
         closeModal={() => setOpenSaleModal(false)}
         payload={brokerPayload}
       />
-
-      <AlertComponent message="O corretor ja está na fila de atendimento" />
-
-      <div id="BrokerRow" className="max-w-7xl xl:mx-auto">
-        <div className="flex flex-col items-start mt-10 md:flex-row lg:flex-row xl:flex-row px-2 ">
-          <h2 className="text-black text-xl mx-4">Fila de corretores</h2>
-          {brokerList.length > 0 && (
-            <button
-              className=" w-full btn btn-success btn-sm px-2 md:max-w-50 lg:max-w-50 xl:max-w-50 "
-              onClick={() => clearList()}
-            >
-              Próximo da fila
-            </button>
-          )}
-        </div>
-      </div>
+      <AlertComponent />
+      <BrokerQueue />
 
       <div
         id="BrokerRowContainer"
@@ -205,13 +191,6 @@ export function List() {
                     onClick={() => createList(item)}
                   >
                     Adicionar à fila
-                  </button>
-                  <button
-                    onClick={() => toggleModalOpen(item)}
-                    className="btn btn-success w-full mt-2"
-                  >
-                    <FontAwesomeIcon icon={faMoneyBill1} />
-                    Venda
                   </button>
                 </div>
               </div>

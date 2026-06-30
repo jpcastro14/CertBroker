@@ -35,6 +35,7 @@ export interface BrokerContextData {
   clearList: (broker?: BrokerStateProps) => void;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  message: string;
 }
 
 interface BrokerProviderProps {
@@ -44,6 +45,7 @@ export const BrokerContext = createContext({} as BrokerContextData);
 
 export const BrokerProvider = ({ children }: BrokerProviderProps) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
   const [brokerList, setBrokerList] = useState<BrokerStateProps[]>(() => {
     const localStorageRow = localStorage.getItem("row");
     return localStorageRow ? JSON.parse(localStorageRow) : [];
@@ -54,6 +56,9 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
 
     if (brokerIndex !== -1) {
       setOpen(!open);
+      setMessage(
+        "O corretor ja está na fila de atendimento! Selecione outro corretor.",
+      );
       return;
     }
     setBrokerList((prevState) => [...prevState, broker]);
@@ -77,7 +82,7 @@ export const BrokerProvider = ({ children }: BrokerProviderProps) => {
 
   return (
     <BrokerContext.Provider
-      value={{ brokerList, createList, clearList, open, setOpen }}
+      value={{ brokerList, createList, clearList, open, setOpen, message }}
     >
       {children}
     </BrokerContext.Provider>
