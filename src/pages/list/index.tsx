@@ -1,9 +1,4 @@
-import { faMoneyBill1 } from "@fortawesome/free-regular-svg-icons/faMoneyBill1";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  BrokerContext,
-  type BrokerStateProps,
-} from "../../contexts/brokerProvider";
+import { BrokerContext } from "../../contexts/brokerProvider";
 import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
@@ -19,7 +14,6 @@ export function List() {
   function setFilter(param: string) {
     setFiltered(param);
   }
-
   function setSearchParam(value: string) {
     if (value !== "") {
       setFiltered(value);
@@ -27,13 +21,10 @@ export function List() {
       setFiltered("");
     }
   }
-
   return (
     <>
       <AlertComponent />
       <BrokerQueue />
-
-      {/* ---------------------- Corretores disponíveis ---------------------- */}
 
       <div id="PageTitle" className="w-full max-w-7xl mx-auto shadow-2xs">
         <h2 className="max-w-7xl text-black text-xl mt-10 mx-4">
@@ -42,7 +33,6 @@ export function List() {
       </div>
 
       <FilterComponent setParam={setFilter} setSearchParam={setSearchParam} />
-
       <div
         id="AvailableBrokersCardContainer"
         className=" w-full max-w-7xl mx-auto pb-20 flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
@@ -86,7 +76,7 @@ export function List() {
                 </span>
                 <div id="profileActions" className="w-full">
                   <button
-                    className="btn btn-warning w-full "
+                    className="btn btn-info btn-soft w-full "
                     onClick={() => createList(item)}
                   >
                     Adicionar à fila
