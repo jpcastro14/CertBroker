@@ -172,6 +172,18 @@
           "title": "Real Bothanic",
           "saleValue": 2000000,
           "saleDate": "2026-06-09T20:32:09.974Z"
+        },
+        {
+          "id": "0.pz36vxuum6r",
+          "title": "lalalala",
+          "saleValue": 555555.55,
+          "saleDate": "2026-06-30T20:13:10.674Z"
+        },
+        {
+          "id": "0.47q40hn6j2x",
+          "title": "aaaaaaaaaaaaa",
+          "saleValue": 20202020.2,
+          "saleDate": "2026-06-30T20:13:27.209Z"
         }
       ],
       "clients": [
@@ -368,7 +380,14 @@
       "title": "Ricardo Silva",
       "team": "Breno",
       "photo": "https://ui-avatars.com/api/?name=Ricardo+Silva",
-      "sales": [],
+      "sales": [
+        {
+          "id": "0.lwu96ek2m3",
+          "title": "Teste",
+          "saleValue": 1000000,
+          "saleDate": "2026-06-30T20:16:44.462Z"
+        }
+      ],
       "clients": [
         {
           "id": "4c0837d9-d18b-4409-871d-79f82c64640c",
@@ -397,7 +416,10 @@
           "email": "c8c@email.com",
           "isServer": true
         }
-      ]
+      ],
+      "creci": "233658",
+      "email": "ricsilva@gmail.com",
+      "phoneNumber": "6889898975"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440011",

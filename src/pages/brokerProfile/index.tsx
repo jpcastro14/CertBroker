@@ -206,7 +206,9 @@ export function BrokerProfile() {
             id="SalesContainer"
             className="w-full bg-white rounded p-4 shadow "
           >
-            <p className="text-slate-900 bg-green-300 p-2 rounded">Vendas</p>
+            <p className="text-slate-900 bg-green-300 p-2 rounded">
+              Vendas - {brokerById.sales.length}
+            </p>
 
             <div id="SalesTable" className="overflow-x-auto">
               <table className="table table-md text-slate-700 ">
