@@ -15,7 +15,7 @@ type SaleModalProps = {
   payload: BrokerStateProps;
 };
 
-export function SaleModal({
+export function NewSaleModal({
   isModalOpen,
   closeModal,
   payload,

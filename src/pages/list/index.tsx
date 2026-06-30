@@ -8,18 +8,13 @@ import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { FilterComponent } from "./FilterComponent";
 import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
-import { SaleModal } from "./SaleModal";
 import { AlertComponent } from "./AlertComponent";
 import { BrokerQueue } from "./BrokerQueue";
 
 export function List() {
   const [filtered, setFiltered] = useState<string>("");
   const { brokers } = useFetchBrokers(filtered);
-  const [openSaleModal, setOpenSaleModal] = useState(false);
-  const [brokerPayload, setBrokerPayload] = useState<BrokerStateProps>(
-    {} as BrokerStateProps,
-  );
-  const { brokerList, createList, clearList } = useContext(BrokerContext);
+  const { createList } = useContext(BrokerContext);
 
   function setFilter(param: string) {
     setFiltered(param);
@@ -33,106 +28,10 @@ export function List() {
     }
   }
 
-  const toggleModalOpen = (item: BrokerStateProps) => {
-    setOpenSaleModal(!openSaleModal);
-    setBrokerPayload(item);
-  };
-
   return (
     <>
-      <SaleModal
-        isModalOpen={openSaleModal}
-        closeModal={() => setOpenSaleModal(false)}
-        payload={brokerPayload}
-      />
       <AlertComponent />
       <BrokerQueue />
-
-      <div
-        id="BrokerRowContainer"
-        className=" w-full max-w-7xl mx-auto flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
-      >
-        {brokerList.map((item, index) => (
-          <div
-            key={item.id}
-            id="CardWrapper"
-            className=" w-64 justify-self-center mt-10 mx-2 border rounded  border-slate-200"
-          >
-            <div id="CardBackground" className="max-h-72 card card-side shadow">
-              <div
-                id="CardInfo"
-                className="min-h-72 card-body bg-white text-black"
-              >
-                {index == 0 && (
-                  <span
-                    id="CardAdvise"
-                    className="absolute rounded-full bg-error bg- p-1 px-4 -top-3 right-2"
-                  >
-                    <p className="text-slate-900">Corretor da vez</p>
-                  </span>
-                )}
-
-                {index != 0 && (
-                  <span
-                    id="BrokerIndex"
-                    className="absolute btn btn-circle border-slate-200 rounded-full bg-warning p-1 -top-3 right-2"
-                  >
-                    <p className="text-slate-900 text-xl font-semibold">
-                      {index + 1}
-                    </p>
-                  </span>
-                )}
-                <Link to={`/brokerProfile/${item.id}`}>
-                  <h2 id="CardTitle" className="card-title">
-                    {item.title}
-                  </h2>
-                </Link>
-
-                <span
-                  id="CardTeam"
-                  //className="border border-slate-700 rounded-full pl-1 flex justify-center"
-                  className={`${item.team === "Breno" ? "border-green-500" : "border-yellow-500"} border rounded-full pl-1 flex justify-center `}
-                >
-                  Equipe {item.team}
-                </span>
-                <div id="CardSales" className="card-actions justify-start">
-                  <span className=" overflow-y-hidden max-h-32 rounded px-1 flex flex-col bg-slate-50 w-full justify-center ">
-                    <p className="text-xl">Vendas: {item.sales.length} </p>
-                    {item.sales.slice(0, 3).map((item) => (
-                      <p key={item.id} className="text-slate-400 border-b">
-                        {item.title} - {new Date(item.saleDate).getDay()}
-                        {"/"}
-                        {new Date(item.saleDate).getMonth() + 1}
-                      </p>
-                    ))}
-                  </span>
-                </div>
-                <div
-                  id="profileActions"
-                  className=" w-full h-full items-end mt-4 grid grid-cols-2 gap-1"
-                >
-                  {index != 0 && (
-                    <button
-                      className="btn btn-error"
-                      onClick={() => clearList(item)}
-                    >
-                      Sair
-                    </button>
-                  )}
-
-                  <button
-                    onClick={() => toggleModalOpen(item)}
-                    className="btn btn-success"
-                  >
-                    <FontAwesomeIcon icon={faMoneyBill1} />
-                    Venda
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
 
       {/* ---------------------- Corretores disponíveis ---------------------- */}
 
