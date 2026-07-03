@@ -12,7 +12,7 @@ export function ClientsTable() {
   const { id } = useParams();
   const { brokerById } = useFetchBrokers("", id);
   const [contactModalOpen, setcontactModalOpen] = useState(false);
-  const [deletedClient, setDeletedClient] = useState<ClientSchema>();
+  const [clientToDelete, setClientToDelete] = useState<ClientSchema>();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [sorted, setSorted] = useState(false);
 
@@ -57,7 +57,7 @@ export function ClientsTable() {
 
   function handleDeleteClient() {
     const updatedClients = brokerById?.clients.filter(
-      (client) => client.id !== deletedClient?.id,
+      (client) => client.id !== clientToDelete?.id,
     );
 
     axios
@@ -150,7 +150,7 @@ export function ClientsTable() {
                     <td>
                       <button
                         onClick={() => (
-                          setDeletedClient(client),
+                          setClientToDelete(client),
                           setDeleteModalOpen(true)
                         )}
                         className="btn btn-sm btn-error"
@@ -286,15 +286,15 @@ export function ClientsTable() {
           <div>
             <div className="flex flex-col gap-2 my-4 shadow p-4 rounded">
               <h1
-                className={`text-xl font-bold ${deletedClient?.isServer ? "border-l-6 pl-2  border-green-500 badge-success " : "pl-2 "}`}
+                className={`text-xl font-bold ${clientToDelete?.isServer ? "border-l-6 pl-2  border-green-500 badge-success " : "pl-2 "}`}
               >
-                {deletedClient?.name}{" "}
-                {deletedClient?.isServer && "- Servidor Público"}
+                {clientToDelete?.name}{" "}
+                {clientToDelete?.isServer && "- Servidor Público"}
               </h1>
-              <h3>Email: {deletedClient?.email}</h3>
+              <h3>Email: {clientToDelete?.email}</h3>
               <h3>
                 Telefone:{" "}
-                {deletedClient?.contact
+                {clientToDelete?.contact
                   ?.toString()
                   .replace(phonePattern, "$1 ($2) $3 $4 $5")}
               </h3>
@@ -306,7 +306,7 @@ export function ClientsTable() {
                 onClick={() => (
                   handleDeleteClient(),
                   setDeleteModalOpen(!deleteModalOpen),
-                  setDeletedClient(undefined)
+                  setClientToDelete(undefined)
                 )}
               >
                 Confirmar
@@ -316,7 +316,7 @@ export function ClientsTable() {
                 className="btn bg-red-400 w-1/2"
                 onClick={() => (
                   setDeleteModalOpen(!deleteModalOpen),
-                  setDeletedClient(undefined)
+                  setClientToDelete(undefined)
                 )}
               >
                 Cancelar
