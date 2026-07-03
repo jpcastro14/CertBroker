@@ -44,13 +44,13 @@ export function BrokerQueue() {
 
       <div
         id="BrokerQueueContainer"
-        className=" w-full max-w-7xl mx-auto flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
+        className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 px-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         {brokerList.map((item, index) => (
           <div
             key={item.id}
             id="CardWrapper"
-            className=" w-64 justify-self-center mt-10 mx-2 border rounded  border-slate-200"
+            className="mt-10 w-full max-w-64 justify-self-center rounded border border-slate-200"
           >
             <div id="CardBackground" className="max-h-72 card card-side shadow">
               <div
@@ -90,13 +90,17 @@ export function BrokerQueue() {
                   Equipe {item.team}
                 </span>
                 <div id="CardSales" className="card-actions justify-start">
-                  <span className=" overflow-y-hidden max-h-32 rounded px-1 flex flex-col bg-slate-50 w-full justify-center ">
+                  <span className=" overflow-y-scroll max-h-30 mb-auto rounded bg-slate-50 w-full justify-center ">
                     <p className="text-xl">Vendas: {item.sales.length} </p>
-                    {item.sales.slice(0, 3).map((item) => (
-                      <p key={item.id} className="text-slate-400 border-b">
-                        {item.title} - {new Date(item.saleDate).getDay()}
-                        {"/"}
-                        {new Date(item.saleDate).getMonth() + 1}
+                    {item.sales.map((item) => (
+                      <p
+                        key={item.id}
+                        className="text-slate-400 border-b px-2 hover:bg-slate-100"
+                      >
+                        {item.title.charAt(0).toUpperCase() +
+                          item.title.slice(1)}{" "}
+                        - {new Date(item.saleDate).getMonth() + 1}
+                        {"/ " + new Date(item.saleDate).getFullYear()}
                       </p>
                     ))}
                   </span>

@@ -1,10 +1,10 @@
-type functionProps = {
+type BrokerListProps = {
   setParam: (param: string) => void;
   brokerValue?: string;
   setSearchParam: (value: string) => void;
 };
 
-export function FilterComponent({ setParam, setSearchParam }: functionProps) {
+export function FilterComponent({ setParam, setSearchParam }: BrokerListProps) {
   return (
     <div className=" flex-wrap xl:flex-nowrap w-full max-w-7xl mx-auto px-6 flex gap-10 justify-center xl:justify-start items-center mt-4">
       <span>Filtros</span>

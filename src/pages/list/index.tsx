@@ -11,16 +11,13 @@ export function List() {
   const { brokers } = useFetchBrokers(filtered);
   const { createList } = useContext(BrokerContext);
 
-  function setFilter(param: string) {
+  const setFilter = (param: string) => {
     setFiltered(param);
-  }
-  function setSearchParam(value: string) {
-    if (value !== "") {
-      setFiltered(value);
-    } else {
-      setFiltered("");
-    }
-  }
+  };
+
+  const setSearchParam = (value: string) => {
+    setFiltered(value || "");
+  };
   return (
     <>
       <AlertComponent />
@@ -35,13 +32,13 @@ export function List() {
       <FilterComponent setParam={setFilter} setSearchParam={setSearchParam} />
       <div
         id="AvailableBrokersCardContainer"
-        className=" w-full max-w-7xl mx-auto pb-20 flex flex-col items-center sm:grid-cols-2 lg:grid-cols-3 md:grid grid-cols-4 xl:grid-cols-4"
+        className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 px-2 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
-        {brokers?.map((item, index) => (
+        {brokers?.map((item) => (
           <div
             key={item.id}
             id="CardWrapper"
-            className=" min-w-l max-w-xl justify-self-center mt-10 mx-2 border rounded border-slate-200"
+            className="mt-10 w-full max-w-xl justify-self-center rounded border border-slate-200"
           >
             <div
               id="CardBackground"
