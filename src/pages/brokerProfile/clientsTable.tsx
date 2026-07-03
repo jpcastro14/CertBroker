@@ -12,7 +12,9 @@ export function ClientsTable() {
   const { id } = useParams();
   const { brokerById } = useFetchBrokers("", id);
   const [contactModalOpen, setcontactModalOpen] = useState(false);
-  const [clientToDelete, setClientToDelete] = useState<ClientSchema>();
+  const [clientToDelete, setClientToDelete] = useState<
+    ClientSchema | undefined
+  >();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [sorted, setSorted] = useState(false);
 
@@ -305,8 +307,7 @@ export function ClientsTable() {
                 value="Cancelar"
                 onClick={() => (
                   handleDeleteClient(),
-                  setDeleteModalOpen(!deleteModalOpen),
-                  setClientToDelete(undefined)
+                  setDeleteModalOpen(!deleteModalOpen)
                 )}
               >
                 Confirmar
@@ -314,10 +315,7 @@ export function ClientsTable() {
 
               <button
                 className="btn bg-red-400 w-1/2"
-                onClick={() => (
-                  setDeleteModalOpen(!deleteModalOpen),
-                  setClientToDelete(undefined)
-                )}
+                onClick={() => setDeleteModalOpen(!deleteModalOpen)}
               >
                 Cancelar
               </button>
