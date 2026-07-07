@@ -2,7 +2,7 @@ import { useEffect, useState, type SetStateAction } from "react";
 import type { BrokerStateProps } from "../contexts/brokerProvider";
 import { fetchBrokers } from "../services/api";
 
-export function useFetchBrokers(filtered?: string, id?: string) {
+export function useFetchBrokers(filtered: string | undefined, id?: string) {
   const [brokers, setBrokers] = useState<BrokerStateProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

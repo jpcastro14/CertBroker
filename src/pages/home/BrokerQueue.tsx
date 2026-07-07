@@ -60,7 +60,7 @@ export function BrokerQueue() {
                 {index == 0 && (
                   <span
                     id="CardAdvise"
-                    className="absolute rounded-full bg-error bg- p-1 px-4 -top-3 right-2"
+                    className="absolute rounded-full border-red-400 bg-error bg- p-1 px-4 -top-3 right-2"
                   >
                     <p className="text-slate-900">Corretor da vez</p>
                   </span>
