@@ -197,7 +197,7 @@ export function BrokerProfile() {
         </div>
       </div>
 
-      <SalesTable brokerById={brokerById} />
+      <SalesTable />
       <ClientsTable />
     </>
   );

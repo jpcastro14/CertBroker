@@ -1,10 +1,10 @@
-import type { BrokerStateProps } from "../../contexts/brokerProvider";
+import { useParams } from "react-router-dom";
+import { useFetchBrokers } from "../../customHooks/useFetchBrokers";
 
-export function SalesTable({
-  brokerById,
-}: {
-  brokerById: BrokerStateProps | null;
-}) {
+export function SalesTable() {
+  const { id } = useParams();
+  const { brokerById } = useFetchBrokers("", id);
+
   return (
     <div
       id="SalesWrapper"
@@ -23,6 +23,7 @@ export function SalesTable({
                 <th>Empreendimento</th>
                 <th>Valor</th>
                 <th>Data da venda</th>
+                <th>Comissões</th>
               </tr>
             </thead>
             <tbody>
@@ -41,8 +42,15 @@ export function SalesTable({
                       {new Date(sale.saleDate).getMonth() + 1} /{" "}
                       {new Date(sale.saleDate).getFullYear()}
                     </td>
+                    <td>
+                      {(sale.saleValue * 0.03).toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
+                    </td>
                   </tr>
                 ))}
+
               <tr className="bg-slate-50">
                 <th>Total</th>
                 <td></td>
@@ -55,55 +63,9 @@ export function SalesTable({
                     })}
                 </td>
                 <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div
-        id="ComissionsContainer"
-        className="w-full bg-white rounded p-4 shadow "
-      >
-        <p className="text-slate-900 bg-blue-300 p-2 rounded">Comisssões</p>
-
-        <div id="ComissionsTable" className="overflow-x-auto">
-          <table className="table table-md text-slate-700 ">
-            <thead className="text-slate-700">
-              <tr>
-                <th>#</th>
-                <th>Empreendimento</th>
-                <th>Valor</th>
-                <th>Comissão</th>
-              </tr>
-            </thead>
-            <tbody>
-              {brokerById &&
-                brokerById.sales.map((comission) => (
-                  <tr key={comission.id} className="border-b border-slate-200">
-                    <th>{comission.id.toString().slice(2, 8).toUpperCase()}</th>
-                    <td>{comission.title}</td>
-                    <td>
-                      {(comission.saleValue * 0.003).toLocaleString("pt-br", {
-                        style: "currency",
-                        currency: "BRL",
-                      })}
-                    </td>
-                    <td>
-                      {(comission.saleValue * 0.003).toLocaleString("pt-br", {
-                        style: "currency",
-                        currency: "BRL",
-                      })}
-                    </td>
-                  </tr>
-                ))}
-              <tr className="bg-slate-50">
-                <th>Total</th>
-                <td></td>
-                <td></td>
-                <td className="font-bold">
+                <td id="TotalCommission" className="bg-slate-50 font-bold">
                   {brokerById?.sales
-                    .reduce((acc, sale) => acc + sale.saleValue * 0.003, 0)
+                    .reduce((acc, sale) => acc + sale.saleValue * 0.03, 0)
                     .toLocaleString("pt-br", {
                       style: "currency",
                       currency: "BRL",
