@@ -4,6 +4,7 @@ import { List } from "./pages/home";
 import { ProtectedLayout } from "./components/protectedLayout";
 import { BrokerProfile } from "./pages/brokerProfile";
 import { NewBroker } from "./pages/newBroker";
+import { TestSupa } from "./pages/supabase";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/newBroker",
         element: <ProtectedLayout children={<NewBroker />} />,
+      },
+      {
+        path: "/supatest",
+        element: <ProtectedLayout children={<TestSupa />} />,
       },
     ],
   },

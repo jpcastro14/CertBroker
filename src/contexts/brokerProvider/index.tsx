@@ -5,6 +5,7 @@ export type Sales = {
   title: string;
   saleDate: Date;
   saleValue: number;
+  percentageMultiplier: number;
 };
 
 export type Clients = {
